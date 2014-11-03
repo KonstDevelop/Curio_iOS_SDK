@@ -1,0 +1,409 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2C26B5B019D2F48B00450A85 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C26B5AF19D2F48B00450A85 /* UIKit.framework */; };
+		2C26B5B219D2F48B00450A85 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C26B5B119D2F48B00450A85 /* Foundation.framework */; };
+		2C26B5B419D2F48B00450A85 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C26B5B319D2F48B00450A85 /* CoreGraphics.framework */; };
+		2C26B5BA19D2F48B00450A85 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C26B5B819D2F48B00450A85 /* InfoPlist.strings */; };
+		2C26B5BC19D2F48B00450A85 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C26B5BB19D2F48B00450A85 /* main.m */; };
+		2C26B5C019D2F48B00450A85 /* CLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C26B5BF19D2F48B00450A85 /* CLAppDelegate.m */; };
+		2C26B5C219D2F48B00450A85 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C26B5C119D2F48B00450A85 /* Default.png */; };
+		2C26B5C419D2F48B00450A85 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C26B5C319D2F48B00450A85 /* Default@2x.png */; };
+		2C26B5C619D2F48B00450A85 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C26B5C519D2F48B00450A85 /* Default-568h@2x.png */; };
+		2C26B5C919D2F48B00450A85 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C26B5C719D2F48B00450A85 /* MainStoryboard_iPhone.storyboard */; };
+		2C26B5CC19D2F48B00450A85 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C26B5CA19D2F48B00450A85 /* MainStoryboard_iPad.storyboard */; };
+		2C26B5CF19D2F48B00450A85 /* CLMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C26B5CE19D2F48B00450A85 /* CLMasterViewController.m */; };
+		2C26B5D219D2F48B00450A85 /* CLDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C26B5D119D2F48B00450A85 /* CLDetailViewController.m */; };
+		2C26B61A19D2F4C500450A85 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C26B61919D2F4C500450A85 /* CoreTelephony.framework */; };
+		2C26B61C19D2F4CF00450A85 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C26B61B19D2F4CF00450A85 /* libsqlite3.dylib */; };
+		2C26B63319D2F51800450A85 /* CurioAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C26B61F19D2F51800450A85 /* CurioAction.m */; };
+		2C26B63419D2F51800450A85 /* CurioActionToolkit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C26B62119D2F51800450A85 /* CurioActionToolkit.m */; };
+		2C26B63519D2F51800450A85 /* CurioDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C26B62319D2F51800450A85 /* CurioDB.m */; };
+		2C26B63619D2F51800450A85 /* CurioDBToolkit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C26B62519D2F51800450A85 /* CurioDBToolkit.m */; };
+		2C26B63719D2F51800450A85 /* CurioNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C26B62719D2F51800450A85 /* CurioNetwork.m */; };
+		2C26B63819D2F51800450A85 /* CurioPostOffice.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C26B62919D2F51800450A85 /* CurioPostOffice.m */; };
+		2C26B63919D2F51800450A85 /* CurioSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C26B62C19D2F51800450A85 /* CurioSDK.m */; };
+		2C26B63A19D2F51800450A85 /* CurioSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C26B62E19D2F51800450A85 /* CurioSettings.m */; };
+		2C26B63B19D2F51800450A85 /* CurioUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C26B63019D2F51800450A85 /* CurioUtil.m */; };
+		2C26B63C19D2F51800450A85 /* ReachabilityEx.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C26B63219D2F51800450A85 /* ReachabilityEx.m */; };
+		2C26B63E19D2F61200450A85 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C26B63D19D2F61200450A85 /* SystemConfiguration.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2C26B5AC19D2F48B00450A85 /* CurioIOSSDKSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurioIOSSDKSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C26B5AF19D2F48B00450A85 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		2C26B5B119D2F48B00450A85 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		2C26B5B319D2F48B00450A85 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		2C26B5B719D2F48B00450A85 /* CurioIOSSDKSample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CurioIOSSDKSample-Info.plist"; sourceTree = "<group>"; };
+		2C26B5B919D2F48B00450A85 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2C26B5BB19D2F48B00450A85 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2C26B5BD19D2F48B00450A85 /* CurioIOSSDKSample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CurioIOSSDKSample-Prefix.pch"; sourceTree = "<group>"; };
+		2C26B5BE19D2F48B00450A85 /* CLAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLAppDelegate.h; sourceTree = "<group>"; };
+		2C26B5BF19D2F48B00450A85 /* CLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLAppDelegate.m; sourceTree = "<group>"; };
+		2C26B5C119D2F48B00450A85 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		2C26B5C319D2F48B00450A85 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		2C26B5C519D2F48B00450A85 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		2C26B5C819D2F48B00450A85 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		2C26B5CB19D2F48B00450A85 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		2C26B5CD19D2F48B00450A85 /* CLMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLMasterViewController.h; sourceTree = "<group>"; };
+		2C26B5CE19D2F48B00450A85 /* CLMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLMasterViewController.m; sourceTree = "<group>"; };
+		2C26B5D019D2F48B00450A85 /* CLDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLDetailViewController.h; sourceTree = "<group>"; };
+		2C26B5D119D2F48B00450A85 /* CLDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLDetailViewController.m; sourceTree = "<group>"; };
+		2C26B61919D2F4C500450A85 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		2C26B61B19D2F4CF00450A85 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		2C26B61E19D2F51800450A85 /* CurioAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurioAction.h; sourceTree = "<group>"; };
+		2C26B61F19D2F51800450A85 /* CurioAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioAction.m; sourceTree = "<group>"; };
+		2C26B62019D2F51800450A85 /* CurioActionToolkit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurioActionToolkit.h; sourceTree = "<group>"; };
+		2C26B62119D2F51800450A85 /* CurioActionToolkit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioActionToolkit.m; sourceTree = "<group>"; };
+		2C26B62219D2F51800450A85 /* CurioDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurioDB.h; sourceTree = "<group>"; };
+		2C26B62319D2F51800450A85 /* CurioDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioDB.m; sourceTree = "<group>"; };
+		2C26B62419D2F51800450A85 /* CurioDBToolkit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurioDBToolkit.h; sourceTree = "<group>"; };
+		2C26B62519D2F51800450A85 /* CurioDBToolkit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioDBToolkit.m; sourceTree = "<group>"; };
+		2C26B62619D2F51800450A85 /* CurioNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurioNetwork.h; sourceTree = "<group>"; };
+		2C26B62719D2F51800450A85 /* CurioNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioNetwork.m; sourceTree = "<group>"; };
+		2C26B62819D2F51800450A85 /* CurioPostOffice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurioPostOffice.h; sourceTree = "<group>"; };
+		2C26B62919D2F51800450A85 /* CurioPostOffice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioPostOffice.m; sourceTree = "<group>"; };
+		2C26B62A19D2F51800450A85 /* CurioSDK-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CurioSDK-Prefix.pch"; sourceTree = "<group>"; };
+		2C26B62B19D2F51800450A85 /* CurioSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurioSDK.h; sourceTree = "<group>"; };
+		2C26B62C19D2F51800450A85 /* CurioSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioSDK.m; sourceTree = "<group>"; };
+		2C26B62D19D2F51800450A85 /* CurioSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurioSettings.h; sourceTree = "<group>"; };
+		2C26B62E19D2F51800450A85 /* CurioSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioSettings.m; sourceTree = "<group>"; };
+		2C26B62F19D2F51800450A85 /* CurioUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurioUtil.h; sourceTree = "<group>"; };
+		2C26B63019D2F51800450A85 /* CurioUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioUtil.m; sourceTree = "<group>"; };
+		2C26B63119D2F51800450A85 /* ReachabilityEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReachabilityEx.h; sourceTree = "<group>"; };
+		2C26B63219D2F51800450A85 /* ReachabilityEx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReachabilityEx.m; sourceTree = "<group>"; };
+		2C26B63D19D2F61200450A85 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2C26B5A919D2F48B00450A85 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C26B63E19D2F61200450A85 /* SystemConfiguration.framework in Frameworks */,
+				2C26B61C19D2F4CF00450A85 /* libsqlite3.dylib in Frameworks */,
+				2C26B61A19D2F4C500450A85 /* CoreTelephony.framework in Frameworks */,
+				2C26B5B019D2F48B00450A85 /* UIKit.framework in Frameworks */,
+				2C26B5B219D2F48B00450A85 /* Foundation.framework in Frameworks */,
+				2C26B5B419D2F48B00450A85 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2C26B5A319D2F48B00450A85 = {
+			isa = PBXGroup;
+			children = (
+				2C26B61D19D2F51800450A85 /* CurioSDK */,
+				2C26B5B519D2F48B00450A85 /* CurioIOSSDKSample */,
+				2C26B5AE19D2F48B00450A85 /* Frameworks */,
+				2C26B5AD19D2F48B00450A85 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2C26B5AD19D2F48B00450A85 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2C26B5AC19D2F48B00450A85 /* CurioIOSSDKSample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2C26B5AE19D2F48B00450A85 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2C26B63D19D2F61200450A85 /* SystemConfiguration.framework */,
+				2C26B61B19D2F4CF00450A85 /* libsqlite3.dylib */,
+				2C26B61919D2F4C500450A85 /* CoreTelephony.framework */,
+				2C26B5AF19D2F48B00450A85 /* UIKit.framework */,
+				2C26B5B119D2F48B00450A85 /* Foundation.framework */,
+				2C26B5B319D2F48B00450A85 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2C26B5B519D2F48B00450A85 /* CurioIOSSDKSample */ = {
+			isa = PBXGroup;
+			children = (
+				2C26B5BE19D2F48B00450A85 /* CLAppDelegate.h */,
+				2C26B5BF19D2F48B00450A85 /* CLAppDelegate.m */,
+				2C26B5C719D2F48B00450A85 /* MainStoryboard_iPhone.storyboard */,
+				2C26B5CA19D2F48B00450A85 /* MainStoryboard_iPad.storyboard */,
+				2C26B5CD19D2F48B00450A85 /* CLMasterViewController.h */,
+				2C26B5CE19D2F48B00450A85 /* CLMasterViewController.m */,
+				2C26B5D019D2F48B00450A85 /* CLDetailViewController.h */,
+				2C26B5D119D2F48B00450A85 /* CLDetailViewController.m */,
+				2C26B5B619D2F48B00450A85 /* Supporting Files */,
+			);
+			path = CurioIOSSDKSample;
+			sourceTree = "<group>";
+		};
+		2C26B5B619D2F48B00450A85 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2C26B5B719D2F48B00450A85 /* CurioIOSSDKSample-Info.plist */,
+				2C26B5B819D2F48B00450A85 /* InfoPlist.strings */,
+				2C26B5BB19D2F48B00450A85 /* main.m */,
+				2C26B5BD19D2F48B00450A85 /* CurioIOSSDKSample-Prefix.pch */,
+				2C26B5C119D2F48B00450A85 /* Default.png */,
+				2C26B5C319D2F48B00450A85 /* Default@2x.png */,
+				2C26B5C519D2F48B00450A85 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2C26B61D19D2F51800450A85 /* CurioSDK */ = {
+			isa = PBXGroup;
+			children = (
+				2C26B61E19D2F51800450A85 /* CurioAction.h */,
+				2C26B61F19D2F51800450A85 /* CurioAction.m */,
+				2C26B62019D2F51800450A85 /* CurioActionToolkit.h */,
+				2C26B62119D2F51800450A85 /* CurioActionToolkit.m */,
+				2C26B62219D2F51800450A85 /* CurioDB.h */,
+				2C26B62319D2F51800450A85 /* CurioDB.m */,
+				2C26B62419D2F51800450A85 /* CurioDBToolkit.h */,
+				2C26B62519D2F51800450A85 /* CurioDBToolkit.m */,
+				2C26B62619D2F51800450A85 /* CurioNetwork.h */,
+				2C26B62719D2F51800450A85 /* CurioNetwork.m */,
+				2C26B62819D2F51800450A85 /* CurioPostOffice.h */,
+				2C26B62919D2F51800450A85 /* CurioPostOffice.m */,
+				2C26B62A19D2F51800450A85 /* CurioSDK-Prefix.pch */,
+				2C26B62B19D2F51800450A85 /* CurioSDK.h */,
+				2C26B62C19D2F51800450A85 /* CurioSDK.m */,
+				2C26B62D19D2F51800450A85 /* CurioSettings.h */,
+				2C26B62E19D2F51800450A85 /* CurioSettings.m */,
+				2C26B62F19D2F51800450A85 /* CurioUtil.h */,
+				2C26B63019D2F51800450A85 /* CurioUtil.m */,
+				2C26B63119D2F51800450A85 /* ReachabilityEx.h */,
+				2C26B63219D2F51800450A85 /* ReachabilityEx.m */,
+			);
+			name = CurioSDK;
+			path = ../../CurioSDK.Core/CurioSDK;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2C26B5AB19D2F48B00450A85 /* CurioIOSSDKSample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2C26B5D519D2F48B00450A85 /* Build configuration list for PBXNativeTarget "CurioIOSSDKSample" */;
+			buildPhases = (
+				2C26B5A819D2F48B00450A85 /* Sources */,
+				2C26B5A919D2F48B00450A85 /* Frameworks */,
+				2C26B5AA19D2F48B00450A85 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CurioIOSSDKSample;
+			productName = CurioIOSSDKSample;
+			productReference = 2C26B5AC19D2F48B00450A85 /* CurioIOSSDKSample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2C26B5A419D2F48B00450A85 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = CL;
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = Turkcell;
+			};
+			buildConfigurationList = 2C26B5A719D2F48B00450A85 /* Build configuration list for PBXProject "CurioIOSSDKSample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 2C26B5A319D2F48B00450A85;
+			productRefGroup = 2C26B5AD19D2F48B00450A85 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2C26B5AB19D2F48B00450A85 /* CurioIOSSDKSample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2C26B5AA19D2F48B00450A85 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C26B5BA19D2F48B00450A85 /* InfoPlist.strings in Resources */,
+				2C26B5C219D2F48B00450A85 /* Default.png in Resources */,
+				2C26B5C419D2F48B00450A85 /* Default@2x.png in Resources */,
+				2C26B5C619D2F48B00450A85 /* Default-568h@2x.png in Resources */,
+				2C26B5C919D2F48B00450A85 /* MainStoryboard_iPhone.storyboard in Resources */,
+				2C26B5CC19D2F48B00450A85 /* MainStoryboard_iPad.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2C26B5A819D2F48B00450A85 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C26B5BC19D2F48B00450A85 /* main.m in Sources */,
+				2C26B5C019D2F48B00450A85 /* CLAppDelegate.m in Sources */,
+				2C26B5CF19D2F48B00450A85 /* CLMasterViewController.m in Sources */,
+				2C26B5D219D2F48B00450A85 /* CLDetailViewController.m in Sources */,
+				2C26B63319D2F51800450A85 /* CurioAction.m in Sources */,
+				2C26B63419D2F51800450A85 /* CurioActionToolkit.m in Sources */,
+				2C26B63519D2F51800450A85 /* CurioDB.m in Sources */,
+				2C26B63619D2F51800450A85 /* CurioDBToolkit.m in Sources */,
+				2C26B63719D2F51800450A85 /* CurioNetwork.m in Sources */,
+				2C26B63819D2F51800450A85 /* CurioPostOffice.m in Sources */,
+				2C26B63919D2F51800450A85 /* CurioSDK.m in Sources */,
+				2C26B63A19D2F51800450A85 /* CurioSettings.m in Sources */,
+				2C26B63B19D2F51800450A85 /* CurioUtil.m in Sources */,
+				2C26B63C19D2F51800450A85 /* ReachabilityEx.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		2C26B5B819D2F48B00450A85 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2C26B5B919D2F48B00450A85 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		2C26B5C719D2F48B00450A85 /* MainStoryboard_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2C26B5C819D2F48B00450A85 /* en */,
+			);
+			name = MainStoryboard_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		2C26B5CA19D2F48B00450A85 /* MainStoryboard_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2C26B5CB19D2F48B00450A85 /* en */,
+			);
+			name = MainStoryboard_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2C26B5D319D2F48B00450A85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2C26B5D419D2F48B00450A85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2C26B5D619D2F48B00450A85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CurioIOSSDKSample/CurioIOSSDKSample-Prefix.pch";
+				INFOPLIST_FILE = "CurioIOSSDKSample/CurioIOSSDKSample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		2C26B5D719D2F48B00450A85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CurioIOSSDKSample/CurioIOSSDKSample-Prefix.pch";
+				INFOPLIST_FILE = "CurioIOSSDKSample/CurioIOSSDKSample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2C26B5A719D2F48B00450A85 /* Build configuration list for PBXProject "CurioIOSSDKSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C26B5D319D2F48B00450A85 /* Debug */,
+				2C26B5D419D2F48B00450A85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2C26B5D519D2F48B00450A85 /* Build configuration list for PBXNativeTarget "CurioIOSSDKSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C26B5D619D2F48B00450A85 /* Debug */,
+				2C26B5D719D2F48B00450A85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2C26B5A419D2F48B00450A85 /* Project object */;
+}
