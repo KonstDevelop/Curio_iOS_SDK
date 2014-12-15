@@ -33,6 +33,7 @@
 		2C26B63B19D2F51800450A85 /* CurioUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C26B63019D2F51800450A85 /* CurioUtil.m */; };
 		2C26B63C19D2F51800450A85 /* ReachabilityEx.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C26B63219D2F51800450A85 /* ReachabilityEx.m */; };
 		2C26B63E19D2F61200450A85 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C26B63D19D2F61200450A85 /* SystemConfiguration.framework */; };
+		2CA525521A1AA9F500BB61CF /* CurioNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA525511A1AA9F500BB61CF /* CurioNotificationManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +80,8 @@
 		2C26B63119D2F51800450A85 /* ReachabilityEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReachabilityEx.h; sourceTree = "<group>"; };
 		2C26B63219D2F51800450A85 /* ReachabilityEx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReachabilityEx.m; sourceTree = "<group>"; };
 		2C26B63D19D2F61200450A85 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		2CA525501A1AA9F500BB61CF /* CurioNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurioNotificationManager.h; sourceTree = "<group>"; };
+		2CA525511A1AA9F500BB61CF /* CurioNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioNotificationManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +182,8 @@
 				2C26B62C19D2F51800450A85 /* CurioSDK.m */,
 				2C26B62D19D2F51800450A85 /* CurioSettings.h */,
 				2C26B62E19D2F51800450A85 /* CurioSettings.m */,
+				2CA525501A1AA9F500BB61CF /* CurioNotificationManager.h */,
+				2CA525511A1AA9F500BB61CF /* CurioNotificationManager.m */,
 				2C26B62F19D2F51800450A85 /* CurioUtil.h */,
 				2C26B63019D2F51800450A85 /* CurioUtil.m */,
 				2C26B63119D2F51800450A85 /* ReachabilityEx.h */,
@@ -217,6 +222,11 @@
 				CLASSPREFIX = CL;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = Turkcell;
+				TargetAttributes = {
+					2C26B5AB19D2F48B00450A85 = {
+						DevelopmentTeam = 7YZS5NTGYH;
+					};
+				};
 			};
 			buildConfigurationList = 2C26B5A719D2F48B00450A85 /* Build configuration list for PBXProject "CurioIOSSDKSample" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -265,6 +275,7 @@
 				2C26B63519D2F51800450A85 /* CurioDB.m in Sources */,
 				2C26B63619D2F51800450A85 /* CurioDBToolkit.m in Sources */,
 				2C26B63719D2F51800450A85 /* CurioNetwork.m in Sources */,
+				2CA525521A1AA9F500BB61CF /* CurioNotificationManager.m in Sources */,
 				2C26B63819D2F51800450A85 /* CurioPostOffice.m in Sources */,
 				2C26B63919D2F51800450A85 /* CurioSDK.m in Sources */,
 				2C26B63A19D2F51800450A85 /* CurioSettings.m in Sources */,
@@ -364,10 +375,13 @@
 		2C26B5D619D2F48B00450A85 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CurioIOSSDKSample/CurioIOSSDKSample-Prefix.pch";
 				INFOPLIST_FILE = "CurioIOSSDKSample/CurioIOSSDKSample-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -375,10 +389,13 @@
 		2C26B5D719D2F48B00450A85 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CurioIOSSDKSample/CurioIOSSDKSample-Prefix.pch";
 				INFOPLIST_FILE = "CurioIOSSDKSample/CurioIOSSDKSample-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -402,6 +419,7 @@
 				2C26B5D719D2F48B00450A85 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

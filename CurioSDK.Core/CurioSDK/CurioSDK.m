@@ -87,7 +87,11 @@
         
         curioQueue = [NSOperationQueue new];
         [curioQueue setMaxConcurrentOperationCount:1];
+
         
+        curioActionQueue = [NSOperationQueue new];
+        [curioActionQueue setMaxConcurrentOperationCount:1];
+
         _memoryStore = [NSMutableDictionary new];
         
 
@@ -100,7 +104,7 @@
         // Invoke post office initialization
         [CurioPostOffice shared];
         
-        CS_Log_Info(@"Read values from bundle: %@ = %@ , %@ = %@, %@ = %@, %@ = %@ , %@ = %@, %@ = %@, %@ = %@, %@ = %@, %@ = %@",
+        CS_Log_Info(@"Read values from bundle: %@ = %@ , %@ = %@, %@ = %@, %@ = %@ , %@ = %@, %@ = %@, %@ = %@, %@ = %@, %@ = %@, %@ = %@, %@ = %@, %@ = %@",
                     CS_OPT_SKEY_SERVER_URL, [[CurioSettings shared] serverUrl],
                     CS_OPT_SKEY_API_KEY, [[CurioSettings shared] apiKey],
                     CS_OPT_SKEY_TRACKING_CODE, [[CurioSettings shared] trackingCode],
@@ -109,7 +113,10 @@
                     CS_OPT_SKEY_DISPATCH_PERIOD, [[CurioSettings shared] dispatchPeriod],
                     CS_OPT_SKEY_MAX_CACHED_ACTIVITY_COUNT, [[CurioSettings shared] maxCachedActivityCount],
                     CS_OPT_SKEY_LOGGING_ENABLED, [[CurioSettings shared] loggingEnabled],
-                    CS_OPT_SKEY_LOGGING_LEVEL, [[CurioSettings shared] logLevel]
+                    CS_OPT_SKEY_LOGGING_LEVEL, [[CurioSettings shared] logLevel],
+                                        CS_OPT_SKEY_REGISTER_FOR_REMOTE_NOTIFICATIONS, [[CurioSettings shared] registerForRemoteNotifications],
+                                        CS_OPT_SKEY_NOTIFICATION_DATA_PUSH_URL, [[CurioSettings shared] notificationDataPushURL],
+                                        CS_OPT_SKEY_NOTIFICATION_TYPES, [[CurioSettings shared] notificationTypes]
           );
 
         
@@ -143,16 +150,18 @@
 }
 
 - (void) enterDeactiveMode {
+
+    [curioActionQueue waitUntilAllOperationsAreFinished];
+
+    [curioQueue cancelAllOperations];
     
-    
-    [curioQueue waitUntilAllOperationsAreFinished];
     
     appWasInBackground = TRUE;
     
     __block UIBackgroundTaskIdentifier ti = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
         
         [[CurioPostOffice shared] tryToPostAwaitingActions:TRUE];
-        
+
         [[UIApplication sharedApplication] endBackgroundTask:ti];
         
     }];
@@ -166,7 +175,7 @@
     // Uniquize screens
     [_aliveScreens setArray:[[NSSet setWithArray:_aliveScreens] allObjects]];
     
-    CS_Log_Info(@"Finishing off %lu",_aliveScreens.count);
+    CS_Log_Info(@"Finishing off %lu",(unsigned long)_aliveScreens.count);
     
     [self finishOffOpenScreens];
     
@@ -202,7 +211,7 @@
             _aliveScreens = [NSMutableArray new];
         else {
             _aliveScreens = [NSKeyedUnarchiver unarchiveObjectWithData:dat];
-            CS_Log_Info(@"Restoring %lu screens",_aliveScreens.count);
+            CS_Log_Info(@"Restoring %lu screens",(unsigned long)_aliveScreens.count);
             [_aliveScreens enumerateObjectsUsingBlock:^(CurioScreenData *obj, NSUInteger idx, BOOL *stop) {
                 [self startScreenWithName:obj.className title:obj.title path:obj.path];
             }];
@@ -239,7 +248,7 @@
 
 - (void) sendEvent:(NSString *) eventKey eventValue:(NSString *) eventValue {
 
-    [curioQueue addOperationWithBlock:^{
+    [curioActionQueue addOperationWithBlock:^{
 
         CurioAction *actionSendEvent = [CurioAction actionSendEvent:eventKey path:eventValue];
     
@@ -250,7 +259,7 @@
 
 - (void) endScreenWithClassName:(NSString *) screenClassName  {
     
-    [curioQueue addOperationWithBlock:^{
+    [curioActionQueue addOperationWithBlock:^{
         
         NSString *key = [NSString stringWithFormat:@"HC%@",screenClassName];
         
@@ -288,7 +297,7 @@
 
 - (void) startScreenWithName:(NSString *) screenClassName title:(NSString *) title path:(NSString *) path {
 
-    [curioQueue addOperationWithBlock:^{
+    [curioActionQueue addOperationWithBlock:^{
         CurioAction *actionStartScreen = [CurioAction actionStartScreen:title path:path];
         
         [actionStartScreen.properties setObject:screenClassName forKey:CS_CUSTOM_VAR_SCREENCLASS];
@@ -324,12 +333,17 @@
 
 - (void) endSession {
     
-    [curioQueue addOperationWithBlock:^{
+    [curioActionQueue addOperationWithBlock:^{
         CurioAction *actionEndSession = [CurioAction actionEndSession];
         
         [_memoryStore removeObjectForKey:@"sessionCode"];
         
         [[CurioDBToolkit shared] addAction:actionEndSession];
+    }];
+    
+    [curioQueue addOperationWithBlock:^{
+        
+        [curioActionQueue waitUntilAllOperationsAreFinished];
         
         // No matter we are in PDR or not, start session and end session
         // request should be send immediately if possible
@@ -338,43 +352,71 @@
 }
 
 - (void) startSession:(NSString *)serverUrl
-      apiKey:(NSString *)apiKey
-trackingCode:(NSString *)trackingCode {
+               apiKey:(NSString *)apiKey
+         trackingCode:(NSString *)trackingCode
+     appLaunchOptions:(NSDictionary *)appLaunchOptions
+{
     
     [[CurioSettings shared] set:serverUrl apiKey:apiKey trackingCode:trackingCode];
-    [self startSession];
+    [self startSession:appLaunchOptions];
 }
 
 
 - (void) startSession:(NSString *)serverUrl
-      apiKey:(NSString *)apiKey
-trackingCode:(NSString *)trackingCode
-sessionTimeout:(NSNumber *)sessionTimeout
-periodicDispatchEnabled:(NSNumber *)periodicDispatchEnabled
-dispatchPeriod:(NSNumber *)dispatchPeriod
-maxCachedActivitiyCount:(NSNumber *)maxCachedActivityCount
-loggingEnabled:(NSNumber *)logginEnabled
-             logLevel:(NSNumber *)logLevel
+               apiKey:(NSString *)apiKey
+         trackingCode:(NSString *)trackingCode
+       sessionTimeout:(int)sessionTimeout
+periodicDispatchEnabled:(BOOL)periodicDispatchEnabled
+       dispatchPeriod:(int)dispatchPeriod
+maxCachedActivitiyCount:(int)maxCachedActivityCount
+       loggingEnabled:(BOOL)logginEnabled
+             logLevel:(int)logLevel
+registerForRemoteNotifications:(BOOL)registerForRemoteNotifications
+notificationDataPushUrl:(NSString *) notificationDataPushUrl
+    notificationTypes:(NSString *) notificationTypes
+     appLaunchOptions:(NSDictionary *)appLaunchOptions
 {
     
-    [[CurioSettings shared] set:serverUrl apiKey:apiKey trackingCode:trackingCode
-                            sessionTimeout:sessionTimeout periodicDispatchEnabled:periodicDispatchEnabled
-                            dispatchPeriod:dispatchPeriod maxCachedActivitiyCount:maxCachedActivityCount
-                 loggingEnabled:logginEnabled
-     logLevel:logLevel
+  
+    
+    [[CurioSettings shared] set:serverUrl
+                         apiKey:apiKey
+                   trackingCode:trackingCode
+                 sessionTimeout:[NSNumber numberWithInt:sessionTimeout]
+        periodicDispatchEnabled:periodicDispatchEnabled ? CS_NSN_TRUE :   CS_NSN_FALSE
+                 dispatchPeriod:[NSNumber numberWithInt:dispatchPeriod]
+        maxCachedActivitiyCount:[NSNumber numberWithInt:maxCachedActivityCount]
+                 loggingEnabled:logginEnabled ? CS_NSN_TRUE : CS_NSN_FALSE
+                       logLevel:[NSNumber numberWithInt:logLevel]
+ registerForRemoteNotifications:registerForRemoteNotifications ? CS_NSN_TRUE : CS_NSN_FALSE
+        notificationDataPushUrl:notificationDataPushUrl
+              notificationTypes:notificationTypes
      ];
-    [self startSession];
+    [self startSession:appLaunchOptions];
 
 }
 
-- (void) startSession {
+- (void) startSession:(NSDictionary *) appLaunchOptions {
     
-    [curioQueue addOperationWithBlock:^{
+    
+    _appLaunchOptions = appLaunchOptions != nil ? appLaunchOptions : [NSDictionary new];
+    
+    [curioActionQueue addOperationWithBlock:^{
+        
         CurioAction *actionStartSession = [CurioAction actionStartSession];
         
         CS_Log_Info(@"Session start action: %@",CS_RM_STR_NEWLINE(actionStartSession.asDict));
         
         [[CurioDBToolkit shared] addAction:actionStartSession];
+        
+        if (CS_NSN_IS_TRUE([[CurioSettings shared] registerForRemoteNotifications]))
+            [[CurioNotificationManager shared] registerForNotifications];
+        
+    }];
+    
+    [curioQueue addOperationWithBlock:^{
+        
+        [curioActionQueue waitUntilAllOperationsAreFinished];
         
         // No matter we are in PDR or not, start session and end session
         // request should be send immediately if possible

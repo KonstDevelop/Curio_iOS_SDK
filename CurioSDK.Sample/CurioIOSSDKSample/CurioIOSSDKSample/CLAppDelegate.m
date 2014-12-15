@@ -15,9 +15,24 @@
 {
 
     
-    [[CurioSDK shared] startSession];
+    [[CurioSDK shared] startSession:launchOptions];
+
     
-        NSLog(@"%@ %d",[NSNumber numberWithBool:CS_Log_Enabled], CS_Log_Level);
+    
+//    [[CurioSDK shared] startSession:@"http://curio.turkcell.com.tr/api/v2"
+//                             apiKey:@"32f468f0d9c511e3a0760f5a28372ef6"
+//                       trackingCode:@"1X1Y6A6P"
+//                     sessionTimeout:4
+//            periodicDispatchEnabled:FALSE
+//                     dispatchPeriod:1
+//            maxCachedActivitiyCount:50
+//                     loggingEnabled:TRUE
+//                           logLevel:3
+//     registerForRemoteNotifications:TRUE
+//            notificationDataPushUrl:@"https://curio.turkcell.com.tr/api/visitor/setPushData"
+//                  notificationTypes:@"Sound,Badge,Alert"
+//                   appLaunchOptions:launchOptions];
+    
 
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
@@ -26,6 +41,22 @@
         splitViewController.delegate = (id)navigationController.topViewController;
     }
     return YES;
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+ 
+    [[CurioNotificationManager shared] didReceiveNotification:userInfo];
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    
+    [[CurioNotificationManager shared] didRegisteredForNotifications:deviceToken];
+    
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"Failed to register for remote natifications: %@",error.localizedDescription);
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

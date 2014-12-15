@@ -16,7 +16,7 @@
 #endif
 
 
-#define CURIO_SDK_VERSION @"1.0"
+#define CURIO_SDK_VERSION @"1.01"
 
 // Notification names
 
@@ -42,6 +42,9 @@
 #define CS_OPT_SKEY_MAX_CACHED_ACTIVITY_COUNT @"MaxCachedActivityCount"
 #define CS_OPT_SKEY_LOGGING_ENABLED @"LoggingEnabled"
 #define CS_OPT_SKEY_LOGGING_LEVEL @"LogLevel"
+#define CS_OPT_SKEY_REGISTER_FOR_REMOTE_NOTIFICATIONS @"RegisterForRemoteNotifications"
+#define CS_OPT_SKEY_NOTIFICATION_DATA_PUSH_URL @"NotificationDataPushURL"
+#define CS_OPT_SKEY_NOTIFICATION_TYPES @"NotificationTypes"
 #define CS_OPT_DB_FILE_NAME @"curio.db"
 
 #define CS_SERVER_URL_SUFFIX_SESSION_START  @"/visit/create"
@@ -98,12 +101,16 @@
 
 #define CS_CONST_AL_SC @"ALIVE_SCREENS"
 
+#define CS_CONST_DEV_TOK @"DEVICE_TOKEN"
+
 #define CS_NSN_TRUE [NSNumber numberWithBool:TRUE]
 #define CS_NSN_FALSE [NSNumber numberWithBool:FALSE]
 
 #define CS_NSN_IS_TRUE(val) (val.intValue == CS_NSN_TRUE.intValue)
 
 #define CS_SET_IF_NOT_NIL(var,orig) (var != nil ? var : orig)
+#define CS_NULL_IF_NIL(var) CS_SET_IF_NOT_NIL(var,@"NULL")
+#define CS_ZERO_IF_NIL(var) CS_SET_IF_NOT_NIL(var,[NSNumber numberWithInt:0])
 
 #define CS_RM_STR_NEWLINE(obj) [[NSString stringWithFormat:@"%@", obj] stringByReplacingOccurrencesOfString:@"\n" withString:@" "]
 
@@ -132,6 +139,7 @@
 #import "CurioNetwork.h"
 #import "CurioPostOffice.h"
 #import "CurioActionToolkit.h"
+#import "CurioNotificationManager.h"
 
 
 
@@ -139,12 +147,15 @@
 @interface CurioSDK : NSObject {
     
     NSOperationQueue *curioQueue;
+    NSOperationQueue *curioActionQueue;
     BOOL appWasInBackground;
 }
 
 
 @property (strong, nonatomic) NSMutableDictionary *memoryStore;
 @property (strong, nonatomic) NSMutableArray *aliveScreens;
+
+@property (strong, nonatomic) NSDictionary *appLaunchOptions;
 
 /**
     Returns shared instance of CurioSDK
@@ -207,7 +218,7 @@
     Starts Curio session.
  
  */
-- (void) startSession;
+- (void) startSession:(NSDictionary *)appLaunchOptions;
 
 /**
     Starts Curio session.
@@ -216,12 +227,16 @@
 - (void) startSession:(NSString *)serverUrl
                apiKey:(NSString *)apiKey
          trackingCode:(NSString *)trackingCode
-       sessionTimeout:(NSNumber *)sessionTimeout
-periodicDispatchEnabled:(NSNumber *)periodicDispatchEnabled
-       dispatchPeriod:(NSNumber *)dispatchPeriod
-maxCachedActivitiyCount:(NSNumber *)maxCachedActivityCount
-       loggingEnabled:(NSNumber *)logginEnabled
-             logLevel:(NSNumber *)logLevel;
+       sessionTimeout:(int)sessionTimeout
+periodicDispatchEnabled:(BOOL)periodicDispatchEnabled
+       dispatchPeriod:(int)dispatchPeriod
+maxCachedActivitiyCount:(int)maxCachedActivityCount
+       loggingEnabled:(BOOL)logginEnabled
+             logLevel:(int)logLevel
+registerForRemoteNotifications:(BOOL)registerForRemoteNotifications
+notificationDataPushUrl:(NSString *) notificationDataPushUrl
+    notificationTypes:(NSString *) notificationTypes
+     appLaunchOptions:(NSDictionary *)appLaunchOptions;
 
 /**
     Starts Curio session.
@@ -230,7 +245,8 @@ maxCachedActivitiyCount:(NSNumber *)maxCachedActivityCount
  */
 - (void) startSession:(NSString *)serverUrl
                apiKey:(NSString *)apiKey
-         trackingCode:(NSString *)trackingCode;
+         trackingCode:(NSString *)trackingCode
+     appLaunchOptions:(NSDictionary *)appLaunchOptions;
 
 
 /**

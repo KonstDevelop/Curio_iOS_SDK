@@ -83,6 +83,32 @@ typedef NS_ENUM(NSUInteger, CSLogLevel) {
 
 
 
+/**
+    If enabled, then Curio SDK will automatically register for remote notifications for all types
+ 
+    Default is true.
+ */
+@property (strong, nonatomic) NSNumber *registerForRemoteNotifications;
+
+/**
+    URL to post push data to track user's notification usage stats
+ 
+    Default is null.
+ */
+@property (strong, nonatomic) NSString *notificationDataPushURL;
+
+
+/**
+    Notification types to register for.
+ 
+    Every type can be typed by using keywords Sound, Badge and Alert.
+ 
+    Keywords should be seperated with commas. Any order is accepted.
+ 
+ 
+    Default is "Sound,Badge,Alert"
+ */
+@property (strong ,nonatomic) NSString *notificationTypes;
 
 /**
  Returns shared instance of CSSettings
@@ -113,15 +139,18 @@ typedef NS_ENUM(NSUInteger, CSLogLevel) {
  
  @return True if required values are ok FALSE if not
  */
-- (BOOL)        set:(NSString *)serverUrl
-             apiKey:(NSString *)apiKey
-       trackingCode:(NSString *)trackingCode
-     sessionTimeout:(NSNumber *)sessionTimeout
+- (BOOL)                set:(NSString *)serverUrl
+                     apiKey:(NSString *)apiKey
+               trackingCode:(NSString *)trackingCode
+             sessionTimeout:(NSNumber *)sessionTimeout
     periodicDispatchEnabled:(NSNumber *)periodicDispatchEnabled
-     dispatchPeriod:(NSNumber *)dispatchPeriod
+             dispatchPeriod:(NSNumber *)dispatchPeriod
     maxCachedActivitiyCount:(NSNumber *)maxCachedActivityCount
-     loggingEnabled:(NSNumber *)logginEnabled
-           logLevel:(NSNumber *)logLevel;
+             loggingEnabled:(NSNumber *)logginEnabled
+                   logLevel:(NSNumber *)logLevel
+registerForRemoteNotifications:(NSNumber *)registerForRemoteNotifications
+    notificationDataPushUrl:(NSString *) notificationDataPushUrl
+    notificationTypes:(NSString *) notificationTypes;
 
 /**
  Reads settings values from *-Info.plist file

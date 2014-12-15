@@ -50,6 +50,9 @@ trackingCode:(NSString *)trackingCode {
   maxCachedActivitiyCount:(NSNumber *)maxCachedActivityCount
            loggingEnabled:(NSNumber *)logginEnabled
                  logLevel:(NSNumber *)logLevel
+registerForRemoteNotifications:(NSNumber *)registerForRemoteNotifications
+notificationDataPushUrl:(NSString *) notificationDataPushUrl
+    notificationTypes:(NSString *)notificationTypes
 
 {
    
@@ -60,7 +63,9 @@ trackingCode:(NSString *)trackingCode {
     _maxCachedActivityCount = CS_SET_IF_NOT_NIL(maxCachedActivityCount, _maxCachedActivityCount);
     _loggingEnabled = CS_SET_IF_NOT_NIL(logginEnabled, _loggingEnabled);
     _logLevel = CS_SET_IF_NOT_NIL(logLevel, _logLevel);
-
+    _registerForRemoteNotifications = CS_SET_IF_NOT_NIL(registerForRemoteNotifications, _registerForRemoteNotifications);
+    _notificationDataPushURL = CS_SET_IF_NOT_NIL(notificationDataPushUrl, _notificationDataPushURL);
+    _notificationTypes = CS_SET_IF_NOT_NIL(notificationTypes, _notificationTypes);
     
     return [self set:serverUrl apiKey:apiKey trackingCode:trackingCode];
 }
@@ -79,7 +84,7 @@ trackingCode:(NSString *)trackingCode {
     
     
     if (settings == nil) {
-         CS_Log_Error(@"There is no %@ element found in any bundle info.plist",CS_OPT_SETTINGS_DICT_HEADER);
+         NSLog(@"There is no %@ element found in any bundle info.plist",CS_OPT_SETTINGS_DICT_HEADER);
         return FALSE;
     }
     
@@ -91,7 +96,11 @@ trackingCode:(NSString *)trackingCode {
                    dispatchPeriod:[settings objectForKey:CS_OPT_SKEY_DISPATCH_PERIOD]
           maxCachedActivitiyCount:[settings objectForKey:CS_OPT_SKEY_MAX_CACHED_ACTIVITY_COUNT]
                    loggingEnabled:[settings objectForKey:CS_OPT_SKEY_LOGGING_ENABLED]
-                         logLevel:[settings objectForKey:CS_OPT_SKEY_LOGGING_LEVEL]];
+                         logLevel:[settings objectForKey:CS_OPT_SKEY_LOGGING_LEVEL]
+   registerForRemoteNotifications:[settings objectForKey:CS_OPT_SKEY_REGISTER_FOR_REMOTE_NOTIFICATIONS]
+          notificationDataPushUrl:[settings objectForKey:CS_OPT_SKEY_NOTIFICATION_DATA_PUSH_URL]
+                notificationTypes:[settings objectForKey:CS_OPT_SKEY_NOTIFICATION_TYPES]
+            ];
 }
 
 - (id) init {
@@ -105,6 +114,9 @@ trackingCode:(NSString *)trackingCode {
         _maxCachedActivityCount = [NSNumber numberWithInt:100];
         _loggingEnabled = CS_NSN_TRUE;
         _logLevel = [NSNumber numberWithInt:CSLogLevelError];
+        _registerForRemoteNotifications = CS_NSN_TRUE;
+        _notificationTypes = @"Sound,Badge,Alert";
+        
         
         
         if ([self readBundleSettings]) {

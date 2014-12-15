@@ -20,6 +20,13 @@
 + (CS_INSTANCETYPE) shared;
 
 /**
+    Converts a dictionary object into HTTP Post body string
+ 
+    @return Post body string
+ */
+- (NSString *) dictToPostBody:(NSDictionary *) dict;
+
+/**
  *  Generates UUID based on RFC 4122 with random
  *
  *  @return Generated Random UUID

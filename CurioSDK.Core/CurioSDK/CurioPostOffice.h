@@ -24,6 +24,7 @@ typedef BOOL(^CurioPostOfficeRetryBlock)(void);
 @interface CurioPostOffice : NSObject {
     
     int last_responseCode;
+    long last_errorCode;
 
 }
 

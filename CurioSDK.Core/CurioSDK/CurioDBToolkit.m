@@ -74,8 +74,9 @@
     
     BOOL ret = [[CurioDB shared] executeSafe:sql];
     
-    if (ret)
+    if (ret) {
         [[NSNotificationCenter defaultCenter] postNotificationName:CS_NOTIF_NEW_ACTION object:nil];
+    }
     
     return ret;
     

@@ -1,4 +1,4 @@
-#Curio IOS SDK 1.0
+#Curio IOS SDK 1.02
 
 [Curio](https://gui-curio.turkcell.com.tr) is Turkcell's mobile analytics system, and this is Curio's Android Client IOS library. Applications developed for IOS 6.0+ can easily use Curio mobile analytics with this library.
 
@@ -10,7 +10,7 @@ You can drag'n drop Curio project file into your project. Additionally you shoul
 
 You should Click on Targets -> Your App Name -> and then the 'Build Phases' tab.
 
-![image](https://imagizer.imageshack.us/v2/1085x208q90/r/674/20ayY4.png)
+![image](https://imagizer.imageshack.us/v2/1085x208q90/r/674/20ayY4.png=700x134)
 
 And expand 'Link Binary With Library' and click + sign to add required framework if they are not available.
 
@@ -23,7 +23,7 @@ And expand 'Link Binary With Library' and click + sign to add required framework
 
 If you don't want to run automated unit tests, then you should remove CurioSDKTests.m, CurioSettingsTest.m and CurioDBTests.m files from compilation by Click on Targets -> Your App Name -> And then the 'Build Phases' tab and expand Compile Sources to remove them by clicking on - sign while mentioned source files selected.
 
-![image](https://imagizer.imageshack.us/v2/1085x446q90/r/746/bG8oCj.png)
+![image](https://imagizer.imageshack.us/v2/1085x446q90/r/746/bG8oCj.png=700x287)
 
 #Configuration
 
@@ -33,7 +33,6 @@ There are two ways to configure CurioSDK.
 
 You can just copy'n paste CurioSDK item within sample project's Info.plist or CurioSDKTests-Info.plist contained in CurioSDK.Core tests to your project's Info.plist file and edit parameters as you wish.
 
-![image](http://imagizer.imageshack.us/a/img674/4662/XtAgaE.jpg)
 
 **ServerURL:** [Required] Curio server URL, can be obtained from Turkcell. 
 
@@ -52,7 +51,10 @@ You can just copy'n paste CurioSDK item within sample project's Info.plist or Cu
 **LoggingEnabled:** [Optional] All of the Curio logs will be disabled if this is false. Default is true.
 
 **LogLevel:** [Optional] Contains level of the print-out logs.  0 - Error, 1 - Warning, 2 - Info, 3 - Debug. Default is 0 (Error).
- 
+
+**RegisterForRemoteNotifications**  [Warning BETA version. SHOULD BE SET TO "NO".] If enabled, then Curio SDK will automatically register for remote notifications for all types
+
+**NotificationDataPushURL** [Warning BETA version. SHOULD BE SET TO "".] URL to post push data to track user's notification usage stats, can be obtained from Turkcell.
 
 
 ### Manual Configuration
@@ -60,15 +62,19 @@ You can just copy'n paste CurioSDK item within sample project's Info.plist or Cu
 You can specify CurioSDK parameters whenever you want to start a session on client by invoking startSession function just like below.
 
 ```
-[[CurioSDK shared] startSession:@"https://curiotest.turkcell.com.tr/api/v2"
+[[CurioSDK shared] startSession:@"XXXXX"
 					      apiKey:@"XXXXX"
 					trackingCode:@"XXXXX"
 				  sessionTimeout:4
-		 periodicDispatchEnabled:TRUE
+		 periodicDispatchEnabled:YES
 				dispatchPeriod:2
-		maxCachedActivitiyCount:50
-				 loggingEnabled:TRUE
-				 logLevel:0];
+		maxCachedActivitiyCount:1000
+				 loggingEnabled:YES
+				 logLevel:3
+				 registerForRemoteNotifications:NO
+				 notificationDataPushUrl:@"XXXXX"
+				 appLaunchOptions:nil
+				 ];
 ```
 
 ## Usage
@@ -80,7 +86,7 @@ You can start a session whenever application starts-up by invoking startSession 
 ```
 	- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [[CurioSDK shared] startSession];
+    [[CurioSDK shared] startSession:launchOptions];
     ...
     }
 ```
@@ -132,6 +138,56 @@ You can end started session by invoking endSession function with CurioSDK class.
 	}
 
 ```
+
+#Internals
+
+Curio SDK consists of two different workflows which maintains storage and submittance functionalities.
+
+First workflow (which we will call storage workflow) handles database records one way to save user actions to local storage (SQLITE). All storage functions are located in **CurioDBToolkit.m** and **CurioDB.m**. When a user hooks up a function related to SDK, first of all CurioSDK stores it to local storage no matter we are online or not or have periodic dispatch requests (PDR) enabled or not.
+
+For those requests CurioDBToolkit::addAction function runs to insert created action record to db. All actions converts to **CurioAction.m** object and stores and retrieves by serializating to CurioAction.
+
+CurioAction object stored into SQLITE table named **ACTIONS** which is created on first run within **CurioDB.m**
+
+Second workflow (which we will call submittance workflow) handles retrieval of records and transmittance to server side over internet. Main core functionality of this workflow runs on **CurioPostOffice.m** module. 
+
+It starts to run in two way... one is periodically -if PDR is enabled- and other one is synchronized -if PDR is disabled-. Synchronized run has nothing to do with thread synchronization but running parallel with user actions. 
+
+
+```
++--------+       +--------------+
+|        |       |              |
+| Curio  |       | User Actions |
+| Server |       |              |
+|        |       +------+-------+
++---^----+              |        
+    |   SYNC          ASYNC      
+    |                   |        
++---+----+              |        
+|  Post  |         +----v----+   
+| Office |         |DBToolkit|   
++---^----+         +----+----+   
+    |                   |        
+    |                   |        
+  ASYNC               ASYNC      
+    |       POOL        |        
+    |    +---------+    |        
+    |    |  Local  |    |        
+    +----> Storage <----+        
+         +---------+             
+```
+
+If PDR is enabled there is a sleeping thread runs in **CurioPostoffice::opQueue** queue and wakes up every dispatch period (which can be configured within settings) and runs **CurioPostoffice::tryToPostAwaitingActions** function to try to post actions stored in database. If PDR is not enabled, there is an internal notification name which is stored in **CS_NOTIF_NEW_ACTION** value globally which waits for any user action signal to run **CurioPostoffice::tryToPostAwaitingActions**. 
+
+Most critical point in submittance workflow is localted within **CurioPostoffice::tryToPostAwaitingActions** function which handles mostly every conversions and transfers.
+
+It requires to run in background thread if otherwise is not specified with **canRunOnMainThread** parameter. If it is not, it switches itself back to a background thread to not to intercept any user comfort. It checks whether device is online or not. If it is not, it switches awaiting records into offline records, otherwise tries to post actions ordered by action time which is saved in **aId** column.
+
+It puts action objects into two arrays (if PDR is disabled just uses one array) to collect them in batch manner. First one is **offlineActions** and second one is **pdrActions** array. Main functionality within **CurioPostoffice::tryToPostAwaitingActions** is to iterate through records and collect them as PDR -if enabled- or Offline otherwise if they are online records then sending them to server immediately and in other cases pushing collected arrays to server as soon as they are finished.
+
+Other than two main workflows, there is a **CurioNetwork.h** which handles network status changes and notifies with notification calls to all around the SDK. 
+
+
 
 
 

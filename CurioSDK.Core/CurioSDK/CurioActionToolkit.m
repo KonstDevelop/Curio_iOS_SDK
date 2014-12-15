@@ -120,10 +120,10 @@
     
     NSDictionary *defaultProperties = [CurioAction defaultActionProperties];
     
-    [ret setObject:[defaultProperties objectForKey:CS_HTTP_PARAM_SESSION_CODE] forKey:CS_HTTP_PARAM_SESSION_CODE];
-    [ret setObject:[defaultProperties objectForKey:CS_HTTP_PARAM_SESSION_TIMEOUT]  forKey:CS_HTTP_PARAM_SESSION_TIMEOUT];
-    [ret setObject:[defaultProperties objectForKey:CS_HTTP_PARAM_VISITOR_CODE]  forKey:CS_HTTP_PARAM_VISITOR_CODE];
-    [ret setObject:[defaultProperties objectForKey:CS_HTTP_PARAM_TRACKING_CODE]  forKey:CS_HTTP_PARAM_TRACKING_CODE];
+    [ret setObject:CS_NULL_IF_NIL([defaultProperties objectForKey:CS_HTTP_PARAM_SESSION_CODE]) forKey:CS_HTTP_PARAM_SESSION_CODE];
+    [ret setObject:CS_ZERO_IF_NIL([defaultProperties objectForKey:CS_HTTP_PARAM_SESSION_TIMEOUT])  forKey:CS_HTTP_PARAM_SESSION_TIMEOUT];
+    [ret setObject:CS_NULL_IF_NIL([defaultProperties objectForKey:CS_HTTP_PARAM_VISITOR_CODE])  forKey:CS_HTTP_PARAM_VISITOR_CODE];
+    [ret setObject:CS_NULL_IF_NIL([defaultProperties objectForKey:CS_HTTP_PARAM_TRACKING_CODE])  forKey:CS_HTTP_PARAM_TRACKING_CODE];
     
     NSMutableArray *dataArray = [NSMutableArray new];
     
@@ -175,7 +175,7 @@
         action.actionType != CActionTypeEndSession &&
         ![(NSString *)[actionProps objectForKey:CS_HTTP_PARAM_SESSION_CODE] isEqualToString:[[CurioSDK shared] sessionCode]] ) {
         
-        [actionProps setObject:[[CurioSDK shared] sessionCode] forKey:CS_HTTP_PARAM_SESSION_CODE];
+        [actionProps setObject:CS_NULL_IF_NIL([[CurioSDK shared] sessionCode]) forKey:CS_HTTP_PARAM_SESSION_CODE];
     }
     
     if (action.actionType == CActionTypeStartSession) {
@@ -184,38 +184,38 @@
         
     } else if (action.actionType == CActionTypeStartScreen) {
         
-        [ret setObject:[actionProps objectForKey:CS_HTTP_PARAM_SESSION_CODE] forKey:CS_HTTP_PARAM_SESSION_CODE];
-        [ret setObject:[actionProps objectForKey:CS_HTTP_PARAM_SESSION_TIMEOUT] forKey:CS_HTTP_PARAM_SESSION_TIMEOUT];
-        [ret setObject:[actionProps objectForKey:CS_HTTP_PARAM_VISITOR_CODE] forKey:CS_HTTP_PARAM_VISITOR_CODE];
-        [ret setObject:[actionProps objectForKey:CS_HTTP_PARAM_TRACKING_CODE] forKey:CS_HTTP_PARAM_TRACKING_CODE];
+        [ret setObject:CS_NULL_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_SESSION_CODE]) forKey:CS_HTTP_PARAM_SESSION_CODE];
+        [ret setObject:CS_ZERO_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_SESSION_TIMEOUT]) forKey:CS_HTTP_PARAM_SESSION_TIMEOUT];
+        [ret setObject:CS_NULL_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_VISITOR_CODE]) forKey:CS_HTTP_PARAM_VISITOR_CODE];
+        [ret setObject:CS_NULL_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_TRACKING_CODE]) forKey:CS_HTTP_PARAM_TRACKING_CODE];
         [ret setObject:CS_SET_IF_NOT_NIL(action.title,@"NULL") forKey:CS_HTTP_PARAM_TITLE];
         [ret setObject:CS_SET_IF_NOT_NIL(action.path,@"NULL") forKey:CS_HTTP_PARAM_PATH];
         
     } else if (action.actionType == CActionTypeSendEvent) {
         
-        [ret setObject:[actionProps objectForKey:CS_HTTP_PARAM_SESSION_CODE] forKey:CS_HTTP_PARAM_SESSION_CODE];
-        [ret setObject:[actionProps objectForKey:CS_HTTP_PARAM_SESSION_TIMEOUT] forKey:CS_HTTP_PARAM_SESSION_TIMEOUT];
-        [ret setObject:[actionProps objectForKey:CS_HTTP_PARAM_VISITOR_CODE] forKey:CS_HTTP_PARAM_VISITOR_CODE];
-        [ret setObject:[actionProps objectForKey:CS_HTTP_PARAM_TRACKING_CODE] forKey:CS_HTTP_PARAM_TRACKING_CODE];
+        [ret setObject:CS_NULL_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_SESSION_CODE]) forKey:CS_HTTP_PARAM_SESSION_CODE];
+        [ret setObject:CS_ZERO_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_SESSION_TIMEOUT]) forKey:CS_HTTP_PARAM_SESSION_TIMEOUT];
+        [ret setObject:CS_NULL_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_VISITOR_CODE]) forKey:CS_HTTP_PARAM_VISITOR_CODE];
+        [ret setObject:CS_NULL_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_TRACKING_CODE]) forKey:CS_HTTP_PARAM_TRACKING_CODE];
         [ret setObject:CS_SET_IF_NOT_NIL(action.eventKey,@"NULL") forKey:CS_HTTP_PARAM_EVENT_KEY];
         [ret setObject:CS_SET_IF_NOT_NIL(action.eventValue,@"NULL") forKey:CS_HTTP_PARAM_EVENT_VALUE];
         
     } else if (action.actionType == CActionTypeEndScreen) {
         
-        [ret setObject:[actionProps objectForKey:CS_HTTP_PARAM_SESSION_CODE] forKey:CS_HTTP_PARAM_SESSION_CODE];
-        [ret setObject:[actionProps objectForKey:CS_HTTP_PARAM_SESSION_TIMEOUT] forKey:CS_HTTP_PARAM_SESSION_TIMEOUT];
-        [ret setObject:[actionProps objectForKey:CS_HTTP_PARAM_VISITOR_CODE] forKey:CS_HTTP_PARAM_VISITOR_CODE];
-        [ret setObject:[actionProps objectForKey:CS_HTTP_PARAM_TRACKING_CODE] forKey:CS_HTTP_PARAM_TRACKING_CODE];
+        [ret setObject:CS_NULL_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_SESSION_CODE]) forKey:CS_HTTP_PARAM_SESSION_CODE];
+        [ret setObject:CS_ZERO_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_SESSION_TIMEOUT]) forKey:CS_HTTP_PARAM_SESSION_TIMEOUT];
+        [ret setObject:CS_NULL_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_VISITOR_CODE]) forKey:CS_HTTP_PARAM_VISITOR_CODE];
+        [ret setObject:CS_NULL_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_TRACKING_CODE]) forKey:CS_HTTP_PARAM_TRACKING_CODE];
         [ret setObject:CS_SET_IF_NOT_NIL(action.title,@"NULL") forKey:CS_HTTP_PARAM_TITLE];
         [ret setObject:CS_SET_IF_NOT_NIL(action.path,@"NULL") forKey:CS_HTTP_PARAM_PATH];
         [ret setObject:CS_SET_IF_NOT_NIL(action.hitCode,@"NULL") forKey:CS_HTTP_PARAM_HIT_CODE];
         
     } else if (action.actionType == CActionTypeEndSession) {
         
-        [ret setObject:[actionProps objectForKey:CS_HTTP_PARAM_SESSION_CODE] forKey:CS_HTTP_PARAM_SESSION_CODE];
-        [ret setObject:[actionProps objectForKey:CS_HTTP_PARAM_SESSION_TIMEOUT] forKey:CS_HTTP_PARAM_SESSION_TIMEOUT];
-        [ret setObject:[actionProps objectForKey:CS_HTTP_PARAM_VISITOR_CODE] forKey:CS_HTTP_PARAM_VISITOR_CODE];
-        [ret setObject:[actionProps objectForKey:CS_HTTP_PARAM_TRACKING_CODE] forKey:CS_HTTP_PARAM_TRACKING_CODE];
+        [ret setObject:CS_NULL_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_SESSION_CODE]) forKey:CS_HTTP_PARAM_SESSION_CODE];
+        [ret setObject:CS_ZERO_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_SESSION_TIMEOUT]) forKey:CS_HTTP_PARAM_SESSION_TIMEOUT];
+        [ret setObject:CS_NULL_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_VISITOR_CODE]) forKey:CS_HTTP_PARAM_VISITOR_CODE];
+        [ret setObject:CS_NULL_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_TRACKING_CODE]) forKey:CS_HTTP_PARAM_TRACKING_CODE];
 
         
     }

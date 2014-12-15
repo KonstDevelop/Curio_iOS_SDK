@@ -22,6 +22,12 @@
 		<true/>
 		<key>LogLevel</key>
 		<integer>0</integer>
+		<key>RegisterForNotifications</key>
+		<true/>
+		<key>NotificationDataPushURL</key>
+		<string>https://curio.turkcell.com.tr/api/visitor/setPushData</string>
+		<key>NotificationTypes</key>
+		<string>Sound,Badge,Alert</string>
 	</dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>

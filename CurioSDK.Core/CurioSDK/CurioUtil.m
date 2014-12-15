@@ -149,6 +149,26 @@
 
 }
 
+- (NSString *) dictToPostBody:(NSDictionary *) dict {
+    
+    NSMutableString *vars_str = [NSMutableString new];
+    if (dict != nil && dict.count > 0) {
+        BOOL first = YES;
+        for (NSString *key in dict) {
+            if (!first) {
+                [vars_str appendString:@"&"];
+            }
+            first = NO;
+            
+            [vars_str appendString:[key stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            [vars_str appendString:@"="];
+            [vars_str appendString:[[NSString stringWithFormat:@"%@",[dict valueForKey:key]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        }
+    }
+    
+    return vars_str;
+}
+
 
 
 @end

@@ -28,25 +28,7 @@ static pthread_mutex_t mutex;
     return instance;
 }
 
-- (NSString *) dictToPostBody:(NSDictionary *) dict {
-    
-    NSMutableString *vars_str = [NSMutableString new];
-    if (dict != nil && dict.count > 0) {
-        BOOL first = YES;
-        for (NSString *key in dict) {
-            if (!first) {
-                [vars_str appendString:@"&"];
-            }
-            first = NO;
-            
-            [vars_str appendString:[key stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-            [vars_str appendString:@"="];
-            [vars_str appendString:[[NSString stringWithFormat:@"%@",[dict valueForKey:key]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-        }
-    }
-    
-    return vars_str;
-}
+
 
 - (BOOL) checkResponse:(NSHTTPURLResponse *) response data:(NSData *) data  action:(CurioAction *) action{
     
@@ -121,8 +103,8 @@ static pthread_mutex_t mutex;
         [request setHTTPMethod:@"POST"];
         [request setHTTPShouldHandleCookies:NO];
         [request setValue:CS_OPT_USER_AGENT forHTTPHeaderField:@"User-Agent"];
-        [request setHTTPBody:[[self dictToPostBody:parameters] dataUsingEncoding:NSUTF8StringEncoding]];
-    
+        [request setHTTPBody:[[[CurioUtil shared] dictToPostBody:parameters] dataUsingEncoding:NSUTF8StringEncoding]];
+        [request setTimeoutInterval:30.0];
     
         NSURLResponse * response = nil;
         NSError * error = nil;
@@ -132,6 +114,10 @@ static pthread_mutex_t mutex;
         
         if (error != nil) {
             CS_Log_Warning(@"Warning: %ld , %@",(long)error.code, error.localizedDescription);
+            
+            last_errorCode = (long) error.code;
+        } else {
+            last_errorCode = 0;
         }
         
         return error == nil && responseOk;
@@ -172,7 +158,13 @@ static pthread_mutex_t mutex;
     // Precondition failed
     if (last_responseCode == 412) {
         
-        CS_Log_Error(@"Invalid Api Key and/or Tracking Code !!!")
+        CS_Log_Error(@"Invalid Api Key and/or Tracking Code !!!");
+        return FALSE;
+    }
+    
+    // Timeout mode
+    if (last_errorCode == -1001) {
+        CS_Log_Error(@"On timeouts, there is no need to retry !!!");
         return FALSE;
     }
     
@@ -268,19 +260,24 @@ static pthread_mutex_t mutex;
 
 - (void) tryToPostAwaitingActions:(BOOL) canRunOnMainThread {
     
+
     
-    pthread_mutex_lock(&mutex);
+    if (pthread_mutex_trylock(&mutex) != 0)
+    {
+        return;
+    }
     
     
     // To make sure we are not running
     // in main thread
     if ([NSThread isMainThread] && canRunOnMainThread) {
         
+        pthread_mutex_unlock(&mutex);
+
         [opQueue addOperationWithBlock:^{
             [self tryToPostAwaitingActions:canRunOnMainThread];
         }];
         
-        pthread_mutex_unlock(&mutex);
         
         return;
     }
@@ -379,16 +376,21 @@ static pthread_mutex_t mutex;
     
 }
 
-- (void) newActionNotified:(id) sender {
-    
-
+- (void) newActionNotified_background:(id) sender {
     
     if (!CS_NSN_IS_TRUE([[CurioSettings shared] periodicDispatchEnabled])) {
         
-
+        
         [self tryToPostAwaitingActions:FALSE];
-
+        
     }
+}
+
+- (void) newActionNotified:(id) sender {
+    
+
+    [self performSelectorInBackground:@selector(newActionNotified_background:) withObject:sender];
+    
 }
 
 - (id) init {
