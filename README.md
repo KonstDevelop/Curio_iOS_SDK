@@ -137,7 +137,7 @@ You can end started session by invoking endSession function with CurioSDK class.
 
 ### Registering for push notifications 
 
-Curio iOS SDK can register your application for remote push notifications automatically if you set "RegisterForRemoteNotifications" parameter true and set NotificationTypes parameter. You also have to implement "didReceiveRemoteNotification" and "didRegisterForRemoteNotificationsWithDeviceToken" methods as shown below:
+Curio iOS SDK can register your application for remote push notifications automatically if you set "RegisterForRemoteNotifications" parameter true and set "NotificationTypes" parameter. You also have to implement "didReceiveRemoteNotification" and "didRegisterForRemoteNotificationsWithDeviceToken" methods as shown below:
 
 ```
 	- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
