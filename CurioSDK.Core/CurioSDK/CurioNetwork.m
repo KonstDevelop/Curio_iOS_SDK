@@ -57,11 +57,13 @@
             
         };
         
+        __weak CurioReachabilityEx *weakReachability = _reachability;
+        
         _reachability.unreachableBlock = ^(CurioReachabilityEx *reach) {
             
             // Sometimes unreachable block runs even if we have a connection
             // that's why we are passing reach variable to reachable block
-            _reachability.reachableBlock(reach);
+            weakReachability.reachableBlock(reach);
             
             
         };

@@ -45,7 +45,7 @@
     }
     
     _aId = aId;
-    _actionType = type;
+    _actionType = (int)type;
     _stamp = stamp;
     _title = title;
     _path = path;
