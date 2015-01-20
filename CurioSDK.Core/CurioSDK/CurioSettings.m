@@ -51,7 +51,6 @@ trackingCode:(NSString *)trackingCode {
            loggingEnabled:(NSNumber *)logginEnabled
                  logLevel:(NSNumber *)logLevel
 registerForRemoteNotifications:(NSNumber *)registerForRemoteNotifications
-notificationDataPushUrl:(NSString *) notificationDataPushUrl
     notificationTypes:(NSString *)notificationTypes
 
 {
@@ -64,7 +63,6 @@ notificationDataPushUrl:(NSString *) notificationDataPushUrl
     _loggingEnabled = CS_SET_IF_NOT_NIL(logginEnabled, _loggingEnabled);
     _logLevel = CS_SET_IF_NOT_NIL(logLevel, _logLevel);
     _registerForRemoteNotifications = CS_SET_IF_NOT_NIL(registerForRemoteNotifications, _registerForRemoteNotifications);
-    _notificationDataPushURL = CS_SET_IF_NOT_NIL(notificationDataPushUrl, _notificationDataPushURL);
     _notificationTypes = CS_SET_IF_NOT_NIL(notificationTypes, _notificationTypes);
     
     return [self set:serverUrl apiKey:apiKey trackingCode:trackingCode];
@@ -98,7 +96,6 @@ notificationDataPushUrl:(NSString *) notificationDataPushUrl
                    loggingEnabled:[settings objectForKey:CS_OPT_SKEY_LOGGING_ENABLED]
                          logLevel:[settings objectForKey:CS_OPT_SKEY_LOGGING_LEVEL]
    registerForRemoteNotifications:[settings objectForKey:CS_OPT_SKEY_REGISTER_FOR_REMOTE_NOTIFICATIONS]
-          notificationDataPushUrl:[settings objectForKey:CS_OPT_SKEY_NOTIFICATION_DATA_PUSH_URL]
                 notificationTypes:[settings objectForKey:CS_OPT_SKEY_NOTIFICATION_TYPES]
             ];
 }

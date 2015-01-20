@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C120FF71A52F51800364C4C /* CurioNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C120FF61A52F51800364C4C /* CurioNotification.m */; };
 		2C64889319CA0C720013DDB4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C64889219CA0C720013DDB4 /* Foundation.framework */; };
 		2C64889819CA0C720013DDB4 /* CurioSDK.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C64889719CA0C720013DDB4 /* CurioSDK.h */; };
 		2C64889A19CA0C720013DDB4 /* CurioSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C64889919CA0C720013DDB4 /* CurioSDK.m */; };
@@ -62,6 +63,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2C120FF51A52F51800364C4C /* CurioNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurioNotification.h; sourceTree = "<group>"; };
+		2C120FF61A52F51800364C4C /* CurioNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioNotification.m; sourceTree = "<group>"; };
 		2C64888F19CA0C720013DDB4 /* libCurioSDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCurioSDK.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C64889219CA0C720013DDB4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2C64889619CA0C720013DDB4 /* CurioSDK-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CurioSDK-Prefix.pch"; sourceTree = "<group>"; };
@@ -167,6 +170,8 @@
 				2C655BA619CC47B900CBC7CC /* 3rdParty */,
 				2C64889719CA0C720013DDB4 /* CurioSDK.h */,
 				2C64889919CA0C720013DDB4 /* CurioSDK.m */,
+				2C120FF51A52F51800364C4C /* CurioNotification.h */,
+				2C120FF61A52F51800364C4C /* CurioNotification.m */,
 				2C6488BA19CAF1670013DDB4 /* CurioSettings.h */,
 				2C6488BB19CAF1670013DDB4 /* CurioSettings.m */,
 				2CE12DAB19CB5D6600CDBA41 /* CurioAction.h */,
@@ -316,6 +321,7 @@
 				2CE12DAA19CB42A300CDBA41 /* CurioUtil.m in Sources */,
 				2CE12DB019CB68A600CDBA41 /* CurioDBToolkit.m in Sources */,
 				2C655BB819CCBA2F00CBC7CC /* CurioActionToolkit.m in Sources */,
+				2C120FF71A52F51800364C4C /* CurioNotification.m in Sources */,
 				2CE12DAD19CB5D6600CDBA41 /* CurioAction.m in Sources */,
 				2C655BAC19CC485500CBC7CC /* CurioNetwork.m in Sources */,
 				2C64889A19CA0C720013DDB4 /* CurioSDK.m in Sources */,

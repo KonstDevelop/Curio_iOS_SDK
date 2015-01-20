@@ -38,11 +38,11 @@
 - (id) init {
     if ((self = [super init])) {
         
-        _reachability = [ReachabilityEx reachabilityWithHostname:CS_OPT_NETWORK_CHECK_HOST];
+        _reachability = [CurioReachabilityEx reachabilityWithHostname:CS_OPT_NETWORK_CHECK_HOST];
         
         __unsafe_unretained CurioNetwork *slf = self;
         
-        _reachability.reachableBlock = ^(ReachabilityEx *reach) {
+        _reachability.reachableBlock = ^(CurioReachabilityEx *reach) {
             
                 slf.isOnline = reach.isReachable;
             
@@ -57,7 +57,7 @@
             
         };
         
-        _reachability.unreachableBlock = ^(ReachabilityEx *reach) {
+        _reachability.unreachableBlock = ^(CurioReachabilityEx *reach) {
             
             // Sometimes unreachable block runs even if we have a connection
             // that's why we are passing reach variable to reachable block

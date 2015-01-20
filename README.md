@@ -52,9 +52,9 @@ You can just copy'n paste CurioSDK item within sample project's Info.plist or Cu
 
 **LogLevel:** [Optional] Contains level of the print-out logs.  0 - Error, 1 - Warning, 2 - Info, 3 - Debug. Default is 0 (Error).
 
-**RegisterForRemoteNotifications**  [Warning BETA version. SHOULD BE SET TO "NO".] If enabled, then Curio SDK will automatically register for remote notifications for all types
+**RegisterForRemoteNotifications**  If enabled, then Curio SDK will automatically register for remote notifications for types defined in "NotificationTypes" parameter.
 
-**NotificationDataPushURL** [Warning BETA version. SHOULD BE SET TO "".] URL to post push data to track user's notification usage stats, can be obtained from Turkcell.
+**NotificationTypes** Notification types to register; available values: Sound, Badge, Alert
 
 
 ### Manual Configuration
@@ -62,18 +62,18 @@ You can just copy'n paste CurioSDK item within sample project's Info.plist or Cu
 You can specify CurioSDK parameters whenever you want to start a session on client by invoking startSession function just like below.
 
 ```
-[[CurioSDK shared] startSession:@"XXXXX"
+[[CurioSDK shared] startSession:@"https://curiotest.turkcell.com.tr/api/v2"
 					      apiKey:@"XXXXX"
 					trackingCode:@"XXXXX"
 				  sessionTimeout:4
 		 periodicDispatchEnabled:YES
-				dispatchPeriod:2
+				dispatchPeriod:1
 		maxCachedActivitiyCount:1000
 				 loggingEnabled:YES
-				 logLevel:3
-				 registerForRemoteNotifications:NO
-				 notificationDataPushUrl:@"XXXXX"
-				 appLaunchOptions:nil
+				 logLevel:0
+				 registerForRemoteNotifications:YES
+				 notificationTypes:@"Sound,Badge,Alert"
+				 appLaunchOptions:launchOptions
 				 ];
 ```
 
@@ -138,6 +138,29 @@ You can end started session by invoking endSession function with CurioSDK class.
 	}
 
 ```
+
+### Registering for push notifications 
+
+Curio iOS SDK can register your application for remote push notifications automatically if you set "RegisterForRemoteNotifications" parameter true and set NotificationTypes parameter. You also have to implement "didReceiveRemoteNotification" and "didRegisterForRemoteNotificationsWithDeviceToken" methods as shown below:
+
+```
+	- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+	    [[CurioNotificationManager shared] didReceiveNotification:userInfo];
+	}
+
+	//or if you implement this method
+	- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+	    completionHandler(UIBackgroundFetchResultNewData);
+    	[[CurioNotificationManager shared] didReceiveNotification:userInfo];
+	}
+
+	- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    	[[CurioNotificationManager shared] didRegisteredForNotifications:deviceToken];
+	}
+
+```
+
+
 
 #Internals
 

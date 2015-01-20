@@ -19,19 +19,20 @@
 
     
     
-//    [[CurioSDK shared] startSession:@"http://curio.turkcell.com.tr/api/v2"
-//                             apiKey:@"32f468f0d9c511e3a0760f5a28372ef6"
-//                       trackingCode:@"1X1Y6A6P"
-//                     sessionTimeout:4
-//            periodicDispatchEnabled:FALSE
-//                     dispatchPeriod:1
-//            maxCachedActivitiyCount:50
-//                     loggingEnabled:TRUE
-//                           logLevel:3
-//     registerForRemoteNotifications:TRUE
-//            notificationDataPushUrl:@"https://curio.turkcell.com.tr/api/visitor/setPushData"
-//                  notificationTypes:@"Sound,Badge,Alert"
-//                   appLaunchOptions:launchOptions];
+    [[CurioSDK shared] startSession:@"server_url"
+                             apiKey:@"XXXXX"
+                       trackingCode:@"XXXXX"
+                     sessionTimeout:4
+            periodicDispatchEnabled:NO
+                     dispatchPeriod:1
+            maxCachedActivitiyCount:1000
+                     loggingEnabled:YES
+                           logLevel:3
+     registerForRemoteNotifications:YES
+                  notificationTypes:@"Sound,Badge,Alert"
+                   appLaunchOptions:launchOptions];
+    
+    
     
 
     // Override point for customization after application launch.
@@ -43,16 +44,20 @@
     return YES;
 }
 
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
-{
- 
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    NSLog(@"didReceiveRemoteNotification CALLED.");
+    [[CurioNotificationManager shared] didReceiveNotification:userInfo];
+}
+
+-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    NSLog(@"didReceiveRemoteNotification:fetchCompletionHandler CALLED");
+    completionHandler(UIBackgroundFetchResultNewData);
     [[CurioNotificationManager shared] didReceiveNotification:userInfo];
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
     [[CurioNotificationManager shared] didRegisteredForNotifications:deviceToken];
-    
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {

@@ -16,11 +16,12 @@
 #endif
 
 
-#define CURIO_SDK_VERSION @"1.01"
+#define CURIO_SDK_VERSION @"1.03"
 
 // Notification names
 
 #define CS_NOTIF_NEW_ACTION @"CS_NOTIF_NEW_ACTION"
+#define CS_NOTIF_REGISTERED_NEW_SESSION_CODE @"CS_NOTIF_REGISTERED_NEW_SESSION_CODE"
 
 // Optional parameters
 
@@ -43,7 +44,6 @@
 #define CS_OPT_SKEY_LOGGING_ENABLED @"LoggingEnabled"
 #define CS_OPT_SKEY_LOGGING_LEVEL @"LogLevel"
 #define CS_OPT_SKEY_REGISTER_FOR_REMOTE_NOTIFICATIONS @"RegisterForRemoteNotifications"
-#define CS_OPT_SKEY_NOTIFICATION_DATA_PUSH_URL @"NotificationDataPushURL"
 #define CS_OPT_SKEY_NOTIFICATION_TYPES @"NotificationTypes"
 #define CS_OPT_DB_FILE_NAME @"curio.db"
 
@@ -54,6 +54,7 @@
 #define CS_SERVER_URL_SUFFIX_SEND_EVENT  @"/event/create"
 #define CS_SERVER_URL_SUFFIX_PERIODIC_BATCH @"/batch/create"
 #define CS_SERVER_URL_SUFFIX_OFFLINE_CACHE  @"/offline/create"
+#define CS_SERVER_URL_SUFFIX_PUSH_DATA @"/visitor/setPushData"
 
 #define CS_HTTP_PARAM_HIT_CODE @"hitCode"
 #define CS_HTTP_PARAM_TRACKING_CODE @"trackingCode"
@@ -130,7 +131,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "ReachabilityEx.h"
+#import "CurioReachabilityEx.h"
 #import "CurioSettings.h"
 #import "CurioAction.h"
 #import "CurioDB.h"
@@ -139,6 +140,7 @@
 #import "CurioNetwork.h"
 #import "CurioPostOffice.h"
 #import "CurioActionToolkit.h"
+#import "CurioNotification.h"
 #import "CurioNotificationManager.h"
 
 
@@ -149,9 +151,10 @@
     NSOperationQueue *curioQueue;
     NSOperationQueue *curioActionQueue;
     BOOL appWasInBackground;
+
 }
 
-
+@property (nonatomic) BOOL sessionCodeRegisteredOnServer;
 @property (strong, nonatomic) NSMutableDictionary *memoryStore;
 @property (strong, nonatomic) NSMutableArray *aliveScreens;
 
@@ -234,7 +237,6 @@ maxCachedActivitiyCount:(int)maxCachedActivityCount
        loggingEnabled:(BOOL)logginEnabled
              logLevel:(int)logLevel
 registerForRemoteNotifications:(BOOL)registerForRemoteNotifications
-notificationDataPushUrl:(NSString *) notificationDataPushUrl
     notificationTypes:(NSString *) notificationTypes
      appLaunchOptions:(NSDictionary *)appLaunchOptions;
 

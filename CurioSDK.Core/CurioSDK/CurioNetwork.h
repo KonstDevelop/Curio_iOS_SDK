@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class ReachabilityEx;
+@class CurioReachabilityEx;
 
 
 
@@ -27,7 +27,7 @@
 /**
     Reachability info holder object
  */
-@property ReachabilityEx *reachability;
+@property CurioReachabilityEx *reachability;
 
 /**
  Returns shared instance of CurioNetwork

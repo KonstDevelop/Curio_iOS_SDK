@@ -31,9 +31,10 @@
 		2C26B63919D2F51800450A85 /* CurioSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C26B62C19D2F51800450A85 /* CurioSDK.m */; };
 		2C26B63A19D2F51800450A85 /* CurioSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C26B62E19D2F51800450A85 /* CurioSettings.m */; };
 		2C26B63B19D2F51800450A85 /* CurioUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C26B63019D2F51800450A85 /* CurioUtil.m */; };
-		2C26B63C19D2F51800450A85 /* ReachabilityEx.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C26B63219D2F51800450A85 /* ReachabilityEx.m */; };
+		2C26B63C19D2F51800450A85 /* CurioReachabilityEx.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C26B63219D2F51800450A85 /* CurioReachabilityEx.m */; };
 		2C26B63E19D2F61200450A85 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C26B63D19D2F61200450A85 /* SystemConfiguration.framework */; };
 		2CA525521A1AA9F500BB61CF /* CurioNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA525511A1AA9F500BB61CF /* CurioNotificationManager.m */; };
+		2CA530AE1A49B2C2003B1BB0 /* CurioNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA530AD1A49B2C2003B1BB0 /* CurioNotification.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,11 +78,13 @@
 		2C26B62E19D2F51800450A85 /* CurioSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioSettings.m; sourceTree = "<group>"; };
 		2C26B62F19D2F51800450A85 /* CurioUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurioUtil.h; sourceTree = "<group>"; };
 		2C26B63019D2F51800450A85 /* CurioUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioUtil.m; sourceTree = "<group>"; };
-		2C26B63119D2F51800450A85 /* ReachabilityEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReachabilityEx.h; sourceTree = "<group>"; };
-		2C26B63219D2F51800450A85 /* ReachabilityEx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReachabilityEx.m; sourceTree = "<group>"; };
+		2C26B63119D2F51800450A85 /* CurioReachabilityEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurioReachabilityEx.h; sourceTree = "<group>"; };
+		2C26B63219D2F51800450A85 /* CurioReachabilityEx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioReachabilityEx.m; sourceTree = "<group>"; };
 		2C26B63D19D2F61200450A85 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		2CA525501A1AA9F500BB61CF /* CurioNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurioNotificationManager.h; sourceTree = "<group>"; };
 		2CA525511A1AA9F500BB61CF /* CurioNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioNotificationManager.m; sourceTree = "<group>"; };
+		2CA530AC1A49B2C2003B1BB0 /* CurioNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurioNotification.h; sourceTree = "<group>"; };
+		2CA530AD1A49B2C2003B1BB0 /* CurioNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioNotification.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +170,8 @@
 			children = (
 				2C26B61E19D2F51800450A85 /* CurioAction.h */,
 				2C26B61F19D2F51800450A85 /* CurioAction.m */,
+				2CA530AC1A49B2C2003B1BB0 /* CurioNotification.h */,
+				2CA530AD1A49B2C2003B1BB0 /* CurioNotification.m */,
 				2C26B62019D2F51800450A85 /* CurioActionToolkit.h */,
 				2C26B62119D2F51800450A85 /* CurioActionToolkit.m */,
 				2C26B62219D2F51800450A85 /* CurioDB.h */,
@@ -186,8 +191,8 @@
 				2CA525511A1AA9F500BB61CF /* CurioNotificationManager.m */,
 				2C26B62F19D2F51800450A85 /* CurioUtil.h */,
 				2C26B63019D2F51800450A85 /* CurioUtil.m */,
-				2C26B63119D2F51800450A85 /* ReachabilityEx.h */,
-				2C26B63219D2F51800450A85 /* ReachabilityEx.m */,
+				2C26B63119D2F51800450A85 /* CurioReachabilityEx.h */,
+				2C26B63219D2F51800450A85 /* CurioReachabilityEx.m */,
 			);
 			name = CurioSDK;
 			path = ../../CurioSDK.Core/CurioSDK;
@@ -225,6 +230,11 @@
 				TargetAttributes = {
 					2C26B5AB19D2F48B00450A85 = {
 						DevelopmentTeam = 7YZS5NTGYH;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -273,6 +283,7 @@
 				2C26B63319D2F51800450A85 /* CurioAction.m in Sources */,
 				2C26B63419D2F51800450A85 /* CurioActionToolkit.m in Sources */,
 				2C26B63519D2F51800450A85 /* CurioDB.m in Sources */,
+				2CA530AE1A49B2C2003B1BB0 /* CurioNotification.m in Sources */,
 				2C26B63619D2F51800450A85 /* CurioDBToolkit.m in Sources */,
 				2C26B63719D2F51800450A85 /* CurioNetwork.m in Sources */,
 				2CA525521A1AA9F500BB61CF /* CurioNotificationManager.m in Sources */,
@@ -280,7 +291,7 @@
 				2C26B63919D2F51800450A85 /* CurioSDK.m in Sources */,
 				2C26B63A19D2F51800450A85 /* CurioSettings.m in Sources */,
 				2C26B63B19D2F51800450A85 /* CurioUtil.m in Sources */,
-				2C26B63C19D2F51800450A85 /* ReachabilityEx.m in Sources */,
+				2C26B63C19D2F51800450A85 /* CurioReachabilityEx.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +337,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -341,6 +353,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "f6100e81-61a0-4d3f-a7d7-de0e297001aa";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -358,6 +371,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -366,6 +380,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "f6100e81-61a0-4d3f-a7d7-de0e297001aa";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -376,12 +391,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CurioIOSSDKSample/CurioIOSSDKSample-Prefix.pch";
 				INFOPLIST_FILE = "CurioIOSSDKSample/CurioIOSSDKSample-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "620764a2-0128-4c3b-94cf-9245a8ac43a0";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -390,12 +404,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CurioIOSSDKSample/CurioIOSSDKSample-Prefix.pch";
 				INFOPLIST_FILE = "CurioIOSSDKSample/CurioIOSSDKSample-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "620764a2-0128-4c3b-94cf-9245a8ac43a0";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

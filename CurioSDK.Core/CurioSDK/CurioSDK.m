@@ -29,6 +29,8 @@
         self.title = [decoder decodeObjectForKey:@"title"];
         self.className = [decoder decodeObjectForKey:@"className"];
         self.path = [decoder decodeObjectForKey:@"path"];
+        
+        
     }
     return self;
 }
@@ -85,6 +87,9 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillTerminate) name:UIApplicationWillTerminateNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationGotActive) name:UIApplicationDidBecomeActiveNotification object:nil];
         
+        
+        _sessionCodeRegisteredOnServer = FALSE;
+        
         curioQueue = [NSOperationQueue new];
         [curioQueue setMaxConcurrentOperationCount:1];
 
@@ -104,7 +109,7 @@
         // Invoke post office initialization
         [CurioPostOffice shared];
         
-        CS_Log_Info(@"Read values from bundle: %@ = %@ , %@ = %@, %@ = %@, %@ = %@ , %@ = %@, %@ = %@, %@ = %@, %@ = %@, %@ = %@, %@ = %@, %@ = %@, %@ = %@",
+        CS_Log_Info(@"Read values from bundle: %@ = %@ , %@ = %@, %@ = %@, %@ = %@ , %@ = %@, %@ = %@, %@ = %@, %@ = %@, %@ = %@, %@ = %@, %@ = %@",
                     CS_OPT_SKEY_SERVER_URL, [[CurioSettings shared] serverUrl],
                     CS_OPT_SKEY_API_KEY, [[CurioSettings shared] apiKey],
                     CS_OPT_SKEY_TRACKING_CODE, [[CurioSettings shared] trackingCode],
@@ -115,7 +120,6 @@
                     CS_OPT_SKEY_LOGGING_ENABLED, [[CurioSettings shared] loggingEnabled],
                     CS_OPT_SKEY_LOGGING_LEVEL, [[CurioSettings shared] logLevel],
                                         CS_OPT_SKEY_REGISTER_FOR_REMOTE_NOTIFICATIONS, [[CurioSettings shared] registerForRemoteNotifications],
-                                        CS_OPT_SKEY_NOTIFICATION_DATA_PUSH_URL, [[CurioSettings shared] notificationDataPushURL],
                                         CS_OPT_SKEY_NOTIFICATION_TYPES, [[CurioSettings shared] notificationTypes]
           );
 
@@ -372,7 +376,6 @@ maxCachedActivitiyCount:(int)maxCachedActivityCount
        loggingEnabled:(BOOL)logginEnabled
              logLevel:(int)logLevel
 registerForRemoteNotifications:(BOOL)registerForRemoteNotifications
-notificationDataPushUrl:(NSString *) notificationDataPushUrl
     notificationTypes:(NSString *) notificationTypes
      appLaunchOptions:(NSDictionary *)appLaunchOptions
 {
@@ -389,7 +392,6 @@ notificationDataPushUrl:(NSString *) notificationDataPushUrl
                  loggingEnabled:logginEnabled ? CS_NSN_TRUE : CS_NSN_FALSE
                        logLevel:[NSNumber numberWithInt:logLevel]
  registerForRemoteNotifications:registerForRemoteNotifications ? CS_NSN_TRUE : CS_NSN_FALSE
-        notificationDataPushUrl:notificationDataPushUrl
               notificationTypes:notificationTypes
      ];
     [self startSession:appLaunchOptions];

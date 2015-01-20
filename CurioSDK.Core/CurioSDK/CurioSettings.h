@@ -90,13 +90,6 @@ typedef NS_ENUM(NSUInteger, CSLogLevel) {
  */
 @property (strong, nonatomic) NSNumber *registerForRemoteNotifications;
 
-/**
-    URL to post push data to track user's notification usage stats
- 
-    Default is null.
- */
-@property (strong, nonatomic) NSString *notificationDataPushURL;
-
 
 /**
     Notification types to register for.
@@ -149,7 +142,6 @@ typedef NS_ENUM(NSUInteger, CSLogLevel) {
              loggingEnabled:(NSNumber *)logginEnabled
                    logLevel:(NSNumber *)logLevel
 registerForRemoteNotifications:(NSNumber *)registerForRemoteNotifications
-    notificationDataPushUrl:(NSString *) notificationDataPushUrl
     notificationTypes:(NSString *) notificationTypes;
 
 /**

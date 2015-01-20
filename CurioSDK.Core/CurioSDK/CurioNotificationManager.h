@@ -10,7 +10,7 @@
 
 @interface CurioNotificationManager : NSObject
 {
-    
+    NSOperationQueue *curioNotificationQueue;
 }
 
 /**

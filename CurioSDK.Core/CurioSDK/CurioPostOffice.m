@@ -28,9 +28,25 @@ static pthread_mutex_t mutex;
     return instance;
 }
 
+- (void) checkForSuccessfullyPostedSessionCode:(NSString *) sessionCode {
+    if (![[CurioSDK shared] sessionCodeRegisteredOnServer]) {
+        
+        BOOL registeredOnRemote = [sessionCode isEqualToString:[[CurioSDK shared] sessionCode]];
+        
+        [[CurioSDK shared] setSessionCodeRegisteredOnServer:registeredOnRemote];
+        
+        if (registeredOnRemote) {
+            CS_Log_Info(@"%@ session activated on remote server",[[CurioSDK shared] sessionCode]);
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:CS_NOTIF_REGISTERED_NEW_SESSION_CODE object:nil];
+        }
+    }
 
+}
 
-- (BOOL) checkResponse:(NSHTTPURLResponse *) response data:(NSData *) data  action:(CurioAction *) action{
+- (BOOL) checkResponse:(NSHTTPURLResponse *) response data:(NSData *) data
+      postedParameters:(NSDictionary *) postedParameters
+                action:(CurioAction *) action{
     
     
     BOOL ret = FALSE;
@@ -59,6 +75,75 @@ static pthread_mutex_t mutex;
             
             
         }
+  
+        // Means we are successfully posted online post request
+        if (action != nil) {
+            
+
+            CS_Log_Debug(@"%@",action.properties);
+            
+            NSObject *sessionCode = [[action properties] objectForKey:CS_HTTP_PARAM_SESSION_CODE];
+            if (sessionCode != nil) {
+            
+                [self checkForSuccessfullyPostedSessionCode:(NSString *) sessionCode];
+            
+            }
+        } else
+        // Means we have successfully posted OCR or PDR request
+        {
+            
+            
+            if (postedParameters != nil) {
+                
+                NSObject *data = [postedParameters objectForKey:@"data"];
+                BOOL activated = FALSE;
+                
+                
+                // OCR Check
+                if (data != nil) {
+                
+                    NSArray *dictArr = (NSArray *) [[CurioUtil shared] fromJson:(NSString *)data percentEncoded:YES];
+                    
+                    for (NSDictionary *d in dictArr) {
+                        
+                        // We are just checking for OCR request session code
+                        NSObject *sessionCode = [d objectForKey:CS_HTTP_JSON_VARNAME_SESSIONCODE];
+                        
+                        if (sessionCode != nil) {
+                        
+                            
+                
+                            [self checkForSuccessfullyPostedSessionCode:(NSString *) sessionCode];
+                            
+                            activated = TRUE;
+                            
+                        }
+                    }
+                }
+                
+                
+                // PDR Check
+                if (!activated) {
+                    
+                    NSObject *sessionCode = [postedParameters objectForKey:CS_HTTP_JSON_VARNAME_SESSIONCODE];
+                    
+                    if (sessionCode != nil) {
+                        
+                        
+                        
+                        [self checkForSuccessfullyPostedSessionCode:(NSString *) sessionCode];
+                        
+                        activated = TRUE;
+                        
+                    }
+                    
+                }
+                
+                
+                
+            }
+        }
+        
         
         return TRUE;
         
@@ -110,7 +195,7 @@ static pthread_mutex_t mutex;
         NSError * error = nil;
         NSData * data  = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 
-        BOOL responseOk = [self checkResponse:(NSHTTPURLResponse *)response data:data action:action];
+        BOOL responseOk = [self checkResponse:(NSHTTPURLResponse *)response data:data postedParameters:parameters action:action];
         
         if (error != nil) {
             CS_Log_Warning(@"Warning: %ld , %@",(long)error.code, error.localizedDescription);
@@ -187,6 +272,7 @@ static pthread_mutex_t mutex;
                     
                     CS_Log_Info(@"Problem fixed by creating new session");
                     fixed = true;
+                    [[NSNotificationCenter defaultCenter] postNotificationName:CS_NOTIF_REGISTERED_NEW_SESSION_CODE object:nil];
                     break;
                     
                 }
@@ -198,6 +284,7 @@ static pthread_mutex_t mutex;
         } else {
             if (retryBlock()) {
                 CS_Log_Info(@"Retry worked... problem fixed.");
+                [[NSNotificationCenter defaultCenter] postNotificationName:CS_NOTIF_REGISTERED_NEW_SESSION_CODE object:nil];
                 fixed = true;
             }
         }
@@ -303,7 +390,7 @@ static pthread_mutex_t mutex;
             
             _curActioNum++;
             
-            CS_Log_Debug(@"Processing actions %d of %lu - %@ %@",_curActioNum,(unsigned long)[actions count],action.isOnline,[NSNumber numberWithBool:TRUE]);
+            CS_Log_Debug(@"Processing actions %d of %lu - %@",_curActioNum,(unsigned long)[actions count],(CS_NSN_IS_TRUE(action.isOnline) ? @"ONLINE" : @"OFFLINE"));
             
             if (CS_NSN_IS_TRUE(action.isOnline)) {
                 
@@ -337,6 +424,7 @@ static pthread_mutex_t mutex;
                         
                         if (!fixed) {
                             [[CurioDBToolkit shared] markAsOfflineRecords:[NSArray arrayWithObject:action]];
+                            break;
                         }
                     }
                 }

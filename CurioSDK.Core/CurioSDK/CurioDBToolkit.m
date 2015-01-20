@@ -53,6 +53,71 @@
     
 }
 
+- (BOOL) addNotification:(CurioNotification *) notification {
+    
+    NSString *sql = [NSString stringWithFormat:@"INSERT INTO NOTIFICATIONS  VALUES('%@', '%@' ,'%@')",
+                     notification.nId,
+                     notification.deviceToken,
+                     notification.pushId == nil ? @"" : notification.pushId
+                     ];
+    
+    CS_Log_Debug("Notification (%@)",[notification asDict]);
+    
+    BOOL ret = [[CurioDB shared] executeSafe:sql];
+    
+    return ret;
+}
+
+- (void) deleteNotifications:(NSArray *) notifications {
+    
+    for (CurioNotification *notification in notifications) {
+        
+        NSString *sql = [NSString stringWithFormat:@"DELETE FROM NOTIFICATIONS WHERE NID = '%@'",  notification.nId ];
+        
+        
+        [[CurioDB shared] executeSafe:sql];
+    }
+    
+}
+
+- (NSArray *) getNotifications {
+    
+    NSMutableArray *ret = [NSMutableArray new];
+    
+    [[CurioDB shared] invokeBlockSafe:^(sqlite3 *db) {
+        
+        
+        const char *sql = [@"SELECT * FROM NOTIFICATIONS ORDER BY NID DESC" UTF8String];
+        
+        sqlite3_stmt *statement;
+        
+        if (sqlite3_prepare_v2(db, sql, -1, &statement, NULL) == SQLITE_OK)
+        {
+            while (sqlite3_step(statement) == SQLITE_ROW)
+            {
+                
+                CurioNotification *act = [[CurioNotification alloc] init:CS_AS_STRING(sqlite3_column_text(statement, 0))
+                                                       deviceToken:CS_AS_STRING(sqlite3_column_text(statement, 1))
+                                                               pushId:CS_AS_STRING(sqlite3_column_text(statement, 2))];
+                
+                
+                
+                [ret addObject:act];
+                
+            }
+        } else {
+            CS_Log_Debug(@"Failed in statement: %s",sqlite3_errmsg(db));
+        }
+        
+        sqlite3_reset(statement);
+        
+    }];
+    
+    return ret;
+    
+}
+
+
 - (BOOL) addAction:(CurioAction *) action {
     
     

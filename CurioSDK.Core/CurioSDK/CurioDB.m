@@ -100,6 +100,17 @@ static pthread_mutex_t mutexInvoke;
     
 }
 
+- (void) createNotificationHistoryTable {
+    
+    NSString *sql = @"CREATE TABLE NOTIFICATIONS (  NID INTEGER, \
+    DEVICETOKEN TEXT, \
+    PUSHID  TEXT \
+    );";
+    
+    [self executeSafe:sql];
+    
+}
+
 - (void) createDefaultTable {
     
     NSString *sql = @"CREATE TABLE ACTIONS ( AID INTEGER, \
@@ -143,6 +154,8 @@ static pthread_mutex_t mutexInvoke;
         if (!exists)
         {
             [self createDefaultTable];
+            
+            [self createNotificationHistoryTable];
         }
     } else {
         CS_Log_Error(@"Could not open database");

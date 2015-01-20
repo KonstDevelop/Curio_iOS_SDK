@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "CurioAction.h"
+#import "CurioNotification.h"
 #import "CurioUtil.h"
 #import <sqlite3.h>
 
@@ -51,4 +52,12 @@
     Deletes action records (CurioAction) sent within actions array
  */
 - (void) deleteRecords:(NSArray *) actions;
+
+
+- (void) deleteNotifications:(NSArray *) notifications;
+
+- (BOOL) addNotification:(CurioNotification *) notification;
+
+- (NSArray *) getNotifications;
+
 @end
