@@ -48,9 +48,9 @@ You can just copy'n paste CurioSDK item within sample project's Info.plist or Cu
 
 **LogLevel:** [Optional] Contains level of the print-out logs.  0 - Error, 1 - Warning, 2 - Info, 3 - Debug. Default is 0 (Error).
 
-**RegisterForRemoteNotifications**  If enabled, then Curio SDK will automatically register for remote notifications for types defined in "NotificationTypes" parameter.
+**RegisterForRemoteNotifications:**  If enabled, then Curio SDK will automatically register for remote notifications for types defined in "NotificationTypes" parameter.
 
-**NotificationTypes** Notification types to register; available values: Sound, Badge, Alert
+**NotificationTypes:** Notification types to register; available values: Sound, Badge, Alert
 
 
 ### Manual Configuration
