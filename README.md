@@ -1,4 +1,4 @@
-#Curio IOS SDK 1.02
+#Curio IOS SDK 1.03
 
 [Curio](https://gui-curio.turkcell.com.tr) is Turkcell's mobile analytics system, and this is Curio's Android Client IOS library. Applications developed for IOS 6.0+ can easily use Curio mobile analytics with this library.
 
@@ -9,8 +9,6 @@ You can drag'n drop Curio project file into your project. Additionally you shoul
 ## Dependencies
 
 You should Click on Targets -> Your App Name -> and then the 'Build Phases' tab.
-
-![image](https://imagizer.imageshack.us/v2/1085x208q90/r/674/20ayY4.png=700x134)
 
 And expand 'Link Binary With Library' and click + sign to add required framework if they are not available.
 
@@ -23,13 +21,11 @@ And expand 'Link Binary With Library' and click + sign to add required framework
 
 If you don't want to run automated unit tests, then you should remove CurioSDKTests.m, CurioSettingsTest.m and CurioDBTests.m files from compilation by Click on Targets -> Your App Name -> And then the 'Build Phases' tab and expand Compile Sources to remove them by clicking on - sign while mentioned source files selected.
 
-![image](https://imagizer.imageshack.us/v2/1085x446q90/r/746/bG8oCj.png=700x287)
-
 #Configuration
 
 There are two ways to configure CurioSDK.
 
-### Automated Configuration
+### Info.plist Configuration
 
 You can just copy'n paste CurioSDK item within sample project's Info.plist or CurioSDKTests-Info.plist contained in CurioSDK.Core tests to your project's Info.plist file and edit parameters as you wish.
 
