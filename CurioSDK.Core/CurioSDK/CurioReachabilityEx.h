@@ -65,12 +65,13 @@ typedef NS_ENUM(NSInteger, NetworkStatus) {
     ReachableViaWWAN = 1
 };
 
-@class ReachabilityEx;
+//Class has been renamed so applications using same classes do not overlap.
+@class CurioReachabilityEx;
 
-typedef void (^NetworkReachable)(ReachabilityEx * reachability);
-typedef void (^NetworkUnreachable)(ReachabilityEx * reachability);
+typedef void (^NetworkReachable)(CurioReachabilityEx * reachability);
+typedef void (^NetworkUnreachable)(CurioReachabilityEx * reachability);
 
-@interface ReachabilityEx : NSObject
+@interface CurioReachabilityEx : NSObject
 
 @property (nonatomic, copy) NetworkReachable    reachableBlock;
 @property (nonatomic, copy) NetworkUnreachable  unreachableBlock;
@@ -78,12 +79,12 @@ typedef void (^NetworkUnreachable)(ReachabilityEx * reachability);
 
 @property (nonatomic, assign) BOOL reachableOnWWAN;
 
-+(ReachabilityEx*)reachabilityWithHostname:(NSString*)hostname;
-+(ReachabilityEx*)reachabilityForInternetConnection;
-+(ReachabilityEx*)reachabilityWithAddress:(const struct sockaddr_in*)hostAddress;
-+(ReachabilityEx*)reachabilityForLocalWiFi;
++(CurioReachabilityEx*)reachabilityWithHostname:(NSString*)hostname;
++(CurioReachabilityEx*)reachabilityForInternetConnection;
++(CurioReachabilityEx*)reachabilityWithAddress:(const struct sockaddr_in*)hostAddress;
++(CurioReachabilityEx*)reachabilityForLocalWiFi;
 
--(ReachabilityEx *)initWithReachabilityRef:(SCNetworkReachabilityRef)ref;
+-(CurioReachabilityEx *)initWithReachabilityRef:(SCNetworkReachabilityRef)ref;
 
 -(BOOL)startNotifier;
 -(void)stopNotifier;
