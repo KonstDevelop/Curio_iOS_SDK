@@ -58,19 +58,20 @@ You can just copy'n paste CurioSDK item within sample project's Info.plist or Cu
 You can specify CurioSDK parameters whenever you want to start a session on client by invoking startSession function just like below.
 
 ```
-[[CurioSDK shared] startSession:@"https://curiotest.turkcell.com.tr/api/v2"
-					      apiKey:@"XXXXX"
-					trackingCode:@"XXXXX"
-				  sessionTimeout:4
-		 periodicDispatchEnabled:YES
-				dispatchPeriod:1
-		maxCachedActivitiyCount:1000
-				 loggingEnabled:YES
-				 logLevel:0
-				 registerForRemoteNotifications:YES
-				 notificationTypes:@"Sound,Badge,Alert"
-				 appLaunchOptions:launchOptions
-				 ];
+    [[CurioSDK shared] startSession:@"https://curiotest.turkcell.com.tr/api/v2"
+                             apiKey:@"XXXXX"
+                       trackingCode:@"XXXXX"
+                     sessionTimeout:4
+            periodicDispatchEnabled:YES
+                     dispatchPeriod:1
+            maxCachedActivitiyCount:1000
+                     loggingEnabled:YES
+                           logLevel:0
+     registerForRemoteNotifications:YES
+                  notificationTypes:@"Sound,Badge,Alert"
+                   appLaunchOptions:launchOptions
+     ];
+
 ```
 
 ## Usage
@@ -81,10 +82,9 @@ You can start a session whenever application starts-up by invoking startSession 
 
 ```
 	- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    [[CurioSDK shared] startSession:launchOptions];
-    ...
-    }
+    	    [[CurioSDK shared] startSession:launchOptions];
+    	    ...
+	}
 ```
 
 ### Starting a screen
@@ -93,7 +93,6 @@ You can start a screen by invoking startScreen function within CurioSDK class.
 
 ```
 	- (void) viewDidAppear:(BOOL)animated {
-    
 	    [[CurioSDK shared] startScreen:[self class] title:@"Master view" path:@"Master-view"];
 	}
 
@@ -105,7 +104,6 @@ You can end a screen by invoking startScreen function within CurioSDK class.
 
 ```
 	- (void) viewDidDisappear:(BOOL)animated {
-    	
 	    [[CurioSDK shared] endScreen:[self class]];
 	}
 ```
@@ -147,11 +145,11 @@ Curio iOS SDK can register your application for remote push notifications automa
 	//or if you implement this method
 	- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 	    completionHandler(UIBackgroundFetchResultNewData);
-    	[[CurioNotificationManager shared] didReceiveNotification:userInfo];
+    	    [[CurioNotificationManager shared] didReceiveNotification:userInfo];
 	}
 
 	- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    	[[CurioNotificationManager shared] didRegisteredForNotifications:deviceToken];
+    	    [[CurioNotificationManager shared] didRegisteredForNotifications:deviceToken];
 	}
 
 ```
