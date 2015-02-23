@@ -165,7 +165,7 @@ maxValidLocationTimeInterval:(NSNumber *)maxValidLocationTimeInterval;
  
  @return If everything goes fine then TRUE otherwise FALSE
  */
-- (BOOL) readBundleSettings;
+- (void) readBundleSettings;
 
 
 @end

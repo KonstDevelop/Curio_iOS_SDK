@@ -36,14 +36,14 @@
     return self;
 }
 
-- (NSString *) deviceToken {
+/*- (NSString *) deviceToken {
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
     return [userDefaults objectForKey:CS_CONST_DEV_TOK];
-}
+}*/
 
-- (void) setDeviceToken:(NSString *) deviceToken {
+/*- (void) setDeviceToken:(NSString *) deviceToken {
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
@@ -51,7 +51,7 @@
     [userDefaults synchronize];
     
     
-}
+}*/
 
 - (void) sendPreviouslyFailedPushDataToServer:(id) notif {
     
@@ -86,12 +86,14 @@
         
         if (![[CurioSDK shared] sessionCodeRegisteredOnServer]) {
             
-            [[CurioDBToolkit shared] addPushData:
+            CS_Log_Debug(@"No session code registered on server, push data will be inserted into DB...");
+            
+            BOOL result = [[CurioDBToolkit shared] addPushData:
              [[CurioPushData alloc] init:[[CurioUtil shared] nanos]
                                  deviceToken:[weakSelf deviceToken]
                                       pushId:(userInfo != nil ? [userInfo objectForKey: CURKeyPId] : nil)]];
             
-            CS_Log_Info(@"Adding notification to DB because not received an accepted session code yet");
+            CS_Log_Info(@"Push data DB insert result is %d", result);
             
             
             return;
@@ -162,7 +164,7 @@
                                  deviceToken:[weakSelf deviceToken]
                                       pushId:(userInfo != nil ? [userInfo objectForKey: CURKeyPId] : nil)]];
             
-            CS_Log_Warning(@"Adding notification to DB because it was not successfull");
+            CS_Log_Warning(@"Adding push data to DB because it was not successfull");
             
         }
         
@@ -243,7 +245,7 @@
     token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
     
     
-    if ([self deviceToken] == nil || ![[self deviceToken] isEqualToString:token]) {
+    if ([self deviceToken] == nil) {
         [self setDeviceToken:token];
         
         [self sendPushData:[NSDictionary new]];

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="7515.2" systemVersion="14D72i" targetRuntime="iOS.CocoaTouch" variant="6xAndEarlier" propertyAccessControl="none" useAutolayout="YES" promptedForUpgradeToXcode5="NO" initialViewController="3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" variant="6xAndEarlier" propertyAccessControl="none" useAutolayout="YES" promptedForUpgradeToXcode5="NO" initialViewController="3">
     <dependencies>
         <deployment identifier="iOS"/>
         <development version="4600" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7512"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -74,7 +74,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vry-mK-TIc">
-                                <rect key="frame" x="67" y="230" width="188" height="44"/>
+                                <rect key="frame" x="66" y="128" width="188" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Send Event">
                                     <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
@@ -88,7 +88,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e4W-zT-RgQ">
-                                <rect key="frame" x="67" y="281" width="188" height="44"/>
+                                <rect key="frame" x="66" y="179" width="188" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Get Notification History">
                                     <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
@@ -102,7 +102,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MEU-g7-ae7">
-                                <rect key="frame" x="67" y="332" width="188" height="44"/>
+                                <rect key="frame" x="66" y="230" width="188" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Send Location">
                                     <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
@@ -115,17 +115,51 @@
                                     <action selector="sendLocation:" destination="21" eventType="touchUpInside" id="RvF-KE-84F"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jml-tT-4WF">
+                                <rect key="frame" x="66" y="281" width="188" height="44"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Unregister">
+                                    <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="unregister:" destination="21" eventType="touchUpInside" id="D4F-Wj-Thc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8pT-MF-HKj">
+                                <rect key="frame" x="66" y="332" width="188" height="44"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Send Custom Id">
+                                    <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendCustomId:" destination="21" eventType="touchUpInside" id="GMf-Yf-2wl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="MEU-g7-ae7" firstAttribute="leading" secondItem="22" secondAttribute="leading" constant="67" id="0PF-zN-ew1"/>
+                            <constraint firstItem="Jml-tT-4WF" firstAttribute="top" secondItem="MEU-g7-ae7" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="0Ds-Nv-1Uf"/>
                             <constraint firstItem="e4W-zT-RgQ" firstAttribute="trailing" secondItem="vry-mK-TIc" secondAttribute="trailing" type="default" id="3c4-uh-MVi"/>
                             <constraint firstItem="MEU-g7-ae7" firstAttribute="trailing" secondItem="e4W-zT-RgQ" secondAttribute="trailing" type="default" id="42X-Lu-mr5"/>
+                            <constraint firstItem="8pT-MF-HKj" firstAttribute="centerX" secondItem="22" secondAttribute="centerX" type="default" id="47q-z9-tSX"/>
                             <constraint firstItem="MEU-g7-ae7" firstAttribute="top" secondItem="e4W-zT-RgQ" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="5gL-4a-aPB"/>
+                            <constraint firstItem="Jml-tT-4WF" firstAttribute="leading" secondItem="8pT-MF-HKj" secondAttribute="leading" type="default" id="Boh-aA-nm5"/>
                             <constraint firstItem="e4W-zT-RgQ" firstAttribute="top" secondItem="vry-mK-TIc" secondAttribute="bottom" constant="8" type="user" id="CRb-EV-RQ1"/>
+                            <constraint firstItem="Jml-tT-4WF" firstAttribute="trailing" secondItem="MEU-g7-ae7" secondAttribute="trailing" type="default" id="Dpr-AB-rNZ"/>
                             <constraint firstItem="MEU-g7-ae7" firstAttribute="leading" secondItem="e4W-zT-RgQ" secondAttribute="leading" type="default" id="E6Y-YO-EIu"/>
+                            <constraint firstItem="8pT-MF-HKj" firstAttribute="top" secondItem="Jml-tT-4WF" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="KsS-5x-3Vq"/>
                             <constraint firstItem="e4W-zT-RgQ" firstAttribute="leading" secondItem="vry-mK-TIc" secondAttribute="leading" type="default" id="LMs-j8-CRP"/>
-                            <constraint firstItem="vry-mK-TIc" firstAttribute="top" secondItem="22" secondAttribute="top" constant="230" id="vqW-9q-00r"/>
+                            <constraint firstItem="Jml-tT-4WF" firstAttribute="leading" secondItem="MEU-g7-ae7" secondAttribute="leading" type="default" id="OpQ-89-BAQ"/>
+                            <constraint firstItem="8pT-MF-HKj" firstAttribute="trailing" secondItem="Jml-tT-4WF" secondAttribute="trailing" type="default" id="ZZp-dg-qKX"/>
+                            <constraint firstItem="vry-mK-TIc" firstAttribute="top" secondItem="22" secondAttribute="top" constant="128" id="alz-l2-e9o"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Detail" id="26"/>

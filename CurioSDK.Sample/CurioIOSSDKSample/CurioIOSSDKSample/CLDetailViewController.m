@@ -45,6 +45,7 @@
 - (IBAction)sendEvent:(id)sender {
     [[CurioSDK shared] sendEvent:@"Clicked button" eventValue:NSStringFromClass([self class])];
 }
+
 - (IBAction)getNotificationHistory:(id)sender {
     [[CurioSDK shared] getNotificationHistoryWithPageStart:0 rows:5 success:^(NSDictionary *responseObject) {
         NSLog(@"%@", responseObject.description);
@@ -52,8 +53,17 @@
         NSLog(@"%@", error.description);
     }];
 }
+
 - (IBAction)sendLocation:(id)sender {
     [[CurioSDK shared] sendLocation];
+}
+
+- (IBAction)unregister:(id)sender {
+    [[CurioSDK shared] unregisterFromNotificationServer];
+}
+
+- (IBAction)sendCustomId:(id)sender {
+    [[CurioSDK shared] sendCustomId: @"5300667093"];
 }
 
 - (void) viewDidAppear:(BOOL)animated {

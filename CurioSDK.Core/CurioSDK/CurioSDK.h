@@ -59,7 +59,7 @@
 #define CS_SERVER_URL_SUFFIX_OFFLINE_CACHE  @"/offline/create"
 #define CS_SERVER_URL_SUFFIX_PUSH_DATA @"/visitor/setPushData"
 #define CS_SERVER_URL_SUFFIX_LOCATION_DATA @"/location/set"
-#define CS_SERVER_URL_SUFFIX_UNREGISTER @"/unregister"
+#define CS_SERVER_URL_SUFFIX_UNREGISTER @"/visitor/unregister"
 #define CS_SERVER_URL_SUFFIX_PUSH_HISTORY @"/pushHistory/get"
 
 #define CS_HTTP_PARAM_HIT_CODE @"hitCode"

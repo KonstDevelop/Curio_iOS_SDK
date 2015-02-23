@@ -18,10 +18,10 @@
     
     [[CurioSDK shared] startSession:launchOptions];
 
-    /*
-     [[CurioSDK shared] startSession:@"server_url"
-                             apiKey:@"XXXXX"
-                       trackingCode:@"XXXXX"
+    
+     /*[[CurioSDK shared] startSession:@"https://curiotest.turkcell.com.tr/api/v2"
+                             apiKey:@"a1578e903eff11e4aacd5119157960aa"
+                       trackingCode:@"2OTP5B2R"
                      sessionTimeout:4
             periodicDispatchEnabled:NO
                      dispatchPeriod:1
@@ -32,8 +32,8 @@
                   notificationTypes:@"Sound,Badge,Alert"
                fetchLocationEnabled:YES
             maxValidLocationTimeInterval:60
-                   appLaunchOptions:launchOptions];
-     */
+                   appLaunchOptions:launchOptions];*/
+     
     
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {

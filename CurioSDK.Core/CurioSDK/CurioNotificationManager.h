@@ -14,6 +14,8 @@
     NSOperationQueue *curioNotificationQueue;
 }
 
+@property (strong, nonatomic) NSString *deviceToken;
+
 /**
  Returns shared instance of CSSettings
  
@@ -53,9 +55,5 @@
  */
 - (void) sendPushData:(NSDictionary *)userInfo;
 
-/**
- * Returns device token.
- */
-- (NSString *) deviceToken;
 
 @end
