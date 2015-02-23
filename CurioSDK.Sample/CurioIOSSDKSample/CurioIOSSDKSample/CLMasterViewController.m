@@ -35,13 +35,16 @@
         
     }
     
-    
     [[CurioSDK shared] startScreen:[self class] title:@"Master view" path:@"Master-view"];
+    
+    [super viewDidAppear:animated];
 }
 
 - (void) viewDidDisappear:(BOOL)animated {
     
     [[CurioSDK shared] endScreen:[self class]];
+    
+    [super viewDidDisappear:animated];
 }
 
 

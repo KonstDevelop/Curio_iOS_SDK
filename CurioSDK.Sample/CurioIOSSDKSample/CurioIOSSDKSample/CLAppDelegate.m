@@ -14,12 +14,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
+    //[[CurioSDK shared] setCustomId:@"sample custom id"];
     
     [[CurioSDK shared] startSession:launchOptions];
 
-    
-    
-    [[CurioSDK shared] startSession:@"server_url"
+    /*
+     [[CurioSDK shared] startSession:@"server_url"
                              apiKey:@"XXXXX"
                        trackingCode:@"XXXXX"
                      sessionTimeout:4
@@ -30,11 +30,11 @@
                            logLevel:3
      registerForRemoteNotifications:YES
                   notificationTypes:@"Sound,Badge,Alert"
+               fetchLocationEnabled:YES
+            maxValidLocationTimeInterval:60
                    appLaunchOptions:launchOptions];
+     */
     
-    
-    
-
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
@@ -56,7 +56,6 @@
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    
     [[CurioNotificationManager shared] didRegisteredForNotifications:deviceToken];
 }
 

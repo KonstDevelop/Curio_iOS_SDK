@@ -7,20 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C120FF71A52F51800364C4C /* CurioNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C120FF61A52F51800364C4C /* CurioNotification.m */; };
+		2C120FF71A52F51800364C4C /* CurioPushData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C120FF61A52F51800364C4C /* CurioPushData.m */; };
 		2C64889319CA0C720013DDB4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C64889219CA0C720013DDB4 /* Foundation.framework */; };
 		2C64889819CA0C720013DDB4 /* CurioSDK.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C64889719CA0C720013DDB4 /* CurioSDK.h */; };
 		2C64889A19CA0C720013DDB4 /* CurioSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C64889919CA0C720013DDB4 /* CurioSDK.m */; };
-		2C6488A119CA0C720013DDB4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6488A019CA0C720013DDB4 /* XCTest.framework */; };
 		2C6488A219CA0C720013DDB4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C64889219CA0C720013DDB4 /* Foundation.framework */; };
-		2C6488A419CA0C720013DDB4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6488A319CA0C720013DDB4 /* UIKit.framework */; };
 		2C6488A719CA0C720013DDB4 /* libCurioSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C64888F19CA0C720013DDB4 /* libCurioSDK.a */; };
 		2C6488AD19CA0C720013DDB4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C6488AB19CA0C720013DDB4 /* InfoPlist.strings */; };
 		2C6488AF19CA0C720013DDB4 /* CurioSDKTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6488AE19CA0C720013DDB4 /* CurioSDKTests.m */; };
 		2C6488B919CAEE4D0013DDB4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6488B819CAEE4D0013DDB4 /* libsqlite3.dylib */; };
 		2C6488BC19CAF1670013DDB4 /* CurioSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6488BB19CAF1670013DDB4 /* CurioSettings.m */; };
 		2C6488BE19CAFB5C0013DDB4 /* CurioSettingsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6488BD19CAFB5C0013DDB4 /* CurioSettingsTests.m */; };
-		2C655BA919CC47F900CBC7CC /* ReachabilityEx.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C655BA819CC47F900CBC7CC /* ReachabilityEx.m */; };
 		2C655BAC19CC485500CBC7CC /* CurioNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C655BAB19CC485500CBC7CC /* CurioNetwork.m */; };
 		2C655BAE19CC49AB00CBC7CC /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C655BAD19CC49AB00CBC7CC /* CoreTelephony.framework */; };
 		2C655BAF19CC878B00CBC7CC /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C655BAD19CC49AB00CBC7CC /* CoreTelephony.framework */; };
@@ -28,7 +25,6 @@
 		2C655BB219CC95C300CBC7CC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C655BB019CC95B800CBC7CC /* UIKit.framework */; };
 		2C655BB519CCA55F00CBC7CC /* CurioPostOffice.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C655BB419CCA55F00CBC7CC /* CurioPostOffice.m */; };
 		2C655BB819CCBA2F00CBC7CC /* CurioActionToolkit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C655BB719CCBA2F00CBC7CC /* CurioActionToolkit.m */; };
-		2CA46D3019CB0CBD0001D511 /* CurioSDKTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CA46D2F19CB0CBD0001D511 /* CurioSDKTests-Info.plist */; };
 		2CA46D3319CB12640001D511 /* CurioDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA46D3219CB12640001D511 /* CurioDB.m */; };
 		2CA5254E1A1AA24B00BB61CF /* CurioNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5254D1A1AA24B00BB61CF /* CurioNotificationManager.m */; };
 		2CA5254F1A1AA24B00BB61CF /* CurioNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5254D1A1AA24B00BB61CF /* CurioNotificationManager.m */; };
@@ -37,6 +33,10 @@
 		2CE12DB019CB68A600CDBA41 /* CurioDBToolkit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE12DAF19CB68A600CDBA41 /* CurioDBToolkit.m */; };
 		2CE12DB219CB6E8500CDBA41 /* CurioDBTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE12DB119CB6E8500CDBA41 /* CurioDBTests.m */; };
 		2CE12DB319CB72D500CDBA41 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6488B819CAEE4D0013DDB4 /* libsqlite3.dylib */; };
+		9B5871901A9767DA00DA7956 /* CurioLocationData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B58718D1A9767DA00DA7956 /* CurioLocationData.m */; };
+		9B5871911A9767DA00DA7956 /* CurioLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B58718F1A9767DA00DA7956 /* CurioLocationManager.m */; };
+		9BBC5CC51A7BB1F1002ABE49 /* CurioReachabilityEx.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBC5CC41A7BB1F1002ABE49 /* CurioReachabilityEx.m */; };
+		9BBC5CC71A7BBCAF002ABE49 /* CurioConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBC5CC61A7BBCAF002ABE49 /* CurioConstants.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,24 +63,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2C120FF51A52F51800364C4C /* CurioNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurioNotification.h; sourceTree = "<group>"; };
-		2C120FF61A52F51800364C4C /* CurioNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioNotification.m; sourceTree = "<group>"; };
+		2C120FF51A52F51800364C4C /* CurioPushData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurioPushData.h; sourceTree = "<group>"; };
+		2C120FF61A52F51800364C4C /* CurioPushData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioPushData.m; sourceTree = "<group>"; };
 		2C64888F19CA0C720013DDB4 /* libCurioSDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCurioSDK.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C64889219CA0C720013DDB4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2C64889619CA0C720013DDB4 /* CurioSDK-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CurioSDK-Prefix.pch"; sourceTree = "<group>"; };
 		2C64889719CA0C720013DDB4 /* CurioSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CurioSDK.h; sourceTree = "<group>"; };
 		2C64889919CA0C720013DDB4 /* CurioSDK.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CurioSDK.m; sourceTree = "<group>"; };
 		2C64889F19CA0C720013DDB4 /* CurioSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CurioSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2C6488A019CA0C720013DDB4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		2C6488A319CA0C720013DDB4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		2C6488AC19CA0C720013DDB4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2C6488AE19CA0C720013DDB4 /* CurioSDKTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CurioSDKTests.m; sourceTree = "<group>"; };
 		2C6488B819CAEE4D0013DDB4 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		2C6488BA19CAF1670013DDB4 /* CurioSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurioSettings.h; sourceTree = "<group>"; };
 		2C6488BB19CAF1670013DDB4 /* CurioSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioSettings.m; sourceTree = "<group>"; };
 		2C6488BD19CAFB5C0013DDB4 /* CurioSettingsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioSettingsTests.m; sourceTree = "<group>"; };
-		2C655BA719CC47F900CBC7CC /* ReachabilityEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReachabilityEx.h; sourceTree = "<group>"; };
-		2C655BA819CC47F900CBC7CC /* ReachabilityEx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReachabilityEx.m; sourceTree = "<group>"; };
 		2C655BAA19CC485500CBC7CC /* CurioNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurioNetwork.h; sourceTree = "<group>"; };
 		2C655BAB19CC485500CBC7CC /* CurioNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioNetwork.m; sourceTree = "<group>"; };
 		2C655BAD19CC49AB00CBC7CC /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -101,6 +97,14 @@
 		2CE12DAE19CB68A600CDBA41 /* CurioDBToolkit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurioDBToolkit.h; sourceTree = "<group>"; };
 		2CE12DAF19CB68A600CDBA41 /* CurioDBToolkit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioDBToolkit.m; sourceTree = "<group>"; };
 		2CE12DB119CB6E8500CDBA41 /* CurioDBTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioDBTests.m; sourceTree = "<group>"; };
+		9B58718C1A9767DA00DA7956 /* CurioLocationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurioLocationData.h; sourceTree = "<group>"; };
+		9B58718D1A9767DA00DA7956 /* CurioLocationData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioLocationData.m; sourceTree = "<group>"; };
+		9B58718E1A9767DA00DA7956 /* CurioLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurioLocationManager.h; sourceTree = "<group>"; };
+		9B58718F1A9767DA00DA7956 /* CurioLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioLocationManager.m; sourceTree = "<group>"; };
+		9BBC5CC21A7BB1D7002ABE49 /* CurioConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurioConstants.h; sourceTree = "<group>"; };
+		9BBC5CC31A7BB1F1002ABE49 /* CurioReachabilityEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurioReachabilityEx.h; sourceTree = "<group>"; };
+		9BBC5CC41A7BB1F1002ABE49 /* CurioReachabilityEx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioReachabilityEx.m; sourceTree = "<group>"; };
+		9BBC5CC61A7BBCAF002ABE49 /* CurioConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioConstants.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,8 +126,6 @@
 				2C655BB119CC95B800CBC7CC /* UIKit.framework in Frameworks */,
 				2C655BAF19CC878B00CBC7CC /* CoreTelephony.framework in Frameworks */,
 				2CE12DB319CB72D500CDBA41 /* libsqlite3.dylib in Frameworks */,
-				2C6488A119CA0C720013DDB4 /* XCTest.framework in Frameworks */,
-				2C6488A419CA0C720013DDB4 /* UIKit.framework in Frameworks */,
 				2C6488A219CA0C720013DDB4 /* Foundation.framework in Frameworks */,
 				2C6488A719CA0C720013DDB4 /* libCurioSDK.a in Frameworks */,
 			);
@@ -158,8 +160,6 @@
 				2C655BAD19CC49AB00CBC7CC /* CoreTelephony.framework */,
 				2C6488B819CAEE4D0013DDB4 /* libsqlite3.dylib */,
 				2C64889219CA0C720013DDB4 /* Foundation.framework */,
-				2C6488A019CA0C720013DDB4 /* XCTest.framework */,
-				2C6488A319CA0C720013DDB4 /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -167,29 +167,36 @@
 		2C64889419CA0C720013DDB4 /* CurioSDK */ = {
 			isa = PBXGroup;
 			children = (
-				2C655BA619CC47B900CBC7CC /* 3rdParty */,
-				2C64889719CA0C720013DDB4 /* CurioSDK.h */,
-				2C64889919CA0C720013DDB4 /* CurioSDK.m */,
-				2C120FF51A52F51800364C4C /* CurioNotification.h */,
-				2C120FF61A52F51800364C4C /* CurioNotification.m */,
-				2C6488BA19CAF1670013DDB4 /* CurioSettings.h */,
-				2C6488BB19CAF1670013DDB4 /* CurioSettings.m */,
 				2CE12DAB19CB5D6600CDBA41 /* CurioAction.h */,
 				2CE12DAC19CB5D6600CDBA41 /* CurioAction.m */,
 				2C655BB619CCBA2F00CBC7CC /* CurioActionToolkit.h */,
 				2C655BB719CCBA2F00CBC7CC /* CurioActionToolkit.m */,
+				9BBC5CC21A7BB1D7002ABE49 /* CurioConstants.h */,
+				9BBC5CC61A7BBCAF002ABE49 /* CurioConstants.m */,
 				2CA46D3119CB12640001D511 /* CurioDB.h */,
 				2CA46D3219CB12640001D511 /* CurioDB.m */,
 				2CE12DAE19CB68A600CDBA41 /* CurioDBToolkit.h */,
 				2CE12DAF19CB68A600CDBA41 /* CurioDBToolkit.m */,
-				2CE12DA819CB42A300CDBA41 /* CurioUtil.h */,
-				2CE12DA919CB42A300CDBA41 /* CurioUtil.m */,
+				9B58718C1A9767DA00DA7956 /* CurioLocationData.h */,
+				9B58718D1A9767DA00DA7956 /* CurioLocationData.m */,
+				9B58718E1A9767DA00DA7956 /* CurioLocationManager.h */,
+				9B58718F1A9767DA00DA7956 /* CurioLocationManager.m */,
 				2C655BAA19CC485500CBC7CC /* CurioNetwork.h */,
 				2C655BAB19CC485500CBC7CC /* CurioNetwork.m */,
-				2C655BB319CCA55F00CBC7CC /* CurioPostOffice.h */,
-				2C655BB419CCA55F00CBC7CC /* CurioPostOffice.m */,
 				2CA5254C1A1AA24B00BB61CF /* CurioNotificationManager.h */,
 				2CA5254D1A1AA24B00BB61CF /* CurioNotificationManager.m */,
+				2C655BB319CCA55F00CBC7CC /* CurioPostOffice.h */,
+				2C655BB419CCA55F00CBC7CC /* CurioPostOffice.m */,
+				2C120FF51A52F51800364C4C /* CurioPushData.h */,
+				2C120FF61A52F51800364C4C /* CurioPushData.m */,
+				9BBC5CC31A7BB1F1002ABE49 /* CurioReachabilityEx.h */,
+				9BBC5CC41A7BB1F1002ABE49 /* CurioReachabilityEx.m */,
+				2C64889719CA0C720013DDB4 /* CurioSDK.h */,
+				2C64889919CA0C720013DDB4 /* CurioSDK.m */,
+				2C6488BA19CAF1670013DDB4 /* CurioSettings.h */,
+				2C6488BB19CAF1670013DDB4 /* CurioSettings.m */,
+				2CE12DA819CB42A300CDBA41 /* CurioUtil.h */,
+				2CE12DA919CB42A300CDBA41 /* CurioUtil.m */,
 				2C64889519CA0C720013DDB4 /* Supporting Files */,
 			);
 			path = CurioSDK;
@@ -221,15 +228,6 @@
 				2C6488AB19CA0C720013DDB4 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		2C655BA619CC47B900CBC7CC /* 3rdParty */ = {
-			isa = PBXGroup;
-			children = (
-				2C655BA719CC47F900CBC7CC /* ReachabilityEx.h */,
-				2C655BA819CC47F900CBC7CC /* ReachabilityEx.m */,
-			);
-			name = 3rdParty;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,7 +274,7 @@
 		2C64888719CA0C720013DDB4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = Turkcell;
 			};
 			buildConfigurationList = 2C64888A19CA0C720013DDB4 /* Build configuration list for PBXProject "CurioSDK" */;
@@ -302,7 +300,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CA46D3019CB0CBD0001D511 /* CurioSDKTests-Info.plist in Resources */,
 				2C6488AD19CA0C720013DDB4 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -314,18 +311,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BBC5CC51A7BB1F1002ABE49 /* CurioReachabilityEx.m in Sources */,
+				9B5871901A9767DA00DA7956 /* CurioLocationData.m in Sources */,
 				2C655BB519CCA55F00CBC7CC /* CurioPostOffice.m in Sources */,
 				2C6488BC19CAF1670013DDB4 /* CurioSettings.m in Sources */,
 				2CA5254E1A1AA24B00BB61CF /* CurioNotificationManager.m in Sources */,
+				9B5871911A9767DA00DA7956 /* CurioLocationManager.m in Sources */,
 				2CA46D3319CB12640001D511 /* CurioDB.m in Sources */,
 				2CE12DAA19CB42A300CDBA41 /* CurioUtil.m in Sources */,
 				2CE12DB019CB68A600CDBA41 /* CurioDBToolkit.m in Sources */,
 				2C655BB819CCBA2F00CBC7CC /* CurioActionToolkit.m in Sources */,
-				2C120FF71A52F51800364C4C /* CurioNotification.m in Sources */,
+				2C120FF71A52F51800364C4C /* CurioPushData.m in Sources */,
+				9BBC5CC71A7BBCAF002ABE49 /* CurioConstants.m in Sources */,
 				2CE12DAD19CB5D6600CDBA41 /* CurioAction.m in Sources */,
 				2C655BAC19CC485500CBC7CC /* CurioNetwork.m in Sources */,
 				2C64889A19CA0C720013DDB4 /* CurioSDK.m in Sources */,
-				2C655BA919CC47F900CBC7CC /* ReachabilityEx.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

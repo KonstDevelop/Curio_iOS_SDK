@@ -45,15 +45,25 @@
 - (IBAction)sendEvent:(id)sender {
     [[CurioSDK shared] sendEvent:@"Clicked button" eventValue:NSStringFromClass([self class])];
 }
+- (IBAction)getNotificationHistory:(id)sender {
+    [[CurioSDK shared] getNotificationHistoryWithPageStart:0 rows:5 success:^(NSDictionary *responseObject) {
+        NSLog(@"%@", responseObject.description);
+    } failure:^(NSError *error) {
+        NSLog(@"%@", error.description);
+    }];
+}
+- (IBAction)sendLocation:(id)sender {
+    [[CurioSDK shared] sendLocation];
+}
 
 - (void) viewDidAppear:(BOOL)animated {
-    
     [[CurioSDK shared] startScreen:[self class] title:@"Detail view" path:@"Detail-view"];
+    [super viewDidAppear:animated];
 }
 
 - (void) viewDidDisappear:(BOOL)animated {
-    
     [[CurioSDK shared] endScreen:[self class]];
+    [super viewDidDisappear:animated];
 }
 
 - (void)viewDidLoad

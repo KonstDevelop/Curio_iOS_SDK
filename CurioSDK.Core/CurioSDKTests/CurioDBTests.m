@@ -62,7 +62,7 @@
     
     NSArray *objects = [[CurioDBToolkit shared] getActions:999];
     
-    XCTAssertTrue(objects.count == 100,@"Concurrent object save failed: %i",objects.count );
+    XCTAssertTrue(objects.count == 100, @"Concurrent object save failed: %ul", (unsigned int)objects.count );
     
     
 

@@ -16,7 +16,8 @@ And expand 'Link Binary With Library' and click + sign to add required framework
 - Foundation.framework
 - UIKit.framework
 - CoreTelephony.framework
-- libsqlite3.dylib 
+- libsqlite3.dylib
+- CoreLocation.framework 
 ```
 
 If you don't want to run automated unit tests, then you should remove CurioSDKTests.m, CurioSettingsTest.m and CurioDBTests.m files from compilation by Click on Targets -> Your App Name -> And then the 'Build Phases' tab and expand Compile Sources to remove them by clicking on - sign while mentioned source files selected.
@@ -52,6 +53,10 @@ You can just copy'n paste CurioSDK item within sample project's Info.plist or Cu
 
 **NotificationTypes:** Notification types to register; available values: Sound, Badge, Alert
 
+**FetchLocationEnabled:** [Optional] If enabled, the current location of the device will be tracked while using the application. Default is true. The accuracy of recent location is validated using **MaxValidLocationTimeInterval**. Location tracking stops when the accurate location is found according to the needs. For further location tracking you can use **[[CurioSDK shared] sendLocation]** method. In order to track locations in iOS8 *[NSLocationWhenInUseUsageDescription](https://developer.apple.com/library/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW26)* must be implemented in Info.plist file.
+
+**MaxValidLocationTimeInterval:** [Optional] Default is 60 seconds. The accuracy of recent location is validated using this parameter. Location tracking continues until it reaches to a valid location time interval.
+
 
 ### Manual Configuration
 
@@ -69,6 +74,8 @@ You can specify CurioSDK parameters whenever you want to start a session on clie
                            logLevel:0
      registerForRemoteNotifications:YES
                   notificationTypes:@"Sound,Badge,Alert"
+               fetchLocationEnabled:YES
+       maxValidLocationTimeInterval:60                
                    appLaunchOptions:launchOptions
      ];
 
@@ -153,12 +160,28 @@ Curio iOS SDK can register your application for remote push notifications automa
 	}
 
 ```
+### Fetch and Send Location
 
+You can track device location using the method below. Please check if the **FetchLocationEnabled** is YES before using this method. In order to track locations in iOS8 *[NSLocationWhenInUseUsageDescription](https://developer.apple.com/library/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW26)* must be implemented in Info.plist file.
 
+```
+	[[CurioSDK shared] sendLocation];
+```
+### Get Notification History
+
+You can get notification history of push notifications which have been sent to device.
+
+```
+    [[CurioSDK shared] getNotificationHistoryWithPageStart:0 rows:5 success:^(NSDictionary *responseObject) {
+        NSLog(@"%@", responseObject.description);
+    } failure:^(NSError *error) {
+        NSLog(@"%@", error.description);
+    }];
+```
 
 #Internals
 
-Curio SDK consists of two different workflows which maintains storage and submittance functionalities.
+Curio SDK consists of two different workflows which maintains storage and submission functionalities.
 
 First workflow (which we will call storage workflow) handles database records one way to save user actions to local storage (SQLITE). All storage functions are located in **CurioDBToolkit.m** and **CurioDB.m**. When a user hooks up a function related to SDK, first of all CurioSDK stores it to local storage no matter we are online or not or have periodic dispatch requests (PDR) enabled or not.
 

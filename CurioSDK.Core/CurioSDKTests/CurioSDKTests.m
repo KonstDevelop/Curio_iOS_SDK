@@ -33,7 +33,7 @@
     
    [[CurioDBToolkit shared] purgeActions];
 
-   [[CurioSDK shared] startSession];
+    [[CurioSDK shared] startSession:nil];
    
 }
 

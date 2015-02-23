@@ -25,15 +25,19 @@
 	<key>CurioSDK</key>
 	<dict>
 		<key>ApiKey</key>
-		<string>XXXXX</string>
+		<string>a1578e903eff11e4aacd5119157960aa</string>
 		<key>DispatchPeriod</key>
 		<integer>1</integer>
+		<key>FetchLocationEnabled</key>
+		<true/>
 		<key>LogLevel</key>
 		<integer>3</integer>
 		<key>LoggingEnabled</key>
 		<true/>
 		<key>MaxCachedActivityCount</key>
 		<integer>50</integer>
+		<key>MaxValidLocationTimeInterval</key>
+		<integer>600</integer>
 		<key>NotificationTypes</key>
 		<string>Sound,Badge,Alert</string>
 		<key>PeriodicDispatchEnabled</key>
@@ -45,13 +49,16 @@
 		<key>SessionTimeout</key>
 		<integer>4</integer>
 		<key>TrackingCode</key>
-		<string>XXXXX</string>
+		<string>2OTP5B2R</string>
 	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Curio sample location description</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
+		<string>location</string>
 		<string>remote-notification</string>
 	</array>
 	<key>UIMainStoryboardFile</key>

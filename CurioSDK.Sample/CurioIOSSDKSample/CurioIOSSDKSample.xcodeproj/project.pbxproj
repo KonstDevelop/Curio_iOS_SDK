@@ -34,7 +34,11 @@
 		2C26B63C19D2F51800450A85 /* CurioReachabilityEx.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C26B63219D2F51800450A85 /* CurioReachabilityEx.m */; };
 		2C26B63E19D2F61200450A85 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C26B63D19D2F61200450A85 /* SystemConfiguration.framework */; };
 		2CA525521A1AA9F500BB61CF /* CurioNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA525511A1AA9F500BB61CF /* CurioNotificationManager.m */; };
-		2CA530AE1A49B2C2003B1BB0 /* CurioNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA530AD1A49B2C2003B1BB0 /* CurioNotification.m */; };
+		9B0D9BE81A7FA0A50075C86F /* CurioConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0D9BE71A7FA0A50075C86F /* CurioConstants.m */; };
+		9B5871961A976D3300DA7956 /* CurioLocationData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5871931A976D3300DA7956 /* CurioLocationData.m */; };
+		9B5871971A976D3300DA7956 /* CurioLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5871951A976D3300DA7956 /* CurioLocationManager.m */; };
+		9B5871991A976E9F00DA7956 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B5871981A976E9F00DA7956 /* CoreLocation.framework */; };
+		9B9D0AE41A80F368003B97DC /* CurioPushData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9D0AE31A80F368003B97DC /* CurioPushData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,8 +87,15 @@
 		2C26B63D19D2F61200450A85 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		2CA525501A1AA9F500BB61CF /* CurioNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurioNotificationManager.h; sourceTree = "<group>"; };
 		2CA525511A1AA9F500BB61CF /* CurioNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioNotificationManager.m; sourceTree = "<group>"; };
-		2CA530AC1A49B2C2003B1BB0 /* CurioNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurioNotification.h; sourceTree = "<group>"; };
-		2CA530AD1A49B2C2003B1BB0 /* CurioNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioNotification.m; sourceTree = "<group>"; };
+		9B0D9BE71A7FA0A50075C86F /* CurioConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioConstants.m; sourceTree = "<group>"; };
+		9B5871921A976D3300DA7956 /* CurioLocationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurioLocationData.h; sourceTree = "<group>"; };
+		9B5871931A976D3300DA7956 /* CurioLocationData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioLocationData.m; sourceTree = "<group>"; };
+		9B5871941A976D3300DA7956 /* CurioLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurioLocationManager.h; sourceTree = "<group>"; };
+		9B5871951A976D3300DA7956 /* CurioLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioLocationManager.m; sourceTree = "<group>"; };
+		9B5871981A976E9F00DA7956 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		9B9D0AE21A80F368003B97DC /* CurioPushData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurioPushData.h; sourceTree = "<group>"; };
+		9B9D0AE31A80F368003B97DC /* CurioPushData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioPushData.m; sourceTree = "<group>"; };
+		9BBC5CC11A7BA8D7002ABE49 /* CurioConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CurioConstants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B5871991A976E9F00DA7956 /* CoreLocation.framework in Frameworks */,
 				2C26B63E19D2F61200450A85 /* SystemConfiguration.framework in Frameworks */,
 				2C26B61C19D2F4CF00450A85 /* libsqlite3.dylib in Frameworks */,
 				2C26B61A19D2F4C500450A85 /* CoreTelephony.framework in Frameworks */,
@@ -125,6 +137,7 @@
 		2C26B5AE19D2F48B00450A85 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9B5871981A976E9F00DA7956 /* CoreLocation.framework */,
 				2C26B63D19D2F61200450A85 /* SystemConfiguration.framework */,
 				2C26B61B19D2F4CF00450A85 /* libsqlite3.dylib */,
 				2C26B61919D2F4C500450A85 /* CoreTelephony.framework */,
@@ -168,10 +181,15 @@
 		2C26B61D19D2F51800450A85 /* CurioSDK */ = {
 			isa = PBXGroup;
 			children = (
+				9B5871921A976D3300DA7956 /* CurioLocationData.h */,
+				9B5871931A976D3300DA7956 /* CurioLocationData.m */,
+				9B5871941A976D3300DA7956 /* CurioLocationManager.h */,
+				9B5871951A976D3300DA7956 /* CurioLocationManager.m */,
+				9B9D0AE21A80F368003B97DC /* CurioPushData.h */,
+				9B9D0AE31A80F368003B97DC /* CurioPushData.m */,
+				9B0D9BE71A7FA0A50075C86F /* CurioConstants.m */,
 				2C26B61E19D2F51800450A85 /* CurioAction.h */,
 				2C26B61F19D2F51800450A85 /* CurioAction.m */,
-				2CA530AC1A49B2C2003B1BB0 /* CurioNotification.h */,
-				2CA530AD1A49B2C2003B1BB0 /* CurioNotification.m */,
 				2C26B62019D2F51800450A85 /* CurioActionToolkit.h */,
 				2C26B62119D2F51800450A85 /* CurioActionToolkit.m */,
 				2C26B62219D2F51800450A85 /* CurioDB.h */,
@@ -193,6 +211,7 @@
 				2C26B63019D2F51800450A85 /* CurioUtil.m */,
 				2C26B63119D2F51800450A85 /* CurioReachabilityEx.h */,
 				2C26B63219D2F51800450A85 /* CurioReachabilityEx.m */,
+				9BBC5CC11A7BA8D7002ABE49 /* CurioConstants.h */,
 			);
 			name = CurioSDK;
 			path = ../../CurioSDK.Core/CurioSDK;
@@ -277,16 +296,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C26B5BC19D2F48B00450A85 /* main.m in Sources */,
+				9B0D9BE81A7FA0A50075C86F /* CurioConstants.m in Sources */,
 				2C26B5C019D2F48B00450A85 /* CLAppDelegate.m in Sources */,
 				2C26B5CF19D2F48B00450A85 /* CLMasterViewController.m in Sources */,
 				2C26B5D219D2F48B00450A85 /* CLDetailViewController.m in Sources */,
 				2C26B63319D2F51800450A85 /* CurioAction.m in Sources */,
 				2C26B63419D2F51800450A85 /* CurioActionToolkit.m in Sources */,
 				2C26B63519D2F51800450A85 /* CurioDB.m in Sources */,
-				2CA530AE1A49B2C2003B1BB0 /* CurioNotification.m in Sources */,
 				2C26B63619D2F51800450A85 /* CurioDBToolkit.m in Sources */,
+				9B5871961A976D3300DA7956 /* CurioLocationData.m in Sources */,
 				2C26B63719D2F51800450A85 /* CurioNetwork.m in Sources */,
+				9B5871971A976D3300DA7956 /* CurioLocationManager.m in Sources */,
 				2CA525521A1AA9F500BB61CF /* CurioNotificationManager.m in Sources */,
+				9B9D0AE41A80F368003B97DC /* CurioPushData.m in Sources */,
 				2C26B63819D2F51800450A85 /* CurioPostOffice.m in Sources */,
 				2C26B63919D2F51800450A85 /* CurioSDK.m in Sources */,
 				2C26B63A19D2F51800450A85 /* CurioSettings.m in Sources */,

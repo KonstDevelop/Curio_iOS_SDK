@@ -25,7 +25,6 @@
  POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <Foundation/Foundation.h>
 #import <SystemConfiguration/SystemConfiguration.h>
 
 #import <sys/socket.h>
@@ -58,11 +57,11 @@
 
 extern NSString *const kReachabilityExChangedNotification;
 
-typedef NS_ENUM(NSInteger, NetworkStatus) {
+typedef NS_ENUM(NSInteger, CurioNetworkStatus) {
     // Apple NetworkStatus Compatible Names.
-    NotReachable = 0,
-    ReachableViaWiFi = 2,
-    ReachableViaWWAN = 1
+    CurioNotReachable = 0,
+    CurioReachableViaWiFi = 2,
+    CurioReachableViaWWAN = 1
 };
 
 //Class has been renamed so applications using same classes do not overlap.
@@ -102,7 +101,7 @@ typedef void (^NetworkUnreachable)(CurioReachabilityEx * reachability);
 // Is user intervention required?
 -(BOOL)isInterventionRequired;
 
--(NetworkStatus)currentReachabilityStatus;
+-(CurioNetworkStatus)currentReachabilityStatus;
 -(SCNetworkReachabilityFlags)reachabilityFlags;
 -(NSString*)currentReachabilityString;
 -(NSString*)currentReachabilityFlags;
