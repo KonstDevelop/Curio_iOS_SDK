@@ -2,6 +2,7 @@
 //  CLDetailViewController.m
 //  CurioIOSSDKSample
 //
+//  Changed by Can Ciloglu on 20/02/15.
 //  Created by Harun Esur on 24/09/14.
 //  Copyright (c) 2014 Turkcell. All rights reserved.
 //
@@ -63,7 +64,7 @@
 }
 
 - (IBAction)sendCustomId:(id)sender {
-    [[CurioSDK shared] sendCustomId: @"5300667093"];
+    [[CurioSDK shared] sendCustomId: @"sample custom id"];
 }
 
 - (void) viewDidAppear:(BOOL)animated {

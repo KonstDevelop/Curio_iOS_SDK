@@ -1,4 +1,4 @@
-#Curio iOS SDK 1.03
+#Curio iOS SDK 1.04
 
 [Curio](https://gui-curio.turkcell.com.tr) is Turkcell's mobile analytics system, and this is Curio's Client iOS library. Applications developed for iOS 6.0+ can easily use Curio mobile analytics with this library.
 
@@ -55,7 +55,7 @@ You can just copy'n paste CurioSDK item within sample project's Info.plist or Cu
 
 **FetchLocationEnabled:** [Optional] If enabled, the current location of the device will be tracked while using the application. Default is true. The accuracy of recent location is validated using **MaxValidLocationTimeInterval**. Location tracking stops when the accurate location is found according to the needs. For further location tracking you can use **[[CurioSDK shared] sendLocation]** method. In order to track locations in iOS8 *[NSLocationWhenInUseUsageDescription](https://developer.apple.com/library/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW26)* must be implemented in Info.plist file.
 
-**MaxValidLocationTimeInterval:** [Optional] Default is 60 seconds. The accuracy of recent location is validated using this parameter. Location tracking continues until it reaches to a valid location time interval.
+**MaxValidLocationTimeInterval:** [Optional] Default is 600 seconds. The accuracy of recent location is validated using this parameter. Location tracking continues until it reaches to a valid location time interval.
 
 
 ### Manual Configuration
@@ -63,7 +63,7 @@ You can just copy'n paste CurioSDK item within sample project's Info.plist or Cu
 You can specify CurioSDK parameters whenever you want to start a session on client by invoking startSession function just like below.
 
 ```
-    [[CurioSDK shared] startSession:@"https://curiotest.turkcell.com.tr/api/v2"
+    [[CurioSDK shared] startSession:@"server_url"
                              apiKey:@"XXXXX"
                        trackingCode:@"XXXXX"
                      sessionTimeout:4
@@ -75,7 +75,7 @@ You can specify CurioSDK parameters whenever you want to start a session on clie
      registerForRemoteNotifications:YES
                   notificationTypes:@"Sound,Badge,Alert"
                fetchLocationEnabled:YES
-       maxValidLocationTimeInterval:60                
+       maxValidLocationTimeInterval:600                
                    appLaunchOptions:launchOptions
      ];
 

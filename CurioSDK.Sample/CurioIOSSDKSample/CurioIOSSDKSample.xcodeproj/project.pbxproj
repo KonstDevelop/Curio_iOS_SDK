@@ -417,7 +417,7 @@
 				GCC_PREFIX_HEADER = "CurioIOSSDKSample/CurioIOSSDKSample-Prefix.pch";
 				INFOPLIST_FILE = "CurioIOSSDKSample/CurioIOSSDKSample-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "620764a2-0128-4c3b-94cf-9245a8ac43a0";
+				PROVISIONING_PROFILE = "62f55983-3c61-4446-aed9-1fb54eb691dc";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -430,7 +430,7 @@
 				GCC_PREFIX_HEADER = "CurioIOSSDKSample/CurioIOSSDKSample-Prefix.pch";
 				INFOPLIST_FILE = "CurioIOSSDKSample/CurioIOSSDKSample-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "620764a2-0128-4c3b-94cf-9245a8ac43a0";
+				PROVISIONING_PROFILE = "62f55983-3c61-4446-aed9-1fb54eb691dc";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

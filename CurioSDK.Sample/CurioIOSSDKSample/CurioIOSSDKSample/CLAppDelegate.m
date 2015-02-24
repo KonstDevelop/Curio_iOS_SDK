@@ -2,6 +2,7 @@
 //  CLAppDelegate.m
 //  CurioIOSSDKSample
 //
+//  Changed by Can Ciloglu on 20/02/15.
 //  Created by Harun Esur on 24/09/14.
 //  Copyright (c) 2014 Turkcell. All rights reserved.
 //
@@ -19,9 +20,9 @@
     [[CurioSDK shared] startSession:launchOptions];
 
     
-     /*[[CurioSDK shared] startSession:@"https://curiotest.turkcell.com.tr/api/v2"
-                             apiKey:@"a1578e903eff11e4aacd5119157960aa"
-                       trackingCode:@"2OTP5B2R"
+     /*[[CurioSDK shared] startSession:@"server_url"
+                             apiKey:@"XXXXX"
+                       trackingCode:@"XXXXX"
                      sessionTimeout:4
             periodicDispatchEnabled:NO
                      dispatchPeriod:1

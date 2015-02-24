@@ -112,7 +112,7 @@ maxValidLocationTimeInterval:[settings objectForKey:CS_OPT_SKEY_MAX_VALID_LOCATI
         _registerForRemoteNotifications = CS_NSN_TRUE;
         _notificationTypes = CURNotificationTypes;
         _fetchLocationEnabled = CS_NSN_TRUE;
-        _maxValidLocationTimeInterval = [NSNumber numberWithDouble:60];
+        _maxValidLocationTimeInterval = [NSNumber numberWithDouble:600];
         
         [self readBundleSettings];
     }
