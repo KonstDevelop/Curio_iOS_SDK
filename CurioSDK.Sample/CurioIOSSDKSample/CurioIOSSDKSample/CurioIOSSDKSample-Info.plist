@@ -25,7 +25,7 @@
 	<key>CurioSDK</key>
 	<dict>
 		<key>ApiKey</key>
-		<string>XXXXX</string>
+		<string>a1578e903eff11e4aacd5119157960aa</string>
 		<key>DispatchPeriod</key>
 		<integer>1</integer>
 		<key>FetchLocationEnabled</key>
@@ -45,11 +45,11 @@
 		<key>RegisterForNotifications</key>
 		<true/>
 		<key>ServerURL</key>
-		<string>server_url</string>
+		<string>https://curiotest.turkcell.com.tr/api/v2</string>
 		<key>SessionTimeout</key>
 		<integer>4</integer>
 		<key>TrackingCode</key>
-		<string>XXXXX</string>
+		<string>2OTP5B2R</string>
 	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
