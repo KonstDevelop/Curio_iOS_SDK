@@ -178,6 +178,19 @@ You can get notification history of push notifications which have been sent to d
         NSLog(@"%@", error.description);
     }];
 ```
+###Sending Custom Id (if auto push registration is enabled):
+For sending custom id to Curio server, sendCustomId method should be called as below:
+
+	...
+	[[CurioSDK shared] sendCustomId: @"sample custom id"];
+	...
+
+###Unregistering from Push Notification Server (if auto push registration is enabled):
+You can call unregisterFromNotificationServer method from your app to unregister your app from Curio Push notification server. After calling this method as below, your app will not receive push notifications:
+
+	...
+	[[CurioSDK shared] unregisterFromNotificationServer];
+	...
 
 #Internals
 
