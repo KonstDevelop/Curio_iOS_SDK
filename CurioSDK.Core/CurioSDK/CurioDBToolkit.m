@@ -237,8 +237,7 @@
                                                   eventValue:CS_AS_STRING(sqlite3_column_text(statement, 7))];
                 
                 act.isOnline = [NSNumber numberWithInt:sqlite3_column_int(statement,8)];
-                act.properties = [NSMutableDictionary dictionaryWithDictionary:
-                                  [[CurioUtil shared] fromJson:CS_AS_STRING(sqlite3_column_text(statement, 9)) percentEncoded:TRUE]];
+                act.properties = [NSMutableDictionary dictionaryWithDictionary:[[CurioUtil shared] fromJson:CS_AS_STRING(sqlite3_column_text(statement, 9)) percentEncoded:TRUE]];
                 
                               
                 [ret addObject:act];

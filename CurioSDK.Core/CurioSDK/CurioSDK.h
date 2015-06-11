@@ -17,7 +17,7 @@
 #endif
 
 
-#define CURIO_SDK_VERSION @"1.05"
+#define CURIO_SDK_VERSION @"1.06"
 
 // Notification names
 
@@ -159,7 +159,6 @@
     NSOperationQueue *curioQueue;
     NSOperationQueue *curioActionQueue;
     BOOL appWasInBackground;
-
 }
 
 @property (nonatomic) BOOL sessionCodeRegisteredOnServer;
@@ -170,7 +169,7 @@
 //Custom Id parameter.
 @property (strong, nonatomic) NSString *customId;
 
-
+@property (assign, nonatomic) NSUInteger retryCount;
 
 
 /**
@@ -282,8 +281,14 @@ maxValidLocationTimeInterval:(double)maxValidLocationTimeInterval
  */
 - (void) sendCustomId:(NSString *)theCustomId;
 
+/**
+ *
+ */
 - (void) sendLocation;
 
+/**
+ *
+ */
 - (void)getNotificationHistoryWithPageStart:(NSInteger)pageStart
                                rows:(NSInteger)rows
                                  success:(void(^)(NSDictionary *responseObject))success

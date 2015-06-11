@@ -44,11 +44,6 @@
  */
 - (void) didReceiveNotification:(NSDictionary *)userInfo;
 
-/**
- * Unregister from remote notification server using custom Id.
- */
-- (void) unregister;
-
 
 /**
  * Sends push notification related data (device token, custom id, push message id) to server.

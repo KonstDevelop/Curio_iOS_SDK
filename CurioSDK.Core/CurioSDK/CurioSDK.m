@@ -82,6 +82,8 @@
         
         appWasInBackground = FALSE;
         
+        _retryCount = 0;
+        
         _aliveScreens = [NSMutableArray new];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillGoBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
@@ -103,6 +105,10 @@
 
         // Invoke settings initialization
         [CurioSettings shared];
+        
+        if([CurioSettings shared].sessionTimeout < [CurioSettings shared].dispatchPeriod){
+            CS_Log_Warning(@"Session timeout cannot be less than dispatch period. Please specify session timeout and dispatch period accordingly.");
+        }
 
         // Invoke network initialization
         [CurioNetwork shared];
@@ -431,7 +437,25 @@ maxValidLocationTimeInterval:(double)maxValidLocationTimeInterval
 
 
 - (void) unregisterFromNotificationServer{
-    [[CurioNotificationManager shared] unregister];
+    [curioActionQueue addOperationWithBlock:^{
+        CurioAction *actionUnregister = [CurioAction actionUnregister];
+        
+        CS_SET_DICT_IF_NOT_NIL(actionUnregister.properties, [self customId], CURHttpParamCustomId);
+        
+        //[actionUnregister.properties setObject:[self customId] forKey:CURHttpParamCustomId];
+        
+        [[CurioDBToolkit shared] addAction:actionUnregister];
+    }];
+    
+    [curioQueue addOperationWithBlock:^{
+        
+        [curioActionQueue waitUntilAllOperationsAreFinished];
+        
+        // No matter we are in PDR or not, start session and end session
+        // request should be send immediately if possible
+        [[CurioPostOffice shared] tryToPostAwaitingActions:NO];
+        
+    }];
 }
 
 - (void) sendCustomId:(NSString *)theCustomId{

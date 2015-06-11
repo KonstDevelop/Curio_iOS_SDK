@@ -167,4 +167,16 @@
     return cAction;
 }
 
++ (CurioAction *) actionUnregister {
+    
+    CurioAction *cAction = [[CurioAction alloc] init:[[CurioUtil shared] nanos]
+                                                type:CActionTypeUnregister
+                                               stamp:[[CurioUtil shared] currentTimeMillis]
+                                               title:nil path:nil hitCode:nil eventKey:nil eventValue:nil];
+    
+    [cAction.properties addEntriesFromDictionary:[self defaultActionProperties]];
+    
+    return cAction;
+}
+
 @end

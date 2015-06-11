@@ -49,7 +49,7 @@
             
                 //if (!slf.previouslyOnline && slf.isOnline) {
                     // Moved from offline to online
-                    
+                    [CurioSDK shared].retryCount = 0;
                     [[NSNotificationCenter defaultCenter] postNotificationName:CS_NOTIF_NEW_ACTION object:nil];
                     
                 //}

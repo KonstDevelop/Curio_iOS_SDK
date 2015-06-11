@@ -103,10 +103,10 @@ maxValidLocationTimeInterval:[settings objectForKey:CS_OPT_SKEY_MAX_VALID_LOCATI
         
         // Defaults
         
-        _sessionTimeout = [NSNumber numberWithInt:30];
+        _sessionTimeout = [NSNumber numberWithInt:5];
         _periodicDispatchEnabled = CS_NSN_TRUE;
-        _dispatchPeriod = [NSNumber numberWithInt:5];
-        _maxCachedActivityCount = [NSNumber numberWithInt:100];
+        _dispatchPeriod = [NSNumber numberWithInt:1];
+        _maxCachedActivityCount = [NSNumber numberWithInt:500];
         _loggingEnabled = CS_NSN_TRUE;
         _logLevel = [NSNumber numberWithInt:CSLogLevelError];
         _registerForRemoteNotifications = CS_NSN_TRUE;
@@ -114,7 +114,8 @@ maxValidLocationTimeInterval:[settings objectForKey:CS_OPT_SKEY_MAX_VALID_LOCATI
         _fetchLocationEnabled = CS_NSN_TRUE;
         _maxValidLocationTimeInterval = [NSNumber numberWithDouble:600];
         
-        [self readBundleSettings];
+        [self readBundleSettings];   
+
     }
     return self;
 }

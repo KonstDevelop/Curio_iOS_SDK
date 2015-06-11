@@ -217,8 +217,13 @@
         [ret setObject:CS_ZERO_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_SESSION_TIMEOUT]) forKey:CS_HTTP_PARAM_SESSION_TIMEOUT];
         [ret setObject:CS_NULL_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_VISITOR_CODE]) forKey:CS_HTTP_PARAM_VISITOR_CODE];
         [ret setObject:CS_NULL_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_TRACKING_CODE]) forKey:CS_HTTP_PARAM_TRACKING_CODE];
-
-        
+    } else if (action.actionType == CActionTypeUnregister) {
+    
+        [ret setObject:CS_NULL_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_SESSION_CODE]) forKey:CS_HTTP_PARAM_SESSION_CODE];
+        [ret setObject:CS_ZERO_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_SESSION_TIMEOUT]) forKey:CS_HTTP_PARAM_SESSION_TIMEOUT];
+        [ret setObject:CS_NULL_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_VISITOR_CODE]) forKey:CS_HTTP_PARAM_VISITOR_CODE];
+        [ret setObject:CS_NULL_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_TRACKING_CODE]) forKey:CS_HTTP_PARAM_TRACKING_CODE];
+        [ret setObject:CS_NULL_IF_NIL([actionProps objectForKey:CURHttpParamCustomId]) forKey:CURHttpParamCustomId];
     }
     
     

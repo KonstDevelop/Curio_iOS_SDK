@@ -49,4 +49,6 @@ extern NSString * const CURNotificationTypeSound;
 extern NSString * const CURNotificationTypeBadge;
 extern NSString * const CURNotificationTypeAlert;
 
+extern NSUInteger const CURMaxRequestRetryCount;
+
 #endif

@@ -52,3 +52,5 @@ NSString * const CURNotificationTypes = @"Sound,Badge,Alert";
 NSString * const CURNotificationTypeSound = @"Sound";
 NSString * const CURNotificationTypeBadge = @"Badge";
 NSString * const CURNotificationTypeAlert = @"Alert";
+
+NSUInteger const CURMaxRequestRetryCount = 2;
