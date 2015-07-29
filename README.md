@@ -1,4 +1,4 @@
-#Curio iOS SDK 1.0.7
+#Curio iOS SDK 1.0.8
 
 [Curio](https://gui-curio.turkcell.com.tr) is Turkcell's mobile analytics system, and this is Curio's Client iOS library. Applications developed for iOS 6.0+ can easily use Curio mobile analytics with this library.
 
@@ -17,7 +17,8 @@ And expand 'Link Binary With Library' and click + sign to add required framework
 - UIKit.framework
 - CoreTelephony.framework
 - libsqlite3.dylib
-- CoreLocation.framework 
+- CoreLocation.framework
+- CoreBluetooth.framework
 ```
 
 If you don't want to run automated unit tests, then you should remove CurioSDKTests.m, CurioSettingsTest.m and CurioDBTests.m files from compilation by Click on Targets -> Your App Name -> And then the 'Build Phases' tab and expand Compile Sources to remove them by clicking on - sign while mentioned source files selected.
@@ -28,7 +29,7 @@ If you're using cocoapods for your iOS project dependencies, Curio iOS SDK suppo
 You just need to add the line below to your **Podfile** (change version number with the latest):
 
 ```
-	pod 'Curio_iOS_SDK', '~> 1.0.7'
+	pod 'Curio_iOS_SDK', '~> 1.0.8'
 ```
 
 #Configuration
@@ -66,6 +67,7 @@ You can just copy'n paste CurioSDK item within sample project's Info.plist or Cu
 
 **MaxValidLocationTimeInterval:** [Optional] Default is 600 seconds. The accuracy of recent location is validated using this parameter. Location tracking continues until it reaches to a valid location time interval.
 
+**delegate:** If you are using "CurioSDKDelegate" protocol, you can set this parameter with your class reference. "CurioSDKDelegate" protocol provides callbacks for responses from "unregisterFromNotificationServer" and "sendCustomId" methods.
 
 ### Manual Configuration
 
@@ -84,7 +86,8 @@ You can specify CurioSDK parameters whenever you want to start a session on clie
      registerForRemoteNotifications:YES
                   notificationTypes:@"Sound,Badge,Alert"
                fetchLocationEnabled:YES
-       maxValidLocationTimeInterval:600                
+       maxValidLocationTimeInterval:600
+       			   delegate:self
                    appLaunchOptions:launchOptions
      ];
 
