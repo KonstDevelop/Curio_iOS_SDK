@@ -18,10 +18,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-
     //[[CurioSDK shared] setCustomId:@"sample custom id"];
     
-     /*[[CurioSDK shared] startSession:@"server_url"
+    //USe this if you have set your settings in inf plist file.
+    //[[CurioSDK shared] startSession:launchOptions];
+
+    
+     [[CurioSDK shared] startSession:@"server_url"
                              apiKey:@"XXXXX"
                        trackingCode:@"XXXXX"
                      sessionTimeout:4
@@ -35,24 +38,8 @@
                fetchLocationEnabled:YES
             maxValidLocationTimeInterval:60
                            delegate:self
-                   appLaunchOptions:launchOptions];*/
-    
-    
-    [[CurioSDK shared] startSession:@"https://curio.turkcell.com.tr/api/v2"
-                             apiKey:@"d74960205b7c11e4b6cc5bc19a55ea2d"
-                       trackingCode:@"6H5VDIYX"
-                     sessionTimeout:4
-            periodicDispatchEnabled:NO
-                     dispatchPeriod:1
-            maxCachedActivitiyCount:1000
-                     loggingEnabled:YES
-                           logLevel:3
-     registerForRemoteNotifications:YES
-                  notificationTypes:@"Sound,Badge,Alert"
-               fetchLocationEnabled:NO
-       maxValidLocationTimeInterval:600
-                           delegate:self
                    appLaunchOptions:launchOptions];
+    
     
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
