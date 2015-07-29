@@ -1,4 +1,4 @@
-#Curio iOS SDK 1.0.7
+#Curio iOS SDK 1.0.8
 
 [Curio](https://gui-curio.turkcell.com.tr) is Turkcell's mobile analytics system, and this is Curio's Client iOS library. Applications developed for iOS 6.0+ can easily use Curio mobile analytics with this library.
 
