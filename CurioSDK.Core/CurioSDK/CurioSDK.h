@@ -17,12 +17,14 @@
 #endif
 
 
-#define CURIO_SDK_VERSION @"1.0.7"
+#define CURIO_SDK_VERSION @"1.0.8"
 
 // Notification names
 
 #define CS_NOTIF_NEW_ACTION @"CS_NOTIF_NEW_ACTION"
 #define CS_NOTIF_REGISTERED_NEW_SESSION_CODE @"CS_NOTIF_REGISTERED_NEW_SESSION_CODE"
+#define CS_NOTIF_UNREGISTER @"CS_NOTIF_UNREGISTER"
+#define CS_NOTIF_CUSTOM_ID_SET @"CS_NOTIF_CUSTOM_ID_SET"
 
 // Optional parameters
 
@@ -90,6 +92,11 @@
 #define CS_HTTP_PARAM_TIME @"time"
 #define CS_HTTP_PARAM_JSON_DATA @"data"
 #define CS_HTTP_PARAM_TITLE @"pageTitle"
+#define CS_HTTP_PARAM_BATTERY_STATE @"batteryState"
+#define CS_HTTP_PARAM_BATTERY_LEVEL @"batteryLevel"
+#define CS_HTTP_PARAM_BLUETOOTH_STATE @"bluetoothState"
+#define CS_HTTP_PARAM_TOTAL_STORAGE_SPACE @"totalStorageSpace"
+#define CS_HTTP_PARAM_TOTAL_FREE_STORAGE_SPACE @"totalFreeStorageSpace"
 
 #define CS_CUSTOM_VAR_SCREENCLASS @"screenClass"
 
@@ -150,9 +157,15 @@
 #import "CurioNotificationManager.h"
 #import "CurioLocationManager.h"
 #import "CurioLocationData.h"
+#import "CurioResourceUtil.h"
 
 
+@protocol CurioSDKDelegate <NSObject>
 
+- (void) unregisteredFromNotificationServer:(NSDictionary *)responseDictionary;
+- (void) customIDSent:(NSDictionary *)responseDictionary;
+
+@end
 
 @interface CurioSDK : NSObject {
     
@@ -170,6 +183,8 @@
 @property (strong, nonatomic) NSString *customId;
 
 @property (assign, nonatomic) NSUInteger retryCount;
+
+@property (assign,nonatomic) id<CurioSDKDelegate> delegate;
 
 
 /**
@@ -252,6 +267,7 @@ registerForRemoteNotifications:(BOOL)registerForRemoteNotifications
     notificationTypes:(NSString *) notificationTypes
  fetchLocationEnabled:(BOOL)fetchLocationEnabled
 maxValidLocationTimeInterval:(double)maxValidLocationTimeInterval
+             delegate:(id<CurioSDKDelegate>)delegate
      appLaunchOptions:(NSDictionary *)appLaunchOptions;
 
 /**

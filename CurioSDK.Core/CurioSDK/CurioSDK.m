@@ -380,6 +380,7 @@ registerForRemoteNotifications:(BOOL)registerForRemoteNotifications
     notificationTypes:(NSString *) notificationTypes
  fetchLocationEnabled:(BOOL)fetchLocationEnabled
 maxValidLocationTimeInterval:(double)maxValidLocationTimeInterval
+             delegate:(id<CurioSDKDelegate>)delegate
      appLaunchOptions:(NSDictionary *)appLaunchOptions
 {
     
@@ -399,16 +400,21 @@ maxValidLocationTimeInterval:(double)maxValidLocationTimeInterval
            fetchLocationEnabled:fetchLocationEnabled ? CS_NSN_TRUE : CS_NSN_FALSE
         maxValidLocationTimeInterval:[NSNumber numberWithDouble:maxValidLocationTimeInterval]
      ];
+    
+    self.delegate = delegate;
     [self startSession:appLaunchOptions];
 
 }
 
 - (void) startSession:(NSDictionary *) appLaunchOptions {
-    
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(unregisterFromNotificationServerNotified:) name:CS_NOTIF_UNREGISTER object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(customIDSetNotified:) name:CS_NOTIF_CUSTOM_ID_SET object:nil];
+
     _appLaunchOptions = appLaunchOptions != nil ? appLaunchOptions : [NSDictionary new];
     
     [curioActionQueue addOperationWithBlock:^{
+        
+        [CurioResourceUtil shared];
         
         CurioAction *actionStartSession = [CurioAction actionStartSession];
         
@@ -506,6 +512,17 @@ maxValidLocationTimeInterval:(double)maxValidLocationTimeInterval
             });
         }];
     });
+}
+
+#pragma mark - Unregister and CustomID set observers
+
+- (void)unregisterFromNotificationServerNotified:(NSNotification *)notification {
+    [self.delegate unregisteredFromNotificationServer:notification.userInfo];
+}
+
+- (void)customIDSetNotified:(NSNotification *)notification {
+    [self.delegate customIDSent:notification.userInfo];
+
 }
 
 @end

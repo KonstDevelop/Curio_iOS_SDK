@@ -10,15 +10,16 @@
 #import "CLAppDelegate.h"
 #import "CurioSDK.h"
 
+@interface CLAppDelegate () <CurioSDKDelegate>
+
+@end
+
 @implementation CLAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
     //[[CurioSDK shared] setCustomId:@"sample custom id"];
-    
-    [[CurioSDK shared] startSession:launchOptions];
-
     
      /*[[CurioSDK shared] startSession:@"server_url"
                              apiKey:@"XXXXX"
@@ -33,8 +34,25 @@
                   notificationTypes:@"Sound,Badge,Alert"
                fetchLocationEnabled:YES
             maxValidLocationTimeInterval:60
+                           delegate:self
                    appLaunchOptions:launchOptions];*/
-     
+    
+    
+    [[CurioSDK shared] startSession:@"https://curio.turkcell.com.tr/api/v2"
+                             apiKey:@"d74960205b7c11e4b6cc5bc19a55ea2d"
+                       trackingCode:@"6H5VDIYX"
+                     sessionTimeout:4
+            periodicDispatchEnabled:NO
+                     dispatchPeriod:1
+            maxCachedActivitiyCount:1000
+                     loggingEnabled:YES
+                           logLevel:3
+     registerForRemoteNotifications:YES
+                  notificationTypes:@"Sound,Badge,Alert"
+               fetchLocationEnabled:NO
+       maxValidLocationTimeInterval:600
+                           delegate:self
+                   appLaunchOptions:launchOptions];
     
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
@@ -92,6 +110,13 @@
     
 }
 
+- (void)unregisteredFromNotificationServer:(NSDictionary *)responseDictionary {
+    NSLog(@"unregisteredFromNotificationServer response description: %@", responseDictionary.description);
+}
 
+- (void)customIDSent:(NSDictionary *)responseDictionary {
+    NSLog(@"customIDSent response description: %@", responseDictionary.description);
+
+}
 
 @end

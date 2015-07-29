@@ -196,9 +196,14 @@ static pthread_mutex_t mutex;
             [CurioSDK shared].retryCount = 0;
         }
         
+        if (postType == CPostTypeUnregister) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:CS_NOTIF_UNREGISTER
+                                                                object:nil
+                                                              userInfo:responseOk ? @{@"Response: ": @"Unregistered Successfully"} : @{@"Response: ": error ? error.description : @""}];
+        }
+        
         if (error != nil) {
             CS_Log_Warning(@"Warning: %ld , %@",(long)error.code, error.localizedDescription);
-            
             last_errorCode = (long) error.code;
         } else {
             last_errorCode = 0;
@@ -387,8 +392,6 @@ static pthread_mutex_t mutex;
 }
 
 - (void) tryToPostAwaitingActions:(BOOL) canRunOnMainThread {
-    
-    
     
     if (pthread_mutex_trylock(&mutex) != 0)
     {

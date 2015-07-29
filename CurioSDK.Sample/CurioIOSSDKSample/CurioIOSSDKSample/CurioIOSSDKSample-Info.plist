@@ -22,37 +22,15 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
-	<key>CurioSDK</key>
-	<dict>
-		<key>ServerURL</key>
-		<string>XXXXX</string>
-		<key>ApiKey</key>
-		<string>XXXXX</string>
-		<key>TrackingCode</key>
-		<string>XXXXX</string>
-		<key>SessionTimeout</key>
-		<integer>4</integer>
-		<key>PeriodicDispatchEnabled</key>
-		<false/>
-		<key>DispatchPeriod</key>
-		<integer>1</integer>
-		<key>FetchLocationEnabled</key>
-		<false/>
-		<key>MaxValidLocationTimeInterval</key>
-		<integer>600</integer>
-		<key>RegisterForRemoteNotifications</key>
-		<false/>
-		<key>NotificationTypes</key>
-		<string>Sound,Badge,Alert</string>
-		<key>MaxCachedActivityCount</key>
-		<integer>500</integer>
-		<key>LogLevel</key>
-		<integer>3</integer>
-		<key>LoggingEnabled</key>
-		<true/>
-	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	
+	<key>NSAppTransportSecurity</key>  
+	<dict>  
+	<key>NSAllowsArbitraryLoads</key>  
+	<true/>  
+	</dict>
+	
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Curio sample location description</string>
 	<key>UIBackgroundModes</key>
