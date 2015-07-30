@@ -363,7 +363,11 @@
 {
     
     [[CurioSettings shared] set:serverUrl apiKey:apiKey trackingCode:trackingCode];
-    [self startSession:appLaunchOptions];
+    
+    //this is done for getting bluetoothstate
+    [self performSelector:@selector(startSession:) withObject:appLaunchOptions afterDelay:0.1];
+    //[self startSession:appLaunchOptions];
+    
 }
 
 
@@ -402,8 +406,11 @@ maxValidLocationTimeInterval:(double)maxValidLocationTimeInterval
      ];
     
     self.delegate = delegate;
-    [self startSession:appLaunchOptions];
-
+    
+    //this is done for getting bluetoothstate
+    [self performSelector:@selector(startSession:) withObject:appLaunchOptions afterDelay:0.1];
+    
+    //[self startSession:appLaunchOptions];
 }
 
 - (void) startSession:(NSDictionary *) appLaunchOptions {

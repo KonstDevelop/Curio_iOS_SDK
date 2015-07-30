@@ -29,6 +29,11 @@
         
         [self getFreeDiskspace];
         
+        [UIDevice currentDevice].batteryMonitoringEnabled = YES;
+        
+        self.batteryLevel = [NSString stringWithFormat:@"%.f", [UIDevice currentDevice].batteryLevel * 100];;
+        CS_Log_Info(@"batteryLevel: %@",self.batteryLevel);
+        
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(batteryLevelChanged:)
                                                      name:UIDeviceBatteryLevelDidChangeNotification object:nil];
@@ -36,14 +41,12 @@
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(batteryStateChanged:)
                                                      name:UIDeviceBatteryStateDidChangeNotification object:nil];
-        
-        [UIDevice currentDevice].batteryMonitoringEnabled = YES;
-        
+
+
         _bluetoothManager = [[CBCentralManager alloc] initWithDelegate:self
                                                                  queue:nil
                                                                options:[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:0]
                                                                                                    forKey:CBCentralManagerOptionShowPowerAlertKey]];
-
     }
     return self;
 }
@@ -60,7 +63,7 @@
         self.batteryLevel = [NSString stringWithFormat:@"%.f", batteryLevel * 100];
     }
     
-    [[CurioSDK shared] sendEvent:@"BatterLevelChanged" eventValue:self.batteryLevel];
+    //[[CurioSDK shared] sendEvent:@"BatterLevelChanged" eventValue:self.batteryLevel];
     CS_Log_Info(@"batteryLevel: %@",self.batteryLevel);
 
 }
@@ -78,8 +81,7 @@
         self.batteryState = @"full";
     }
     
-    [[CurioSDK shared] sendEvent:@"BatterStateChanged" eventValue:self.batteryState];
-    
+    //[[CurioSDK shared] sendEvent:@"BatterStateChanged" eventValue:self.batteryState];
     CS_Log_Info(@"batteryState: %@",self.batteryState);
 }
 
@@ -99,19 +101,22 @@
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central
 {
     // This delegate method will monitor for any changes in bluetooth state and respond accordingly
-    NSString *stateString = nil;
     switch(_bluetoothManager.state)
     {
-        case CBCentralManagerStateUnknown: self.bluetoothState = @"unknown"; break;
-        case CBCentralManagerStateResetting: self.bluetoothState = @"resetting"; break;
-        case CBCentralManagerStateUnsupported: self.bluetoothState = @"unsupported"; break;
-        case CBCentralManagerStateUnauthorized: self.bluetoothState = @"unauthorized"; break;
-        case CBCentralManagerStatePoweredOff: self.bluetoothState = @"poweredOff"; break;
-        case CBCentralManagerStatePoweredOn: self.bluetoothState = @"poweredOn"; break;
-        default: stateString = @"State unknown, update imminent."; break;
+        
+        case CBCentralManagerStateUnknown: self.bluetoothState = @"off"; break;
+        case CBCentralManagerStateResetting: self.bluetoothState = @"off"; break;
+        case CBCentralManagerStateUnsupported: self.bluetoothState = @"off"; break;
+        case CBCentralManagerStateUnauthorized: self.bluetoothState = @"no permission"; break;
+        case CBCentralManagerStatePoweredOff: self.bluetoothState = @"off"; break;
+        case CBCentralManagerStatePoweredOn: self.bluetoothState = @"on"; break;
+
+            
+        default: self.bluetoothState = @"off"; break;
     }
     
-    [[CurioSDK shared] sendEvent:@"BluetoothStateChanged" eventValue:self.bluetoothState];
+    self.hasBluetoothState = YES;
+    CS_Log_Info(@"bluetoothState: %@",self.bluetoothState);
 }
 
 -(void) getFreeDiskspace {

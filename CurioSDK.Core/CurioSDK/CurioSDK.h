@@ -94,9 +94,9 @@
 #define CS_HTTP_PARAM_TITLE @"pageTitle"
 #define CS_HTTP_PARAM_BATTERY_STATE @"batteryState"
 #define CS_HTTP_PARAM_BATTERY_LEVEL @"batteryLevel"
-#define CS_HTTP_PARAM_BLUETOOTH_STATE @"bluetoothState"
+#define CS_HTTP_PARAM_BLUETOOTH_STATE @"bluetooth"
 #define CS_HTTP_PARAM_TOTAL_STORAGE_SPACE @"totalStorageSpace"
-#define CS_HTTP_PARAM_TOTAL_FREE_STORAGE_SPACE @"totalFreeStorageSpace"
+#define CS_HTTP_PARAM_TOTAL_FREE_STORAGE_SPACE @"storage"
 
 #define CS_CUSTOM_VAR_SCREENCLASS @"screenClass"
 

@@ -18,6 +18,8 @@
  */
 @property (strong, nonatomic) NSString *bluetoothState;
 
+@property (assign, nonatomic) BOOL hasBluetoothState;
+
 /**
  Holds the battery level. Can have values from 0 to 100. -1 if is unknown.
  */
