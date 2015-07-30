@@ -150,7 +150,7 @@
                 failed = TRUE;
             } else if ((long)httpResponse.statusCode == 200) {
                 if ([[CurioSDK shared] customId] && [[CurioSDK shared] customId].length > 0) {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:CS_NOTIF_CUSTOM_ID_SET object:nil userInfo:@{@"Response: ":@"Custom ID has been set successfully."}];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:CS_NOTIF_CUSTOM_ID_SET object:nil userInfo:@{@"Status": @"OK", @"Response": @"Custom ID has been set successfully."}];
                 }
             }
             if (error != nil) {
@@ -163,7 +163,7 @@
             if (failed) {
                 
                 if ([[CurioSDK shared] customId] && [[CurioSDK shared] customId].length > 0) {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:CS_NOTIF_CUSTOM_ID_SET object:nil userInfo:@{@"Response: ":@"Custom ID could not be sent."}];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:CS_NOTIF_CUSTOM_ID_SET object:nil userInfo:@{@"Status": @"NOK", @"Response": @"Custom ID could not be sent."}];
                 }
                 
                 [[CurioDBToolkit shared] addPushData:
