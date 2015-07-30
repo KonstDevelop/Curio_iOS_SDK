@@ -29,7 +29,7 @@ If you're using cocoapods for your iOS project dependencies, Curio iOS SDK suppo
 You just need to add the line below to your **Podfile** (change version number with the latest):
 
 ```
-	pod 'Curio_iOS_SDK', '~> 1.0.8'
+	pod 'Curio_iOS_SDK', '~> 1.0.7'
 ```
 
 #Configuration
