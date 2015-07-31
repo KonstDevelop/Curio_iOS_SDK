@@ -370,7 +370,23 @@
     
 }
 
-
+/*! Starts Curio session.
+ * \param startSession serverUrl [Required] Curio server URL, can be obtained from Turkcell.
+ * \param apiKey [Required] Application specific API key, can be obtained from Turkcell.
+ * \param trackingCode [Required] Application specific tracking code, can be obtained from Turkcell.
+ * \param sessionTimeout [Optional] Session timeout in minutes. Default is 30 minutes but it's highly recommended to change this value acording to the nature of your application. Specifiying a correct session timeout value for your application will increase the accuracy of the analytics data.
+ * \param periodicDispatchEnabled [Optional] Periodic dispatch is enabled if true. Default is false.
+ * \param dispatchPeriod [Optional] If periodic dispatch is enabled, this parameter configures dispatching period in minutes. Deafult is 5 minutes. Note: This parameter cannot be greater than session timeout value.
+ * \param maxCachedActivitiyCount [Optional] Max. number of user activity that Curio library will remember when device is not connected to the Internet. Default is 1000. Max. value can be 4000.
+ * \param loggingEnabled [Optional] All of the Curio logs will be disabled if this is false. Default is true.
+ * \param logLevel [Optional] Contains level of the print-out logs. 0 - Error, 1 - Warning, 2 - Info, 3 - Debug. Default is 0 (Error).
+ * \param registerForRemoteNotifications If enabled, then Curio SDK will automatically register for remote notifications for types defined in "NotificationTypes" parameter.
+ * \param notificationTypes Notification types to register; available values: Sound, Badge, Alert
+ * \param fetchLocationEnabled [Optional] If enabled, the current location of the device will be tracked while using the application. Default is true. The accuracy of recent location is validated using MaxValidLocationTimeInterval. Location tracking stops when the accurate location is found according to the needs. For further location tracking you can use [[CurioSDK shared] sendLocation] method. In order to track locations in iOS8 NSLocationWhenInUseUsageDescription must be implemented in Info.plist file.
+ * \param maxValidLocationTimeInterval [Optional] Default is 600 seconds. The accuracy of recent location is validated using this parameter. Location tracking continues until it reaches to a valid location time interval.
+ * \param delegate If you are using "CurioSDKDelegate" protocol, you can set this parameter with your class reference. "CurioSDKDelegate" protocol provides callbacks for responses from "unregisterFromNotificationServer" and "sendCustomId" methods.
+ * \param appLaunchOptions Set this with Appdelegate's appLaunchOptions. It is used for tracking notifications.
+ */
 - (void) startSession:(NSString *)serverUrl
                apiKey:(NSString *)apiKey
          trackingCode:(NSString *)trackingCode
