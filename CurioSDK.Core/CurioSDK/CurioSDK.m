@@ -540,12 +540,19 @@ maxValidLocationTimeInterval:(double)maxValidLocationTimeInterval
 #pragma mark - Unregister and CustomID set observers
 
 - (void)unregisterFromNotificationServerNotified:(NSNotification *)notification {
-    [self.delegate unregisteredFromNotificationServer:notification.userInfo];
+    __weak CurioSDK *weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [weakSelf.delegate unregisteredFromNotificationServer:notification.userInfo];
+        
+    });
 }
 
 - (void)customIDSetNotified:(NSNotification *)notification {
-    [self.delegate customIDSent:notification.userInfo];
-
+    __weak CurioSDK *weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [weakSelf.delegate customIDSent:notification.userInfo];
+        
+    });
 }
 
 @end
