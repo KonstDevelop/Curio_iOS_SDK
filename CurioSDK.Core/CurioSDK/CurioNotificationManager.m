@@ -163,7 +163,7 @@
             if (failed) {
                 
                 if ([[CurioSDK shared] customId] && [[CurioSDK shared] customId].length > 0) {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:CS_NOTIF_CUSTOM_ID_SET object:nil userInfo:@{@"Status": @"NOK", @"Response": @"Custom ID could not be sent."}];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:CS_NOTIF_CUSTOM_ID_SET object:nil userInfo:@{@"Status": @"NOK", @"Response": error ? error.description : @"Custom ID has been set successfully."}];
                 }
                 
                 [[CurioDBToolkit shared] addPushData:
