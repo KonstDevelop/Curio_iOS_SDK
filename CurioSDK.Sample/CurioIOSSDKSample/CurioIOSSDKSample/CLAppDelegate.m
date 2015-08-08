@@ -20,20 +20,22 @@
 {
     
     [[CurioSDK shared] startSession:@"server_url"
-     apiKey:@"XXXXX"
-     trackingCode:@"XXXXX"
-     sessionTimeout:4
-     periodicDispatchEnabled:NO
-     dispatchPeriod:1
-     maxCachedActivitiyCount:1000
-     loggingEnabled:YES
-     logLevel:3
+                             apiKey:@"XXXXX"
+                       trackingCode:@"XXXXX"
+                     sessionTimeout:4
+            periodicDispatchEnabled:NO
+                     dispatchPeriod:1
+            maxCachedActivitiyCount:1000
+                     loggingEnabled:YES
+                           logLevel:3
      registerForRemoteNotifications:YES
-     notificationTypes:@"Sound,Badge,Alert"
-     fetchLocationEnabled:YES
-     maxValidLocationTimeInterval:60
-     delegate:self
-     appLaunchOptions:launchOptions];
+                  notificationTypes:@"Sound,Badge,Alert"
+               fetchLocationEnabled:YES
+       maxValidLocationTimeInterval:60
+                           delegate:self
+                   appLaunchOptions:launchOptions];
+    
+    
 
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
