@@ -197,7 +197,13 @@ For sending custom id to Curio server, sendCustomId method should be called as b
 	[[CurioSDK shared] sendCustomId: @"sample custom id"];
 	...
 
-You can get the result using callback customIDSent: method in protocol CurioSDKDelegate.
+You can get the result using customIDSent: delegate method in protocol CurioSDKDelegate.
+
+	...
+	- (void)customIDSent:(NSDictionary *)responseDictionary {
+    		NSLog(@"customIDSent response description: %@", responseDictionary.description);
+	}
+	...
 
 ###Unregistering from Push Notification Server (if auto push registration is enabled):
 You can call unregisterFromNotificationServer method from your app to unregister your app from Curio Push notification server. After calling this method as below, your app will not receive push notifications:
@@ -206,7 +212,13 @@ You can call unregisterFromNotificationServer method from your app to unregister
 	[[CurioSDK shared] unregisterFromNotificationServer];
 	...
 
-You can get the result using callback unregisteredFromNotificationServer: method in protocol CurioSDKDelegate.
+You can get the result using unregisteredFromNotificationServer: delegate method in protocol CurioSDKDelegate.
+
+	...
+	- (void)unregisteredFromNotificationServer:(NSDictionary *)responseDictionary {
+    		NSLog(@"unregisteredFromNotificationServer response description: %@", responseDictionary.description);
+	}
+	...
 
 #Internals
 
