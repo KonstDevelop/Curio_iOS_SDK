@@ -197,12 +197,16 @@ For sending custom id to Curio server, sendCustomId method should be called as b
 	[[CurioSDK shared] sendCustomId: @"sample custom id"];
 	...
 
+You can get the result using callback customIDSent: method in protocol CurioSDKDelegate.
+
 ###Unregistering from Push Notification Server (if auto push registration is enabled):
 You can call unregisterFromNotificationServer method from your app to unregister your app from Curio Push notification server. After calling this method as below, your app will not receive push notifications:
 
 	...
 	[[CurioSDK shared] unregisterFromNotificationServer];
 	...
+
+You can get the result using callback unregisteredFromNotificationServer: method in protocol CurioSDKDelegate.
 
 #Internals
 
