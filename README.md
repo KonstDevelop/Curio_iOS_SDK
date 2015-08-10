@@ -2,6 +2,12 @@
 
 [Curio](https://gui-curio.turkcell.com.tr) is Turkcell's mobile analytics system, and this is Curio's Client iOS library. Applications developed for iOS 6.0+ can easily use Curio mobile analytics with this library.
 
+#What's New
+
+CurioSDKDelegate protocol added. It includes callback methods for unregister and set custom id requests.
+
+From this version on storage, battery, and bluetooth info is being sent through session creation method.
+
 #Quick Startup Guide
 
 You can drag'n drop Curio project file into your project. Additionally you should add the dependencies.
