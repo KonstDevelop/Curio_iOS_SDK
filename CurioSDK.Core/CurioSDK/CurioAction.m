@@ -121,6 +121,19 @@
     return cAction;
 }
 
++ (CurioAction *) actionEndEvent:(NSString *) hitCode eventDuration:(NSUInteger) eventDuration{
+    
+    CurioAction *cAction = [[CurioAction alloc] init:[[CurioUtil shared] nanos]
+                                                type:CActionTypeEndEvent
+                                               stamp:[[CurioUtil shared] currentTimeMillis]
+                                               title:nil path:nil hitCode:hitCode eventKey:nil eventValue:nil];
+    
+    [cAction.properties addEntriesFromDictionary:[self defaultActionProperties]];
+    [cAction.properties setObject:[NSString stringWithFormat:@"%ld",eventDuration] forKey:CURKeyEventDuration];    
+    
+    return cAction;
+}
+
 + (CurioAction *) actionEndScreen:(NSString *) hitCode {
     
     CurioAction *cAction = [[CurioAction alloc] init:[[CurioUtil shared] nanos]

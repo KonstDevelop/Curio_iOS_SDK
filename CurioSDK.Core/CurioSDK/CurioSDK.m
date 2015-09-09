@@ -9,6 +9,52 @@
 
 #import "CurioSDK.h"
 
+@interface CurioEventData : NSObject
+
+@property (nonatomic,strong) NSString *eventKey;
+@property (nonatomic,strong) NSString *eventValue;
+@property (nonatomic,strong) NSString *eventDuration;
+
+@end
+
+@implementation CurioEventData
+
+- (id) init {
+    self = [super init];
+    
+    return  self;
+}
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    if (self = [super init]) {
+        self.eventKey = [decoder decodeObjectForKey:CURKeyEventKey];
+        self.eventValue = [decoder decodeObjectForKey:CURKeyEventValue];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    [encoder encodeObject:_eventKey forKey:CURKeyEventKey];
+    [encoder encodeObject:_eventValue forKey:CURKeyEventValue];
+}
+
+- (BOOL)isEqual:(id)object {
+    
+    if (![object isKindOfClass:[CurioEventData class]]) {
+        return NO;
+    }
+    
+    CurioEventData *o = object;
+    
+    return [self.eventKey isEqualToString:o.eventKey] && [self.eventValue isEqualToString:o.eventValue];
+}
+
+- (NSUInteger)hash {
+    return [self.eventKey hash] ^ [self.eventValue hash];
+}
+
+@end
+
 @interface CurioScreenData : NSObject
 
 @property (nonatomic,strong) NSString *className;
@@ -85,6 +131,7 @@
         _retryCount = 0;
         
         _aliveScreens = [NSMutableArray new];
+        _aliveEvents = [NSMutableArray new];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillGoBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillTerminate) name:UIApplicationWillTerminateNotification object:nil];
@@ -132,15 +179,31 @@
                     CS_OPT_SKEY_MAX_VALID_LOCATION_TIME_INTERVAL, [[CurioSettings shared] maxValidLocationTimeInterval]
                     
           );
-
-        
-        
         
     }
     return self;
 }
 
 #pragma mark Application handling
+
+- (void) finishOffOpenEvents {
+    
+    NSMutableArray *dup = [_aliveEvents copy];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:[NSKeyedArchiver archivedDataWithRootObject:_aliveEvents] forKey:CS_CONST_AL_EV];
+    [userDefaults synchronize];
+    
+    [dup enumerateObjectsUsingBlock:^(CurioEventData *obj, NSUInteger idx, BOOL *stop) {
+        
+        [self endEvent:obj.eventValue eventValue:obj.eventValue eventDuration:[obj.eventDuration integerValue]];
+        
+    }];
+    
+    [_aliveEvents removeAllObjects];
+    
+    
+}
 
 - (void) finishOffOpenScreens {
     
@@ -187,13 +250,16 @@
     // Uniquize screens
     [_aliveScreens setArray:[[NSSet setWithArray:_aliveScreens] allObjects]];
     
-    CS_Log_Info(@"Finishing off %lu",(unsigned long)_aliveScreens.count);
+    CS_Log_Info(@"Finishing off alive screens count %lu",(unsigned long)_aliveScreens.count);
     
+    [_aliveEvents setArray:[[NSSet setWithArray:_aliveEvents] allObjects]];
+    
+    CS_Log_Info(@"Finishing off alive events count %lu",(unsigned long)_aliveEvents.count);
+
     [self finishOffOpenScreens];
+    [self finishOffOpenEvents];
     
     [self enterDeactiveMode];
-
-    
 }
 
 - (void) applicationWillTerminate {
@@ -214,13 +280,12 @@
 
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 
-        NSData *dat = [userDefaults objectForKey:CS_CONST_AL_SC];
+        NSData *datAliveScreens = [userDefaults objectForKey:CS_CONST_AL_SC];
         
-        
-        if (dat == nil)
+        if (datAliveScreens == nil)
             _aliveScreens = [NSMutableArray new];
         else {
-            _aliveScreens = [NSKeyedUnarchiver unarchiveObjectWithData:dat];
+            _aliveScreens = [NSKeyedUnarchiver unarchiveObjectWithData:datAliveScreens];
             CS_Log_Info(@"Restoring %lu screens",(unsigned long)_aliveScreens.count);
             [_aliveScreens enumerateObjectsUsingBlock:^(CurioScreenData *obj, NSUInteger idx, BOOL *stop) {
                 [self startScreenWithName:obj.className title:obj.title path:obj.path];
@@ -228,6 +293,21 @@
         }
         
         [userDefaults removeObjectForKey:CS_CONST_AL_SC];
+        [userDefaults synchronize];
+        
+        NSData *datAliveEvents = [userDefaults objectForKey:CS_CONST_AL_EV];
+        
+        if (datAliveEvents == nil)
+            _aliveEvents = [NSMutableArray new];
+        else {
+            _aliveEvents = [NSKeyedUnarchiver unarchiveObjectWithData:datAliveEvents];
+            CS_Log_Info(@"Restoring %lu events",(unsigned long)_aliveEvents.count);
+            [_aliveEvents enumerateObjectsUsingBlock:^(CurioEventData *obj, NSUInteger idx, BOOL *stop) {
+                [self sendEvent:obj.eventKey eventValue:obj.eventValue];
+            }];
+        }
+        
+        [userDefaults removeObjectForKey:CS_CONST_AL_EV];
         [userDefaults synchronize];
     }
     
@@ -254,14 +334,65 @@
     
 }
 
+- (void) endEvent:(NSString *) eventKey  eventValue:(NSString *) eventValue eventDuration:(NSUInteger) eventDuration {
+    
+    [curioActionQueue addOperationWithBlock:^{
+        
+        //TODO key? HC%@_HC%@?
+        NSString *key = [NSString stringWithFormat:@"HC%@_%@",eventKey,eventValue];
+        
+        NSString *hitcode = [_memoryStore objectForKey:key];
+        
+        CurioAction *actionEndEvent = [CurioAction actionEndEvent:(hitcode == nil ? @"UNKNOWN" : hitcode) eventDuration:eventDuration];
+        
+        [[CurioDBToolkit shared] addAction:actionEndEvent];
+        
+        [_memoryStore removeObjectForKey:key];
+        
+        __block int rmIndex = -1;
+        [_aliveEvents enumerateObjectsUsingBlock:^(CurioEventData *obj, NSUInteger idx, BOOL *stop) {
+            
+            if ([obj.eventKey isEqualToString:eventKey] && [obj.eventValue isEqualToString:eventValue])
+            {
+                rmIndex = (int)idx;
+                *stop = true;
+            }
+        }];
+        
+        if (rmIndex != -1)
+            [_aliveEvents removeObjectAtIndex:rmIndex];
+        
+    }];
+}
+
 - (void) sendEvent:(NSString *) eventKey eventValue:(NSString *) eventValue {
 
     [curioActionQueue addOperationWithBlock:^{
-
         CurioAction *actionSendEvent = [CurioAction actionSendEvent:eventKey path:eventValue];
-    
+        
+        [actionSendEvent.properties setObject:[NSString stringWithFormat:@"%@_%@", eventKey, eventValue] forKey:CS_CUSTOM_VAR_EVENTCLASS];
+        
+        if (![[CurioNetwork shared] isOnline] || CS_NSN_IS_TRUE([[CurioSettings shared] periodicDispatchEnabled])) {
+            
+            NSString *hitCode = [[CurioUtil shared] uuidRandom];
+            
+            NSString *eventKeyAndValue = [actionSendEvent.properties objectForKey:CS_CUSTOM_VAR_EVENTCLASS];
+            CS_Log_Info(@"Created hit code %@ for screen %@ when periodicDispatchEnabled or the clinet is offline.",hitCode,eventKeyAndValue);
+            
+            [_memoryStore setObject:hitCode forKey:[NSString stringWithFormat:@"HC%@_%@",eventKey, eventValue]];
+            actionSendEvent.hitCode = hitCode;
+        }
+        
         [[CurioDBToolkit shared] addAction:actionSendEvent];
+        
+        CurioEventData *csd = [CurioEventData new];
+        csd.eventKey = eventKey;
+        csd.eventValue = eventValue;
+        
+        [_aliveEvents addObject:csd];
+        
     }];
+    
 
 }
 
@@ -310,6 +441,8 @@
         if (![[CurioNetwork shared] isOnline] || CS_NSN_IS_TRUE([[CurioSettings shared] periodicDispatchEnabled])) {
             
             NSString *hitCode = [[CurioUtil shared] uuidRandom];
+            NSString *screenKey = [actionStartScreen.properties objectForKey:CS_CUSTOM_VAR_SCREENCLASS];
+            CS_Log_Info(@"Created hit code %@ for screen %@ when periodicDispatchEnabled or the clinet is offline.",hitCode,screenKey);
             
             [_memoryStore setObject:hitCode forKey:[NSString stringWithFormat:@"HC%@",screenClassName]];
             actionStartScreen.hitCode = hitCode;

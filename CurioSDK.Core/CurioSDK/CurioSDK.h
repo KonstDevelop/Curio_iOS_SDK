@@ -57,6 +57,7 @@
 #define CS_SERVER_URL_SUFFIX_SCREEN_START @"/hit/create"
 #define CS_SERVER_URL_SUFFIX_SCREEN_END  @"/hit/end"
 #define CS_SERVER_URL_SUFFIX_SEND_EVENT  @"/event/create"
+#define CS_SERVER_URL_SUFFIX_END_EVENT  @"/event/end"
 #define CS_SERVER_URL_SUFFIX_PERIODIC_BATCH @"/batch/create"
 #define CS_SERVER_URL_SUFFIX_OFFLINE_CACHE  @"/offline/create"
 #define CS_SERVER_URL_SUFFIX_PUSH_DATA @"/visitor/setPushData"
@@ -65,6 +66,7 @@
 #define CS_SERVER_URL_SUFFIX_PUSH_HISTORY @"/pushHistory/get"
 
 #define CS_HTTP_PARAM_HIT_CODE @"hitCode"
+#define CS_HTTP_PARAM_EVENT_CODE @"eventCode"
 #define CS_HTTP_PARAM_TRACKING_CODE @"trackingCode"
 #define CS_HTTP_PARAM_VISITOR_CODE @"visitorCode"
 #define CS_HTTP_PARAM_PATH @"path"
@@ -81,6 +83,7 @@
 #define CS_HTTP_PARAM_SESSION_CODE @"sessionCode"
 #define CS_HTTP_PARAM_EVENT_KEY @"eventKey"
 #define CS_HTTP_PARAM_EVENT_VALUE @"eventValue"
+#define CS_HTTP_PARAM_EVENT_DURATION @"eventDuration"
 #define CS_HTTP_PARAM_SIM_OPERATOR @"simOperator"
 #define CS_HTTP_PARAM_SIM_COUNTRY_ISO @"simOpCountry"
 #define CS_HTTP_PARAM_NETWORK_OPERATOR_NAME @"networkOpName"
@@ -99,21 +102,23 @@
 #define CS_HTTP_PARAM_TOTAL_FREE_STORAGE_SPACE @"storage"
 
 #define CS_CUSTOM_VAR_SCREENCLASS @"screenClass"
-
+#define CS_CUSTOM_VAR_EVENTCLASS @"eventClass"
 
 #define CS_HTTP_JSON_VARNAME_TYPE @"type"
 #define CS_HTTP_JSON_VARNAME_TIMESTAMP @"timestamp"
 #define CS_HTTP_JSON_VARNAME_PAGETITLE @"pageTitle"
 #define CS_HTTP_JSON_VARNAME_PATH @"path"
 #define CS_HTTP_JSON_VARNAME_HITCODE @"hitCode"
+#define CS_HTTP_JSON_VARNAME_EVENTCODE @"eventCode"
 #define CS_HTTP_JSON_VARNAME_SESSIONCODE @"sessionCode"
 #define CS_HTTP_JSON_VARNAME_EVENT_KEY @"eventKey"
 #define CS_HTTP_JSON_VARNAME_EVENT_VALUE @"eventValue"
-
+#define CS_HTTP_JSON_VARNAME_EVENT_DURATION @"eventDuration"
 
 // Shortcuts
 
 #define CS_CONST_AL_SC @"ALIVE_SCREENS"
+#define CS_CONST_AL_EV @"ALIVE_EVENTS"
 
 #define CS_CONST_DEV_TOK @"DEVICE_TOKEN"
 
@@ -137,6 +142,7 @@
 
 #define CS_AS_STRING(val) [NSString stringWithFormat:@"%s",val]
 #define CS_INT_AS_STRING(val) [NSString stringWithFormat:@"%i",val]
+#define CS_DOUBLE_AS_STRING(val) [NSString stringWithFormat:@"%lf",val]
 #define CS_LLD_AS_STRING(val) [NSString stringWithFormat:@"%lld",val]
 
 #define CS_SET_DICT_IF_NOT_NIL(dict,val,key) if (val != nil) [dict setObject:val forKey:key];
@@ -177,6 +183,7 @@
 @property (nonatomic) BOOL sessionCodeRegisteredOnServer;
 @property (strong, nonatomic) NSMutableDictionary *memoryStore;
 @property (strong, nonatomic) NSMutableArray *aliveScreens;
+@property (strong, nonatomic) NSMutableArray *aliveEvents;
 @property (strong, nonatomic) NSDictionary *appLaunchOptions;
 
 //Custom Id parameter.
@@ -218,6 +225,14 @@
  */
 - (void) sendEvent:(NSString *) eventKey eventValue:(NSString *) eventValue;
 
+/**
+ *  Sends event-key and event-value back to Curio Server
+ *
+ *  @param eventKey   Key of the event
+ *  @param eventValue Value of the event
+ *
+ */
+- (void) endEvent:(NSString *) eventKey eventValue:(NSString *) eventValue eventDuration:(NSUInteger) eventDuration;
 /**
  *  Send endScreen message back to Curio server
  *

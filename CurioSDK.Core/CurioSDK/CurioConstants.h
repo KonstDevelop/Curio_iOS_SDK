@@ -26,6 +26,7 @@ extern NSString * const CURKeyTimeStamp;
 extern NSString * const CURKeyHitCode;
 extern NSString * const CURKeyEventKey;
 extern NSString * const CURKeyEventValue;
+extern NSString * const CURKeyEventDuration;
 extern NSString * const CURKeyIsOnline;
 extern NSString * const CURKeyProperties;
 extern NSString * const CURDeviceBrandName;
