@@ -599,32 +599,25 @@ maxValidLocationTimeInterval:(double)maxValidLocationTimeInterval
 
 
 - (void) unregisterFromNotificationServer{
-    
-    if ([[CurioNetwork shared] isOnline]) {
-        [curioActionQueue addOperationWithBlock:^{
-            CurioAction *actionUnregister = [CurioAction actionUnregister];
-            
-            CS_SET_DICT_IF_NOT_NIL(actionUnregister.properties, [self customId], CURHttpParamCustomId);
-            
-            //[actionUnregister.properties setObject:[self customId] forKey:CURHttpParamCustomId];
-            
-            [[CurioDBToolkit shared] addAction:actionUnregister];
-        }];
+    [curioActionQueue addOperationWithBlock:^{
+        CurioAction *actionUnregister = [CurioAction actionUnregister];
         
-        [curioQueue addOperationWithBlock:^{
-            
-            [curioActionQueue waitUntilAllOperationsAreFinished];
-            
-            // No matter we are in PDR or not, start session and end session
-            // request should be send immediately if possible
-            [[CurioPostOffice shared] tryToPostAwaitingActions:NO];
-            
-        }];
-    } else {
-        [[NSNotificationCenter defaultCenter] postNotificationName:CS_NOTIF_UNREGISTER
-                                                            object:nil
-                                                          userInfo: @{@"Status": @"NOK", @"Response": @"Curio SDK is not online. Network connection may have been lost."}];
-    }
+        CS_SET_DICT_IF_NOT_NIL(actionUnregister.properties, [self customId], CURHttpParamCustomId);
+        
+        //[actionUnregister.properties setObject:[self customId] forKey:CURHttpParamCustomId];
+        
+        [[CurioDBToolkit shared] addAction:actionUnregister];
+    }];
+    
+    [curioQueue addOperationWithBlock:^{
+        
+        [curioActionQueue waitUntilAllOperationsAreFinished];
+        
+        // No matter we are in PDR or not, start session and end session
+        // request should be send immediately if possible
+        [[CurioPostOffice shared] tryToPostAwaitingActions:NO];
+        
+    }];
 }
 
 - (void) sendCustomId:(NSString *)theCustomId{
