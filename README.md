@@ -4,9 +4,7 @@
 
 #What's New
 
-CurioSDKDelegate protocol added. It includes callback methods for unregister and set custom id requests.
-
-From this version on storage, battery, and bluetooth info is being sent through session creation method.
+Send endEvent feature added. You can send duration of an event using this method.
 
 #Quick Startup Guide
 
