@@ -30,13 +30,11 @@
                            logLevel:3
      registerForRemoteNotifications:YES
                   notificationTypes:@"Sound,Badge,Alert"
-               fetchLocationEnabled:YES
+               fetchLocationEnabled:NO
        maxValidLocationTimeInterval:60
                            delegate:self
                    appLaunchOptions:launchOptions];
     
-    
-
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;

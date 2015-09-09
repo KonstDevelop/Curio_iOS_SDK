@@ -92,16 +92,24 @@
             [actDict setObject:action.path forKey:CS_HTTP_JSON_VARNAME_PATH];
             [actDict setObject:action.hitCode forKey:CS_HTTP_JSON_VARNAME_HITCODE];
             
-        } else if (action.actionType == CActionTypeSendEvent) {
-            
-            [actDict setObject:action.eventKey forKey:CS_HTTP_JSON_VARNAME_EVENT_KEY];
-            [actDict setObject:action.eventValue forKey:CS_HTTP_JSON_VARNAME_EVENT_VALUE];
-            
         } else if (action.actionType == CActionTypeEndScreen) {
             
             [actDict setObject:action.title forKey:CS_HTTP_JSON_VARNAME_PAGETITLE];
             [actDict setObject:action.path forKey:CS_HTTP_JSON_VARNAME_PATH];
             [actDict setObject:action.hitCode forKey:CS_HTTP_JSON_VARNAME_HITCODE];
+            
+        } else if (action.actionType == CActionTypeSendEvent) {
+            
+            [actDict setObject:action.eventKey forKey:CS_HTTP_JSON_VARNAME_EVENT_KEY];
+            [actDict setObject:action.eventValue forKey:CS_HTTP_JSON_VARNAME_EVENT_VALUE];
+            [actDict setObject:action.hitCode forKey:CS_HTTP_JSON_VARNAME_EVENTCODE];
+            
+        } else if (action.actionType == CActionTypeEndEvent) {
+            
+            [actDict setObject:action.eventKey forKey:CS_HTTP_JSON_VARNAME_EVENT_KEY];
+            [actDict setObject:action.eventValue forKey:CS_HTTP_JSON_VARNAME_EVENT_VALUE];
+            [actDict setObject:[action.properties objectForKey:CS_HTTP_JSON_VARNAME_EVENT_DURATION] forKey:CS_HTTP_JSON_VARNAME_EVENT_DURATION];
+            [actDict setObject:action.hitCode forKey:CS_HTTP_JSON_VARNAME_EVENTCODE];
             
         }
         
@@ -141,17 +149,25 @@
             [actDict setObject:action.path forKey:CS_HTTP_JSON_VARNAME_PATH];
             [actDict setObject:action.hitCode forKey:CS_HTTP_JSON_VARNAME_HITCODE];
             
+        } else if (action.actionType == CActionTypeEndScreen) {
+            
+            [actDict setObject:action.title forKey:CS_HTTP_JSON_VARNAME_PAGETITLE];
+            [actDict setObject:action.path forKey:CS_HTTP_JSON_VARNAME_PATH];
+            [actDict setObject:action.hitCode forKey:CS_HTTP_JSON_VARNAME_HITCODE];
+            
         } else if (action.actionType == CActionTypeSendEvent) {
 
             [actDict setObject:action.eventKey forKey:CS_HTTP_JSON_VARNAME_EVENT_KEY];
             [actDict setObject:action.eventValue forKey:CS_HTTP_JSON_VARNAME_EVENT_VALUE];
+            [actDict setObject:action.hitCode forKey:CS_HTTP_JSON_VARNAME_EVENTCODE];
             
-        } else if (action.actionType == CActionTypeEndScreen) {
-
-            [actDict setObject:action.title forKey:CS_HTTP_JSON_VARNAME_PAGETITLE];
-            [actDict setObject:action.path forKey:CS_HTTP_JSON_VARNAME_PATH];
-            [actDict setObject:action.hitCode forKey:CS_HTTP_JSON_VARNAME_HITCODE];
-
+        } else if (action.actionType == CActionTypeEndEvent) {
+            
+            [actDict setObject:action.eventKey forKey:CS_HTTP_JSON_VARNAME_EVENT_KEY];
+            [actDict setObject:action.eventValue forKey:CS_HTTP_JSON_VARNAME_EVENT_VALUE];
+            [actDict setObject:[action.properties objectForKey:CS_HTTP_JSON_VARNAME_EVENT_DURATION] forKey:CS_HTTP_JSON_VARNAME_EVENT_DURATION];
+            [actDict setObject:action.hitCode forKey:CS_HTTP_JSON_VARNAME_EVENTCODE];
+            
         }
         
         [dataArray addObject:actDict];
@@ -192,15 +208,6 @@
         [ret setObject:CS_SET_IF_NOT_NIL(action.title,@"NULL") forKey:CS_HTTP_PARAM_TITLE];
         [ret setObject:CS_SET_IF_NOT_NIL(action.path,@"NULL") forKey:CS_HTTP_PARAM_PATH];
         
-    } else if (action.actionType == CActionTypeSendEvent) {
-        
-        [ret setObject:CS_NULL_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_SESSION_CODE]) forKey:CS_HTTP_PARAM_SESSION_CODE];
-        [ret setObject:CS_ZERO_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_SESSION_TIMEOUT]) forKey:CS_HTTP_PARAM_SESSION_TIMEOUT];
-        [ret setObject:CS_NULL_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_VISITOR_CODE]) forKey:CS_HTTP_PARAM_VISITOR_CODE];
-        [ret setObject:CS_NULL_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_TRACKING_CODE]) forKey:CS_HTTP_PARAM_TRACKING_CODE];
-        [ret setObject:CS_SET_IF_NOT_NIL(action.eventKey,@"NULL") forKey:CS_HTTP_PARAM_EVENT_KEY];
-        [ret setObject:CS_SET_IF_NOT_NIL(action.eventValue,@"NULL") forKey:CS_HTTP_PARAM_EVENT_VALUE];
-        
     } else if (action.actionType == CActionTypeEndScreen) {
         
         [ret setObject:CS_NULL_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_SESSION_CODE]) forKey:CS_HTTP_PARAM_SESSION_CODE];
@@ -210,6 +217,26 @@
         [ret setObject:CS_SET_IF_NOT_NIL(action.title,@"NULL") forKey:CS_HTTP_PARAM_TITLE];
         [ret setObject:CS_SET_IF_NOT_NIL(action.path,@"NULL") forKey:CS_HTTP_PARAM_PATH];
         [ret setObject:CS_SET_IF_NOT_NIL(action.hitCode,@"NULL") forKey:CS_HTTP_PARAM_HIT_CODE];
+        
+    } else if (action.actionType == CActionTypeSendEvent) {
+        
+        [ret setObject:CS_NULL_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_SESSION_CODE]) forKey:CS_HTTP_PARAM_SESSION_CODE];
+        [ret setObject:CS_ZERO_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_SESSION_TIMEOUT]) forKey:CS_HTTP_PARAM_SESSION_TIMEOUT];
+        [ret setObject:CS_NULL_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_VISITOR_CODE]) forKey:CS_HTTP_PARAM_VISITOR_CODE];
+        [ret setObject:CS_NULL_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_TRACKING_CODE]) forKey:CS_HTTP_PARAM_TRACKING_CODE];
+        [ret setObject:CS_SET_IF_NOT_NIL(action.eventKey,@"NULL") forKey:CS_HTTP_PARAM_EVENT_KEY];
+        [ret setObject:CS_SET_IF_NOT_NIL(action.eventValue,@"NULL") forKey:CS_HTTP_PARAM_EVENT_VALUE];
+        
+    } else if (action.actionType == CActionTypeEndEvent) {
+        //TODO
+        [ret setObject:CS_NULL_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_SESSION_CODE]) forKey:CS_HTTP_PARAM_SESSION_CODE];
+        [ret setObject:CS_ZERO_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_SESSION_TIMEOUT]) forKey:CS_HTTP_PARAM_SESSION_TIMEOUT];
+        [ret setObject:CS_NULL_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_VISITOR_CODE]) forKey:CS_HTTP_PARAM_VISITOR_CODE];
+        [ret setObject:CS_NULL_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_TRACKING_CODE]) forKey:CS_HTTP_PARAM_TRACKING_CODE];
+        [ret setObject:CS_SET_IF_NOT_NIL(action.eventKey,@"NULL") forKey:CS_HTTP_PARAM_EVENT_KEY];
+        [ret setObject:CS_SET_IF_NOT_NIL(action.eventValue,@"NULL") forKey:CS_HTTP_PARAM_EVENT_VALUE];
+        [ret setObject:CS_SET_IF_NOT_NIL([action.properties objectForKey:CS_HTTP_PARAM_EVENT_DURATION],@"NULL") forKey:CS_HTTP_PARAM_EVENT_DURATION];
+        [ret setObject:CS_SET_IF_NOT_NIL(action.hitCode,@"NULL") forKey:CS_HTTP_PARAM_EVENT_CODE];
         
     } else if (action.actionType == CActionTypeEndSession) {
         
@@ -225,7 +252,6 @@
         [ret setObject:CS_NULL_IF_NIL([actionProps objectForKey:CS_HTTP_PARAM_TRACKING_CODE]) forKey:CS_HTTP_PARAM_TRACKING_CODE];
         [ret setObject:CS_NULL_IF_NIL([actionProps objectForKey:CURHttpParamCustomId]) forKey:CURHttpParamCustomId];
     }
-    
     
     return ret;
 }
