@@ -1,4 +1,4 @@
-#Curio iOS SDK 1.0.8
+#Curio iOS SDK 1.0.9
 
 [Curio](https://gui-curio.turkcell.com.tr) is Turkcell's mobile analytics system, and this is Curio's Client iOS library. Applications developed for iOS 6.0+ can easily use Curio mobile analytics with this library.
 
@@ -35,7 +35,7 @@ If you're using cocoapods for your iOS project dependencies, Curio iOS SDK suppo
 You just need to add the line below to your **Podfile** (change version number with the latest):
 
 ```
-	pod 'Curio_iOS_SDK', '~> 1.0.8'
+	pod 'Curio_iOS_SDK', '~> 1.0.9'
 ```
 
 #Configuration
