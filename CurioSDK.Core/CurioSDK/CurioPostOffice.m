@@ -74,21 +74,7 @@ static pthread_mutex_t mutex;
                                                   forKey:[NSString stringWithFormat:@"HC%@",screenClass]];
             }
             
-        } else if (action != nil && action.actionType == CActionTypeSendEvent) {
-            // Check for hit code
-            NSString *eventKeyAndValue = [action.properties objectForKey:CS_CUSTOM_VAR_EVENTCLASS];
             
-            if (eventKeyAndValue) {
-                
-                NSDictionary *ret =  [[CurioUtil shared] fromJson:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] percentEncoded:FALSE];
-                
-                NSString *hitCode = [NSString stringWithFormat:@"%@",[ret objectForKey:CS_HTTP_JSON_VARNAME_EVENTCODE]];
-                
-                CS_Log_Info(@"Retrieved hit code %@ for screen %@",hitCode,eventKeyAndValue);
-                
-                [[CurioSDK shared].memoryStore setObject:hitCode
-                                                  forKey:[NSString stringWithFormat:@"HC%@",eventKeyAndValue]];
-            }
         }
         
         // Means we are successfully posted online post request
@@ -183,8 +169,7 @@ static pthread_mutex_t mutex;
         postType == CPostTypeSendEvent ? CS_SERVER_URL_SUFFIX_SEND_EVENT :
         postType == CPostTypeEndSession ? CS_SERVER_URL_SUFFIX_SESSION_END :
         postType == CPostTypeEndScreen ? CS_SERVER_URL_SUFFIX_SCREEN_END :
-        postType == CPostTypeUnregister ? CS_SERVER_URL_SUFFIX_UNREGISTER :
-        postType == CPostTypeEndEvent ? CS_SERVER_URL_SUFFIX_END_EVENT : @"";
+        postType == CPostTypeUnregister ? CS_SERVER_URL_SUFFIX_UNREGISTER : @"";
 
         NSString *sUrl = [NSString stringWithFormat:@"%@%@",[[CurioSettings shared] serverUrl],suffix];
     
@@ -276,8 +261,7 @@ static pthread_mutex_t mutex;
     action.actionType == CActionTypeEndScreen ? CPostTypeEndScreen :
     action.actionType == CActionTypeEndSession ? CPostTypeEndSession :
     action.actionType == CActionTypeSendEvent ? CPostTypeSendEvent :
-    action.actionType == CActionTypeUnregister ? CPostTypeUnregister :
-    action.actionType == CActionTypeEndEvent ? CPostTypeEndEvent : 0;
+    action.actionType == CActionTypeUnregister ? CPostTypeUnregister : 0;
     
     
     return [self postRequest:type parameters:[[CurioActionToolkit shared] actionToOnlinePostParameters:action] action:action];

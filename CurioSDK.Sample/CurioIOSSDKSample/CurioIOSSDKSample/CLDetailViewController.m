@@ -85,10 +85,6 @@
     [[CurioSDK shared] sendEvent:@"Clicked button" eventValue:NSStringFromClass([self class])];
 }
 
-- (IBAction)endEvent:(id)sender {
-    [[CurioSDK shared] endEvent:@"Clicked button" eventValue:NSStringFromClass([self class]) eventDuration:52780];
-}
-
 - (IBAction)getNotificationHistory:(id)sender {
     [[CurioSDK shared] getNotificationHistoryWithPageStart:0 rows:5 success:^(NSDictionary *responseObject) {
         NSLog(@"%@", responseObject.description);

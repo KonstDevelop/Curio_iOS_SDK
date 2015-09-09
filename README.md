@@ -135,22 +135,11 @@ You can end a screen by invoking startScreen function within CurioSDK class.
 
 ### Sending an event
 
-You can send event-key and value pairs by invoking sendEvent function within CurioSDK class. You can also send event keys categorized using ">". Such as @"Cat1>Cat2>Cat3".
+You can send event-key and value pairs by invoking sendEvent function within CurioSDK class.
 
 ```
 	- (IBAction)sendEvent:(id)sender {
 	    [[CurioSDK shared] sendEvent:@"Clicked button" eventValue:NSStringFromClass([self class])];
-	}
-	
-```
-
-### Ending an event
-
-You can send event-key,value pairs and duration (in miliseconds) by invoking endEvent function within CurioSDK class. You can also end event keys categorized using ">". Such as @"Cat1>Cat2>Cat3".
-
-```
-	- (IBAction)endEvent:(id)sender {
-	    [[CurioSDK shared] endEvent:@"Clicked button" eventValue:NSStringFromClass([self class]) eventDuration:[NSNumber numberWithDouble:5000]];
 	}
 	
 ```

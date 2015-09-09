@@ -8,6 +8,8 @@
 
 #import "CurioConstants.h"
 
+
+
 NSString * const CURKeyScreenDataTitle = @"title";
 NSString * const CURKeyScreenDataClassName = @"className";
 NSString * const CURKeyScreenDataPath = @"path";
@@ -23,7 +25,6 @@ NSString * const CURKeyTimeStamp = @"stamp";
 NSString * const CURKeyHitCode = @"hitCode";
 NSString * const CURKeyEventKey = @"eventKey";
 NSString * const CURKeyEventValue = @"eventValue";
-NSString * const CURKeyEventDuration = @"eventDuration";
 NSString * const CURKeyIsOnline = @"isOnline";
 NSString * const CURKeyProperties = @"properties";
 NSString * const CURKeyData = @"data";
@@ -43,6 +44,7 @@ NSString * const CURHttpParamLatitude = @"lat";
 NSString * const CURHttpParamLongitude = @"long";
 NSString * const CURHttpParamOffset = @"offset";
 NSString * const CURHttpParamLimitSize = @"limitsize";
+
 
 NSString * const CURDeviceBrandName = @"Apple";
 

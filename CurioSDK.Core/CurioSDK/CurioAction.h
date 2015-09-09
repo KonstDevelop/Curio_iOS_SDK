@@ -13,8 +13,7 @@ typedef NS_ENUM(NSUInteger, CActionType) {
             CActionTypeStartScreen = 2,
             CActionTypeEndScreen = 3,
             CActionTypeSendEvent = 4,
-            CActionTypeEndEvent = 7,
-            CActionTypeUnregister = 999,
+            CActionTypeUnregister = 5
 };
 
 #define CS_ACTION_TYPE_TO_STR(atype) (atype == CActionTypeStartSession ? @"StartSession" : \
@@ -22,8 +21,8 @@ typedef NS_ENUM(NSUInteger, CActionType) {
                                         atype == CActionTypeStartScreen ? @"StartScreen" : \
                                         atype == CActionTypeEndScreen ? @"EndScreen" : \
                                         atype == CActionTypeSendEvent ? @"SendEvent" : \
-                                        atype == CActionTypeUnregister ? @"Unregister" : \
-                                        atype == CActionTypeEndEvent ? @"EndEvent" : @"")
+                                        atype == CActionTypeUnregister ? @"Unregister" : @"")
+
 
 @interface CurioAction : NSObject
 
@@ -105,13 +104,6 @@ typedef NS_ENUM(NSUInteger, CActionType) {
  */
 + (CurioAction *) actionSendEvent:(NSString *) eventKey path:(NSString *)eventValue;
 
-/**
- *  Creates action object for endEvent action
- *
- *
- *  @return All properties binded CurioAction object for endSession message
- */
-+ (CurioAction *) actionEndEvent:(NSString *) hitCode eventDuration:(NSUInteger) eventDuration;
 
 /**
  *  Creates action object for unregister action
