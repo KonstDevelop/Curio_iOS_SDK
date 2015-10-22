@@ -36,23 +36,6 @@
     return self;
 }
 
-/*- (NSString *) deviceToken {
-    
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    
-    return [userDefaults objectForKey:CS_CONST_DEV_TOK];
-}*/
-
-/*- (void) setDeviceToken:(NSString *) deviceToken {
-    
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    
-    [userDefaults setObject:deviceToken forKey:CS_CONST_DEV_TOK];
-    [userDefaults synchronize];
-    
-    
-}*/
-
 - (void) sendPreviouslyFailedPushDataToServer:(id) notif {
     
     NSArray *rNotifications = [[CurioDBToolkit shared] getStoredPushData];
@@ -144,12 +127,12 @@
             CS_Log_Debug(@"\r\rRESPONSE for URL: %@,\rStatus code: %ld,\rResponse string: %@\r\r",sUrl,(long)[((NSHTTPURLResponse *)response) statusCode],[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
             
             BOOL failed = FALSE;
-            
+            NSString *sendCustomId = [userInfo objectForKey:@"sendCustomId"];
             if ((long)httpResponse.statusCode != 200) {
                 CS_Log_Warning(@"Not ok: %ld, %@",(long)httpResponse.statusCode,[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
                 failed = TRUE;
             } else if ((long)httpResponse.statusCode == 200) {
-                if ([[CurioSDK shared] customId] && [[CurioSDK shared] customId].length > 0) {
+                if ([[CurioSDK shared] customId] && [[CurioSDK shared] customId].length && [@"YES" isEqualToString:sendCustomId]) {
                     [[NSNotificationCenter defaultCenter] postNotificationName:CS_NOTIF_CUSTOM_ID_SET object:nil userInfo:@{@"Status": @"OK", @"Response": @"Custom ID has been set successfully."}];
                 }
             }
@@ -162,7 +145,7 @@
             
             if (failed) {
                 
-                if ([[CurioSDK shared] customId] && [[CurioSDK shared] customId].length > 0) {
+                if ([[CurioSDK shared] customId] && [[CurioSDK shared] customId].length > 0 && [@"YES" isEqualToString:sendCustomId]) {
                     [[NSNotificationCenter defaultCenter] postNotificationName:CS_NOTIF_CUSTOM_ID_SET object:nil userInfo:@{@"Status": @"NOK", @"Response": error ? error.description : @"Custom ID could not be sent."}];
                 }
                 
