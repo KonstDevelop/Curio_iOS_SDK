@@ -630,7 +630,7 @@ maxValidLocationTimeInterval:(double)maxValidLocationTimeInterval
 - (void) sendCustomId:(NSString *)theCustomId{
     CS_Log_Debug(@"Sending custom id: %@",theCustomId);
     [self setCustomId:theCustomId];
-    [[CurioNotificationManager shared] sendPushData:nil];
+    [[CurioNotificationManager shared] sendPushData:@{@"sendCustomId":@"YES"}];
 }
     
 - (void) sendLocation{
