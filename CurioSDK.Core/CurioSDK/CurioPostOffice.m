@@ -214,7 +214,7 @@ static pthread_mutex_t mutex;
         if (postType == CPostTypeUnregister) {
             [[NSNotificationCenter defaultCenter] postNotificationName:CS_NOTIF_UNREGISTER
                                                                 object:nil
-                                                              userInfo:responseOk ? @{@"Status": @"OK", @"Response": @"Unregistered Successfully"} : @{@"Status": @"NOK", @"Response": error ? error.description : @""}];
+                                                              userInfo:responseOk ? @{CURKeyStatus: CURKeyOK, CURKeyResponse: @"Unregistered Successfully"} : @{CURKeyStatus: CURKeyNOK, CURKeyResponse: error ? error.description : @""}];
         }
         
         if (error != nil) {

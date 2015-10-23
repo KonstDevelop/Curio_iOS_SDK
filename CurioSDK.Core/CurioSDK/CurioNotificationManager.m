@@ -68,6 +68,10 @@
             
             if (![[CurioSDK shared] sessionCodeRegisteredOnServer]) {
                 
+                if ([@"YES" isEqualToString:[userInfo objectForKey:CURKeySendCustomID]]) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:CS_NOTIF_CUSTOM_ID_SET object:nil userInfo:@{CURKeyStatus: CURKeyNOK, CURKeyResponse: @"Custom ID could not be sent. There is no session code registered on server."}];
+                }
+                
                 CS_Log_Debug(@"No session code registered on server, push data will be inserted into DB...");
                 
                 BOOL result = [[CurioDBToolkit shared] addPushData:
@@ -127,13 +131,12 @@
             CS_Log_Debug(@"\r\rRESPONSE for URL: %@,\rStatus code: %ld,\rResponse string: %@\r\r",sUrl,(long)[((NSHTTPURLResponse *)response) statusCode],[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
             
             BOOL failed = FALSE;
-            NSString *sendCustomId = [userInfo objectForKey:@"sendCustomId"];
             if ((long)httpResponse.statusCode != 200) {
                 CS_Log_Warning(@"Not ok: %ld, %@",(long)httpResponse.statusCode,[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
                 failed = TRUE;
             } else if ((long)httpResponse.statusCode == 200) {
-                if ([[CurioSDK shared] customId] && [[CurioSDK shared] customId].length && [@"YES" isEqualToString:sendCustomId]) {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:CS_NOTIF_CUSTOM_ID_SET object:nil userInfo:@{@"Status": @"OK", @"Response": @"Custom ID has been set successfully."}];
+                if ([[CurioSDK shared] customId] && [[CurioSDK shared] customId].length && [@"YES" isEqualToString:[userInfo objectForKey:CURKeySendCustomID]]) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:CS_NOTIF_CUSTOM_ID_SET object:nil userInfo:@{CURKeyStatus: CURKeyOK, CURKeyResponse: @"Custom ID has been set successfully."}];
                 }
             }
             if (error != nil) {
@@ -145,8 +148,8 @@
             
             if (failed) {
                 
-                if ([[CurioSDK shared] customId] && [[CurioSDK shared] customId].length > 0 && [@"YES" isEqualToString:sendCustomId]) {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:CS_NOTIF_CUSTOM_ID_SET object:nil userInfo:@{@"Status": @"NOK", @"Response": error ? error.description : @"Custom ID could not be sent."}];
+                if ([[CurioSDK shared] customId] && [[CurioSDK shared] customId].length > 0 && [@"YES" isEqualToString:[userInfo objectForKey:CURKeySendCustomID]]) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:CS_NOTIF_CUSTOM_ID_SET object:nil userInfo:@{CURKeyStatus: CURKeyNOK, CURKeyResponse: error ? error.description : @"Custom ID could not be sent."}];
                 }
                 
                 [[CurioDBToolkit shared] addPushData:

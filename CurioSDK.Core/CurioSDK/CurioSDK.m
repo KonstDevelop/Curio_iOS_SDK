@@ -623,14 +623,14 @@ maxValidLocationTimeInterval:(double)maxValidLocationTimeInterval
     } else {
         [[NSNotificationCenter defaultCenter] postNotificationName:CS_NOTIF_UNREGISTER
                                                             object:nil
-                                                          userInfo: @{@"Status": @"NOK", @"Response": @"Curio SDK is not online. Network connection may have been lost."}];
+                                                          userInfo: @{CURKeyStatus: CURKeyNOK, CURKeyResponse: @"Curio SDK is not online. Network connection may have been lost."}];
     }
 }
 
 - (void) sendCustomId:(NSString *)theCustomId{
     CS_Log_Debug(@"Sending custom id: %@",theCustomId);
     [self setCustomId:theCustomId];
-    [[CurioNotificationManager shared] sendPushData:@{@"sendCustomId":@"YES"}];
+    [[CurioNotificationManager shared] sendPushData:@{CURKeySendCustomID:@"YES"}];
 }
     
 - (void) sendLocation{
@@ -682,16 +682,18 @@ maxValidLocationTimeInterval:(double)maxValidLocationTimeInterval
 - (void)unregisterFromNotificationServerNotified:(NSNotification *)notification {
     __weak CurioSDK *weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [weakSelf.delegate unregisteredFromNotificationServer:notification.userInfo];
-        
+        if ([weakSelf.delegate respondsToSelector:@selector(unregisteredFromNotificationServer:)]) {
+            [weakSelf.delegate unregisteredFromNotificationServer:notification.userInfo];
+        }
     });
 }
 
 - (void)customIDSetNotified:(NSNotification *)notification {
     __weak CurioSDK *weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [weakSelf.delegate customIDSent:notification.userInfo];
-        
+        if ([weakSelf.delegate respondsToSelector:@selector(customIDSent:)]) {
+            [weakSelf.delegate customIDSent:notification.userInfo];
+        }
     });
 }
 

@@ -28,6 +28,12 @@ NSString * const CURKeyIsOnline = @"isOnline";
 NSString * const CURKeyProperties = @"properties";
 NSString * const CURKeyData = @"data";
 NSString * const CURKeyPId = @"pId";
+NSString * const CURKeySendCustomID = @"sendCustomID";
+
+NSString * const CURKeyStatus = @"Status";
+NSString * const CURKeyOK = @"OK";
+NSString * const CURKeyNOK = @"NOK";
+NSString * const CURKeyResponse = @"Response";
 
 NSString * const CURNetworkTypeWifi = @"wifi";
 NSString * const CURNetworkTypeMobile = @"mobile";

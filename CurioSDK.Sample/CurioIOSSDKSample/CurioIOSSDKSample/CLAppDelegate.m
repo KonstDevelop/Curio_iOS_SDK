@@ -88,16 +88,26 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    
 }
 
 - (void)unregisteredFromNotificationServer:(NSDictionary *)responseDictionary {
     NSLog(@"unregisteredFromNotificationServer response description: %@", responseDictionary.description);
+    
+    if ([[responseDictionary objectForKey:CURKeyStatus] isEqualToString:CURKeyNOK]) {
+        NSLog(@"unregistration failed");
+    } else if ([[responseDictionary objectForKey:CURKeyStatus] isEqualToString:CURKeyOK]) {
+        NSLog(@"unregistered successfully");
+    }
 }
 
 - (void)customIDSent:(NSDictionary *)responseDictionary {
     NSLog(@"customIDSent response description: %@", responseDictionary.description);
-
+    
+    if ([[responseDictionary objectForKey:CURKeyStatus] isEqualToString:CURKeyNOK]) {
+        NSLog(@"customIDSent failed");
+    } else if ([[responseDictionary objectForKey:CURKeyStatus] isEqualToString:CURKeyOK]) {
+        NSLog(@"customIDSent successfully");
+    }
 }
 
 @end

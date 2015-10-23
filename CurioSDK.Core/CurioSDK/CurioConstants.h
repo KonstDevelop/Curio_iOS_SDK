@@ -36,6 +36,12 @@ extern NSString * const CURNetworkTypeMobile;
 extern NSString * const CURNetworkTypeOffline;
 extern NSString * const CURNetworkCarrierUnknown;
 extern NSString * const CURKeyPId;
+extern NSString * const CURKeySendCustomID;
+
+extern NSString * const CURKeyStatus;
+extern NSString * const CURKeyOK;
+extern NSString * const CURKeyNOK;
+extern NSString * const CURKeyResponse;
 
 extern NSString * const CURHttpParamPushToken;
 extern NSString * const CURHttpParamVisitorCode;
