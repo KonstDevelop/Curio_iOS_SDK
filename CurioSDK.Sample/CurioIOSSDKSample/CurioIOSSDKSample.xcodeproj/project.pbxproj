@@ -194,6 +194,7 @@
 				9B5871951A976D3300DA7956 /* CurioLocationManager.m */,
 				9B9D0AE21A80F368003B97DC /* CurioPushData.h */,
 				9B9D0AE31A80F368003B97DC /* CurioPushData.m */,
+				9BBC5CC11A7BA8D7002ABE49 /* CurioConstants.h */,
 				9B0D9BE71A7FA0A50075C86F /* CurioConstants.m */,
 				2C26B61E19D2F51800450A85 /* CurioAction.h */,
 				2C26B61F19D2F51800450A85 /* CurioAction.m */,
@@ -218,7 +219,6 @@
 				2C26B63019D2F51800450A85 /* CurioUtil.m */,
 				2C26B63119D2F51800450A85 /* CurioReachabilityEx.h */,
 				2C26B63219D2F51800450A85 /* CurioReachabilityEx.m */,
-				9BBC5CC11A7BA8D7002ABE49 /* CurioConstants.h */,
 				98D80CB51B695AB7008499D9 /* CurioResourceUtil.h */,
 				98D80CB61B695AB7008499D9 /* CurioResourceUtil.m */,
 			);
