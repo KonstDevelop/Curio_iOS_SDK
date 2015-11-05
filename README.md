@@ -38,12 +38,29 @@ You just need to add the line below to your **Podfile** (change version number w
 
 #Configuration
 
-There are two ways to configure CurioSDK.
+You can specify CurioSDK parameters whenever you want to start a session on client by invoking startSession function just like below.
 
-### Info.plist Configuration
+```
+    [[CurioSDK shared] startSession:@"server_url"
+                             apiKey:@"XXXXX"
+                       trackingCode:@"XXXXX"
+                     sessionTimeout:4
+            periodicDispatchEnabled:YES
+                     dispatchPeriod:1
+            maxCachedActivitiyCount:1000
+                     loggingEnabled:YES
+                           logLevel:0
+     registerForRemoteNotifications:YES
+                  notificationTypes:@"Sound,Badge,Alert"
+               fetchLocationEnabled:YES
+       maxValidLocationTimeInterval:600
+       			   delegate:self
+                   appLaunchOptions:launchOptions
+     ];
 
-You can just copy'n paste CurioSDK item within sample project's Info.plist or CurioSDKTests-Info.plist contained in CurioSDK.Core tests to your project's Info.plist file and edit parameters as you wish.
+```
 
+### Configuration
 
 **ServerURL:** [Required] Curio server URL, can be obtained from Turkcell. 
 
@@ -72,30 +89,6 @@ You can just copy'n paste CurioSDK item within sample project's Info.plist or Cu
 **MaxValidLocationTimeInterval:** [Optional] Default is 600 seconds. The accuracy of recent location is validated using this parameter. Location tracking continues until it reaches to a valid location time interval.
 
 **delegate:** If you are using "CurioSDKDelegate" protocol, you can set this parameter with your class reference. "CurioSDKDelegate" protocol provides callbacks for responses from "unregisterFromNotificationServer" and "sendCustomId" methods.
-
-### Manual Configuration
-
-You can specify CurioSDK parameters whenever you want to start a session on client by invoking startSession function just like below.
-
-```
-    [[CurioSDK shared] startSession:@"server_url"
-                             apiKey:@"XXXXX"
-                       trackingCode:@"XXXXX"
-                     sessionTimeout:4
-            periodicDispatchEnabled:YES
-                     dispatchPeriod:1
-            maxCachedActivitiyCount:1000
-                     loggingEnabled:YES
-                           logLevel:0
-     registerForRemoteNotifications:YES
-                  notificationTypes:@"Sound,Badge,Alert"
-               fetchLocationEnabled:YES
-       maxValidLocationTimeInterval:600
-       			   delegate:self
-                   appLaunchOptions:launchOptions
-     ];
-
-```
 
 ## Usage
 
