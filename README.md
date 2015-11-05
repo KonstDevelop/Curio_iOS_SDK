@@ -60,8 +60,6 @@ You can specify CurioSDK parameters whenever you want to start a session on clie
 
 ```
 
-### Configuration
-
 **ServerURL:** [Required] Curio server URL, can be obtained from Turkcell. 
 
 **ApiKey:** [Required] Application specific API key, can be obtained from Turkcell.
