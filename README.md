@@ -38,7 +38,7 @@ You just need to add the line below to your **Podfile** (change version number w
 
 #Configuration
 
-**Important Note:** Starting session using CurioSDK row in Info.plist is deprecated. Please implement the method below with the parameters you are using in Info.plist.
+**Important Note:** Starting session using CurioSDK row in Info.plist is deprecated. Please implement the method below with the parameters you were using in Info.plist.
 
 You can specify CurioSDK parameters whenever you want to start a session on client by invoking startSession function just like below.
 
