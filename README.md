@@ -278,7 +278,7 @@ Other than two main workflows, there is a **CurioNetwork.h** which handles netwo
 
 #App Transport Security
 
-With the addition of App Transport Security (ATS) in iOS 9, it is possible to see `CFNetwork SSLHandshake failed (-9806)` errors. If you run into this problem with Curio SDK requests you can work around this issue by adding the following to your `Info.plist`. The key **"provided curio url"** which is below should be your Curio SDK url.
+With the addition of App Transport Security (ATS) in iOS 9, it is possible to see `CFNetwork SSLHandshake failed (-9806)` errors. If you run into this problem with Curio SDK requests you can work around this issue by adding the following to your `Info.plist`. The key **"example.com"** which is below should be your Curio SDK domain.
 
 ```xml
 <dict>
@@ -286,7 +286,7 @@ With the addition of App Transport Security (ATS) in iOS 9, it is possible to se
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>provided curio url</key>
+			<key>example.com</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
