@@ -32,7 +32,7 @@
 }
 
 - (id) init:(NSString *) aId
-       type:(unsigned long) type
+       type:(int) type
       stamp:(NSString *) stamp
       title:(NSString *) title
        path:(NSString *) path
@@ -62,7 +62,7 @@
     NSMutableDictionary *dict = [NSMutableDictionary new];
     
     CS_SET_DICT_IF_NOT_NIL(dict, _aId, CURKeyActionId);
-    CS_SET_DICT_IF_NOT_NIL(dict, [NSNumber numberWithUnsignedLong:_actionType], CURKeyActionType);
+    CS_SET_DICT_IF_NOT_NIL(dict, [NSNumber numberWithInt:(int)_actionType], CURKeyActionType);
     CS_SET_DICT_IF_NOT_NIL(dict, _stamp, CURKeyTimeStamp);
     CS_SET_DICT_IF_NOT_NIL(dict, _title, CURKeyScreenDataTitle);
     CS_SET_DICT_IF_NOT_NIL(dict, _path, CURKeyScreenDataPath);
@@ -120,7 +120,7 @@
     return cAction;
 }
 
-+ (CurioAction *) actionEndEvent:(NSString *) hitCode eventDuration:(unsigned long) eventDuration{
++ (CurioAction *) actionEndEvent:(NSString *) hitCode eventDuration:(int) eventDuration{
     
     CurioAction *cAction = [[CurioAction alloc] init:[[CurioUtil shared] nanos]
                                                 type:CActionTypeEndEvent
@@ -128,7 +128,7 @@
                                                title:nil path:nil hitCode:hitCode eventKey:nil eventValue:nil];
     
     [cAction.properties addEntriesFromDictionary:[self defaultActionProperties]];
-    [cAction.properties setObject:[NSString stringWithFormat:@"%ld",eventDuration] forKey:CURKeyEventDuration];
+    [cAction.properties setObject:[NSString stringWithFormat:@"%d",(int)eventDuration] forKey:CURKeyEventDuration];
     
     return cAction;
 }
