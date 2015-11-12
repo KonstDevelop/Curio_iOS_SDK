@@ -31,9 +31,8 @@
     return self;
 }
 
-
 - (id) init:(NSString *) aId
-       type:(NSUInteger) type
+       type:(int) type
       stamp:(NSString *) stamp
       title:(NSString *) title
        path:(NSString *) path
@@ -43,7 +42,7 @@
     self = [self init];
     if (self) {
         _aId = aId;
-        _actionType = (int)type;
+        _actionType = type;
         _stamp = stamp;
         _title = title;
         _path = path;
@@ -63,7 +62,7 @@
     NSMutableDictionary *dict = [NSMutableDictionary new];
     
     CS_SET_DICT_IF_NOT_NIL(dict, _aId, CURKeyActionId);
-    CS_SET_DICT_IF_NOT_NIL(dict, [NSNumber numberWithInt:_actionType], CURKeyActionType);
+    CS_SET_DICT_IF_NOT_NIL(dict, [NSNumber numberWithInt:(int)_actionType], CURKeyActionType);
     CS_SET_DICT_IF_NOT_NIL(dict, _stamp, CURKeyTimeStamp);
     CS_SET_DICT_IF_NOT_NIL(dict, _title, CURKeyScreenDataTitle);
     CS_SET_DICT_IF_NOT_NIL(dict, _path, CURKeyScreenDataPath);
@@ -129,7 +128,7 @@
                                                title:nil path:nil hitCode:hitCode eventKey:nil eventValue:nil];
     
     [cAction.properties addEntriesFromDictionary:[self defaultActionProperties]];
-    [cAction.properties setObject:[NSString stringWithFormat:@"%lu",(unsigned long)eventDuration] forKey:CURKeyEventDuration];
+    [cAction.properties setObject:[NSString stringWithFormat:@"%d",(int)eventDuration] forKey:CURKeyEventDuration];
     
     return cAction;
 }
