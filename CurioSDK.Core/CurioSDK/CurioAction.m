@@ -129,7 +129,7 @@
                                                title:nil path:nil hitCode:hitCode eventKey:nil eventValue:nil];
     
     [cAction.properties addEntriesFromDictionary:[self defaultActionProperties]];
-    [cAction.properties setObject:[NSString stringWithFormat:@"%ld",eventDuration] forKey:CURKeyEventDuration];    
+    [cAction.properties setObject:[NSString stringWithFormat:@"%lu",(unsigned long)eventDuration] forKey:CURKeyEventDuration];
     
     return cAction;
 }
