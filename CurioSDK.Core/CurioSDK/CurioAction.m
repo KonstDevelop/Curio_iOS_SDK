@@ -120,7 +120,7 @@
     return cAction;
 }
 
-+ (CurioAction *) actionEndEvent:(NSString *) hitCode eventDuration:(int) eventDuration{
++ (CurioAction *) actionEndEvent:(NSString *) hitCode eventDuration:(NSUInteger) eventDuration{
     
     CurioAction *cAction = [[CurioAction alloc] init:[[CurioUtil shared] nanos]
                                                 type:CActionTypeEndEvent
