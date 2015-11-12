@@ -184,9 +184,9 @@
 - (BOOL) addAction:(CurioAction *) action {
     
     
-    NSString *sql = [NSString stringWithFormat:@"INSERT INTO ACTIONS VALUES('%@', %d ,'%@','%@','%@','%@','%@','%@','%@','%@')",
+    NSString *sql = [NSString stringWithFormat:@"INSERT INTO ACTIONS VALUES('%@', %i ,'%@','%@','%@','%@','%@','%@','%@','%@')",
                      action.aId,
-                     (int)action.actionType,
+                     action.actionType,
                      [[CurioUtil shared] urlEncode:action.stamp],
                      [[CurioUtil shared] urlEncode:action.title],
                      [[CurioUtil shared] urlEncode:action.path],

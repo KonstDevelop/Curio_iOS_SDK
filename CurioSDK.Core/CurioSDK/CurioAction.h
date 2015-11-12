@@ -44,7 +44,7 @@ typedef NS_ENUM(NSUInteger, CActionType) {
  
  */
 - (id) init:(NSString *) aId
-       type:(int) type
+       type:(NSUInteger) type
       stamp:(NSString *) stamp
       title:(NSString *) title
        path:(NSString *) path
