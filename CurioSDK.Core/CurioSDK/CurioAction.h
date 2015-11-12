@@ -7,7 +7,7 @@
 //  Copyright (c) 2014 Turkcell. All rights reserved.
 //
 
-typedef NS_ENUM(NSUInteger, CActionType) {
+typedef NS_ENUM(int, CActionType) {
             CActionTypeStartSession = 0,
             CActionTypeEndSession = 1,
             CActionTypeStartScreen = 2,
@@ -111,7 +111,7 @@ typedef NS_ENUM(NSUInteger, CActionType) {
  *
  *  @return All properties binded CurioAction object for endSession message
  */
-+ (CurioAction *) actionEndEvent:(NSString *) hitCode eventDuration:(NSUInteger) eventDuration;
++ (CurioAction *) actionEndEvent:(NSString *) hitCode eventDuration:(int) eventDuration;
 
 /**
  *  Creates action object for unregister action
