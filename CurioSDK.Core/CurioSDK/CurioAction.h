@@ -7,7 +7,7 @@
 //  Copyright (c) 2014 Turkcell. All rights reserved.
 //
 
-typedef NS_ENUM(int, CActionType) {
+typedef NS_ENUM(unsigned long, CActionType) {
             CActionTypeStartSession = 0,
             CActionTypeEndSession = 1,
             CActionTypeStartScreen = 2,
@@ -28,7 +28,7 @@ typedef NS_ENUM(int, CActionType) {
 @interface CurioAction : NSObject
 
 @property (strong, nonatomic) NSString   *aId;
-@property int actionType;
+@property unsigned long actionType;
 @property (strong, nonatomic) NSString   *stamp;
 @property (strong, nonatomic) NSString   *title;
 @property (strong, nonatomic) NSString   *path;
@@ -44,7 +44,7 @@ typedef NS_ENUM(int, CActionType) {
  
  */
 - (id) init:(NSString *) aId
-       type:(int) type
+       type:(unsigned long) type
       stamp:(NSString *) stamp
       title:(NSString *) title
        path:(NSString *) path
@@ -111,7 +111,7 @@ typedef NS_ENUM(int, CActionType) {
  *
  *  @return All properties binded CurioAction object for endSession message
  */
-+ (CurioAction *) actionEndEvent:(NSString *) hitCode eventDuration:(int) eventDuration;
++ (CurioAction *) actionEndEvent:(NSString *) hitCode eventDuration:(unsigned long) eventDuration;
 
 /**
  *  Creates action object for unregister action
