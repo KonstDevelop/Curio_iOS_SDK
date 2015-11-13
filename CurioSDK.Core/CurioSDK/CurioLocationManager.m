@@ -81,7 +81,7 @@
             [self.locationManager requestWhenInUseAuthorization];
         }
         
-#ifdef TARGET_OS_TV
+#if TARGET_OS_TV
         [self.locationManager requestLocation];
 #else
         [self.locationManager startUpdatingLocation];
@@ -95,7 +95,7 @@
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     if (status == kCLAuthorizationStatusAuthorizedWhenInUse || status == kCLAuthorizationStatusAuthorizedAlways) {
-#ifdef TARGET_OS_TV
+#if TARGET_OS_TV
         [self.locationManager requestLocation];
 #else
         [self.locationManager startUpdatingLocation];

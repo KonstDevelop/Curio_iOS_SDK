@@ -41,6 +41,31 @@
 		9B5871971A976D3300DA7956 /* CurioLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5871951A976D3300DA7956 /* CurioLocationManager.m */; };
 		9B5871991A976E9F00DA7956 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B5871981A976E9F00DA7956 /* CoreLocation.framework */; };
 		9B9D0AE41A80F368003B97DC /* CurioPushData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9D0AE31A80F368003B97DC /* CurioPushData.m */; };
+		EBAD6B091BF5E1F1005D2EC2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAD6B081BF5E1F1005D2EC2 /* main.m */; };
+		EBAD6B0C1BF5E1F1005D2EC2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAD6B0B1BF5E1F1005D2EC2 /* AppDelegate.m */; };
+		EBAD6B0F1BF5E1F1005D2EC2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBAD6B0E1BF5E1F1005D2EC2 /* ViewController.m */; };
+		EBAD6B121BF5E1F1005D2EC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBAD6B101BF5E1F1005D2EC2 /* Main.storyboard */; };
+		EBAD6B141BF5E1F1005D2EC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBAD6B131BF5E1F1005D2EC2 /* Assets.xcassets */; };
+		EBAD6B191BF5E20B005D2EC2 /* CurioLocationData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5871931A976D3300DA7956 /* CurioLocationData.m */; };
+		EBAD6B1A1BF5E20B005D2EC2 /* CurioLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5871951A976D3300DA7956 /* CurioLocationManager.m */; };
+		EBAD6B1B1BF5E20B005D2EC2 /* CurioPushData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B9D0AE31A80F368003B97DC /* CurioPushData.m */; };
+		EBAD6B1C1BF5E20B005D2EC2 /* CurioConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0D9BE71A7FA0A50075C86F /* CurioConstants.m */; };
+		EBAD6B1D1BF5E20B005D2EC2 /* CurioAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C26B61F19D2F51800450A85 /* CurioAction.m */; };
+		EBAD6B1E1BF5E20B005D2EC2 /* CurioActionToolkit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C26B62119D2F51800450A85 /* CurioActionToolkit.m */; };
+		EBAD6B1F1BF5E20B005D2EC2 /* CurioDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C26B62319D2F51800450A85 /* CurioDB.m */; };
+		EBAD6B201BF5E20B005D2EC2 /* CurioDBToolkit.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C26B62519D2F51800450A85 /* CurioDBToolkit.m */; };
+		EBAD6B211BF5E20B005D2EC2 /* CurioNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C26B62719D2F51800450A85 /* CurioNetwork.m */; };
+		EBAD6B221BF5E20B005D2EC2 /* CurioPostOffice.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C26B62919D2F51800450A85 /* CurioPostOffice.m */; };
+		EBAD6B231BF5E20B005D2EC2 /* CurioSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C26B62C19D2F51800450A85 /* CurioSDK.m */; };
+		EBAD6B241BF5E20B005D2EC2 /* CurioSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C26B62E19D2F51800450A85 /* CurioSettings.m */; };
+		EBAD6B251BF5E20B005D2EC2 /* CurioNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA525511A1AA9F500BB61CF /* CurioNotificationManager.m */; };
+		EBAD6B261BF5E20B005D2EC2 /* CurioUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C26B63019D2F51800450A85 /* CurioUtil.m */; };
+		EBAD6B271BF5E20B005D2EC2 /* CurioReachabilityEx.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C26B63219D2F51800450A85 /* CurioReachabilityEx.m */; };
+		EBAD6B281BF5E20B005D2EC2 /* CurioResourceUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 98D80CB61B695AB7008499D9 /* CurioResourceUtil.m */; };
+		EBAD6B2A1BF5E380005D2EC2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBAD6B291BF5E380005D2EC2 /* Foundation.framework */; };
+		EBAD6B2C1BF5E385005D2EC2 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EBAD6B2B1BF5E385005D2EC2 /* libsqlite3.tbd */; };
+		EBAD6B2E1BF5E38D005D2EC2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBAD6B2D1BF5E38D005D2EC2 /* SystemConfiguration.framework */; };
+		EBAD6B301BF5E392005D2EC2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBAD6B2F1BF5E392005D2EC2 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,7 +102,6 @@
 		2C26B62719D2F51800450A85 /* CurioNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioNetwork.m; sourceTree = "<group>"; };
 		2C26B62819D2F51800450A85 /* CurioPostOffice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurioPostOffice.h; sourceTree = "<group>"; };
 		2C26B62919D2F51800450A85 /* CurioPostOffice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioPostOffice.m; sourceTree = "<group>"; };
-		2C26B62A19D2F51800450A85 /* CurioSDK-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CurioSDK-Prefix.pch"; sourceTree = "<group>"; };
 		2C26B62B19D2F51800450A85 /* CurioSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurioSDK.h; sourceTree = "<group>"; };
 		2C26B62C19D2F51800450A85 /* CurioSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioSDK.m; sourceTree = "<group>"; };
 		2C26B62D19D2F51800450A85 /* CurioSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurioSettings.h; sourceTree = "<group>"; };
@@ -101,6 +125,19 @@
 		9B9D0AE21A80F368003B97DC /* CurioPushData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurioPushData.h; sourceTree = "<group>"; };
 		9B9D0AE31A80F368003B97DC /* CurioPushData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurioPushData.m; sourceTree = "<group>"; };
 		9BBC5CC11A7BA8D7002ABE49 /* CurioConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CurioConstants.h; sourceTree = "<group>"; };
+		EBAD6B051BF5E1F1005D2EC2 /* CurioIOSSDKSample-TvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CurioIOSSDKSample-TvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBAD6B081BF5E1F1005D2EC2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EBAD6B0A1BF5E1F1005D2EC2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		EBAD6B0B1BF5E1F1005D2EC2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		EBAD6B0D1BF5E1F1005D2EC2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		EBAD6B0E1BF5E1F1005D2EC2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		EBAD6B111BF5E1F1005D2EC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EBAD6B131BF5E1F1005D2EC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EBAD6B151BF5E1F1005D2EC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EBAD6B291BF5E380005D2EC2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		EBAD6B2B1BF5E385005D2EC2 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.0.sdk/usr/lib/libsqlite3.tbd; sourceTree = DEVELOPER_DIR; };
+		EBAD6B2D1BF5E38D005D2EC2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.0.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		EBAD6B2F1BF5E392005D2EC2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.0.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +156,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EBAD6B021BF5E1F1005D2EC2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBAD6B301BF5E392005D2EC2 /* CoreLocation.framework in Frameworks */,
+				EBAD6B2E1BF5E38D005D2EC2 /* SystemConfiguration.framework in Frameworks */,
+				EBAD6B2C1BF5E385005D2EC2 /* libsqlite3.tbd in Frameworks */,
+				EBAD6B2A1BF5E380005D2EC2 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -127,6 +175,7 @@
 			children = (
 				2C26B61D19D2F51800450A85 /* CurioSDK */,
 				2C26B5B519D2F48B00450A85 /* CurioIOSSDKSample */,
+				EBAD6B061BF5E1F1005D2EC2 /* CurioIOSSDKSample-TvOS */,
 				2C26B5AE19D2F48B00450A85 /* Frameworks */,
 				2C26B5AD19D2F48B00450A85 /* Products */,
 			);
@@ -136,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				2C26B5AC19D2F48B00450A85 /* CurioIOSSDKSample.app */,
+				EBAD6B051BF5E1F1005D2EC2 /* CurioIOSSDKSample-TvOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -143,6 +193,10 @@
 		2C26B5AE19D2F48B00450A85 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EBAD6B2F1BF5E392005D2EC2 /* CoreLocation.framework */,
+				EBAD6B2D1BF5E38D005D2EC2 /* SystemConfiguration.framework */,
+				EBAD6B2B1BF5E385005D2EC2 /* libsqlite3.tbd */,
+				EBAD6B291BF5E380005D2EC2 /* Foundation.framework */,
 				98D80CB81B697045008499D9 /* CoreBluetooth.framework */,
 				9B5871981A976E9F00DA7956 /* CoreLocation.framework */,
 				2C26B63D19D2F61200450A85 /* SystemConfiguration.framework */,
@@ -208,7 +262,6 @@
 				2C26B62719D2F51800450A85 /* CurioNetwork.m */,
 				2C26B62819D2F51800450A85 /* CurioPostOffice.h */,
 				2C26B62919D2F51800450A85 /* CurioPostOffice.m */,
-				2C26B62A19D2F51800450A85 /* CurioSDK-Prefix.pch */,
 				2C26B62B19D2F51800450A85 /* CurioSDK.h */,
 				2C26B62C19D2F51800450A85 /* CurioSDK.m */,
 				2C26B62D19D2F51800450A85 /* CurioSettings.h */,
@@ -224,6 +277,29 @@
 			);
 			name = CurioSDK;
 			path = ../../CurioSDK.Core/CurioSDK;
+			sourceTree = "<group>";
+		};
+		EBAD6B061BF5E1F1005D2EC2 /* CurioIOSSDKSample-TvOS */ = {
+			isa = PBXGroup;
+			children = (
+				EBAD6B0A1BF5E1F1005D2EC2 /* AppDelegate.h */,
+				EBAD6B0B1BF5E1F1005D2EC2 /* AppDelegate.m */,
+				EBAD6B0D1BF5E1F1005D2EC2 /* ViewController.h */,
+				EBAD6B0E1BF5E1F1005D2EC2 /* ViewController.m */,
+				EBAD6B101BF5E1F1005D2EC2 /* Main.storyboard */,
+				EBAD6B131BF5E1F1005D2EC2 /* Assets.xcassets */,
+				EBAD6B151BF5E1F1005D2EC2 /* Info.plist */,
+				EBAD6B071BF5E1F1005D2EC2 /* Supporting Files */,
+			);
+			path = "CurioIOSSDKSample-TvOS";
+			sourceTree = "<group>";
+		};
+		EBAD6B071BF5E1F1005D2EC2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EBAD6B081BF5E1F1005D2EC2 /* main.m */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,6 +322,23 @@
 			productReference = 2C26B5AC19D2F48B00450A85 /* CurioIOSSDKSample.app */;
 			productType = "com.apple.product-type.application";
 		};
+		EBAD6B041BF5E1F1005D2EC2 /* CurioIOSSDKSample-TvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EBAD6B181BF5E1F1005D2EC2 /* Build configuration list for PBXNativeTarget "CurioIOSSDKSample-TvOS" */;
+			buildPhases = (
+				EBAD6B011BF5E1F1005D2EC2 /* Sources */,
+				EBAD6B021BF5E1F1005D2EC2 /* Frameworks */,
+				EBAD6B031BF5E1F1005D2EC2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CurioIOSSDKSample-TvOS";
+			productName = "CurioIOSSDKSample-TvOS";
+			productReference = EBAD6B051BF5E1F1005D2EC2 /* CurioIOSSDKSample-TvOS.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -264,6 +357,9 @@
 							};
 						};
 					};
+					EBAD6B041BF5E1F1005D2EC2 = {
+						CreatedOnToolsVersion = 7.1;
+					};
 				};
 			};
 			buildConfigurationList = 2C26B5A719D2F48B00450A85 /* Build configuration list for PBXProject "CurioIOSSDKSample" */;
@@ -272,6 +368,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 2C26B5A319D2F48B00450A85;
 			productRefGroup = 2C26B5AD19D2F48B00450A85 /* Products */;
@@ -279,6 +376,7 @@
 			projectRoot = "";
 			targets = (
 				2C26B5AB19D2F48B00450A85 /* CurioIOSSDKSample */,
+				EBAD6B041BF5E1F1005D2EC2 /* CurioIOSSDKSample-TvOS */,
 			);
 		};
 /* End PBXProject section */
@@ -294,6 +392,15 @@
 				2C26B5C619D2F48B00450A85 /* Default-568h@2x.png in Resources */,
 				2C26B5C919D2F48B00450A85 /* MainStoryboard_iPhone.storyboard in Resources */,
 				2C26B5CC19D2F48B00450A85 /* MainStoryboard_iPad.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EBAD6B031BF5E1F1005D2EC2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBAD6B141BF5E1F1005D2EC2 /* Assets.xcassets in Resources */,
+				EBAD6B121BF5E1F1005D2EC2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,6 +434,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EBAD6B011BF5E1F1005D2EC2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBAD6B191BF5E20B005D2EC2 /* CurioLocationData.m in Sources */,
+				EBAD6B1A1BF5E20B005D2EC2 /* CurioLocationManager.m in Sources */,
+				EBAD6B1B1BF5E20B005D2EC2 /* CurioPushData.m in Sources */,
+				EBAD6B1C1BF5E20B005D2EC2 /* CurioConstants.m in Sources */,
+				EBAD6B1D1BF5E20B005D2EC2 /* CurioAction.m in Sources */,
+				EBAD6B1E1BF5E20B005D2EC2 /* CurioActionToolkit.m in Sources */,
+				EBAD6B1F1BF5E20B005D2EC2 /* CurioDB.m in Sources */,
+				EBAD6B201BF5E20B005D2EC2 /* CurioDBToolkit.m in Sources */,
+				EBAD6B211BF5E20B005D2EC2 /* CurioNetwork.m in Sources */,
+				EBAD6B221BF5E20B005D2EC2 /* CurioPostOffice.m in Sources */,
+				EBAD6B231BF5E20B005D2EC2 /* CurioSDK.m in Sources */,
+				EBAD6B241BF5E20B005D2EC2 /* CurioSettings.m in Sources */,
+				EBAD6B251BF5E20B005D2EC2 /* CurioNotificationManager.m in Sources */,
+				EBAD6B261BF5E20B005D2EC2 /* CurioUtil.m in Sources */,
+				EBAD6B271BF5E20B005D2EC2 /* CurioReachabilityEx.m in Sources */,
+				EBAD6B281BF5E20B005D2EC2 /* CurioResourceUtil.m in Sources */,
+				EBAD6B0F1BF5E1F1005D2EC2 /* ViewController.m in Sources */,
+				EBAD6B0C1BF5E1F1005D2EC2 /* AppDelegate.m in Sources */,
+				EBAD6B091BF5E1F1005D2EC2 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -352,6 +485,14 @@
 				2C26B5CB19D2F48B00450A85 /* en */,
 			);
 			name = MainStoryboard_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		EBAD6B101BF5E1F1005D2EC2 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EBAD6B111BF5E1F1005D2EC2 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -423,8 +564,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CurioIOSSDKSample/CurioIOSSDKSample-Prefix.pch";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "CurioIOSSDKSample/CurioIOSSDKSample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -437,13 +578,74 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CurioIOSSDKSample/CurioIOSSDKSample-Prefix.pch";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "CurioIOSSDKSample/CurioIOSSDKSample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		EBAD6B161BF5E1F1005D2EC2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "CurioIOSSDKSample-TvOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.CurioIOSSDKSample-TvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		EBAD6B171BF5E1F1005D2EC2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "CurioIOSSDKSample-TvOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.CurioIOSSDKSample-TvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};
@@ -467,6 +669,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		EBAD6B181BF5E1F1005D2EC2 /* Build configuration list for PBXNativeTarget "CurioIOSSDKSample-TvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EBAD6B161BF5E1F1005D2EC2 /* Debug */,
+				EBAD6B171BF5E1F1005D2EC2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

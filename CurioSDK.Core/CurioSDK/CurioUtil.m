@@ -63,10 +63,10 @@
 }
 
 - (NSString *) osName {
-#ifdef TARGET_OS_TV
+#if TARGET_OS_TV
     return  @"TVOS";
 #else
-    return @"iOS"
+    return @"iOS";
 #endif
 }
 

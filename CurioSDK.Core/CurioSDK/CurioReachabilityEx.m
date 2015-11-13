@@ -26,10 +26,7 @@
  */
 
 #import "CurioReachabilityEx.h"
-
-#ifdef TARGET_OS_TV
 #import <Foundation/Foundation.h>
-#endif
 
 NSString *const kReachabilityExChangedNotification = @"kReachabilityExChangedNotification";
 

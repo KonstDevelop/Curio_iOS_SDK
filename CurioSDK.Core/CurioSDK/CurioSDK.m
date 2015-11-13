@@ -442,7 +442,7 @@
             
             NSString *hitCode = [[CurioUtil shared] uuidRandom];
             NSString *screenKey = [actionStartScreen.properties objectForKey:CS_CUSTOM_VAR_SCREENCLASS];
-            CS_Log_Info(@"Created hit code %@ for screen %@ when periodicDispatchEnabled or the clinet is offline.",hitCode,screenKey);
+            CS_Log_Info(@"Created hit code %@ for screen %@ when periodicDispatchEnabled or the client is offline.",hitCode,screenKey);
             
             [_memoryStore setObject:hitCode forKey:[NSString stringWithFormat:@"HC%@",screenClassName]];
             actionStartScreen.hitCode = hitCode;
