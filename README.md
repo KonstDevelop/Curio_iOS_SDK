@@ -1,9 +1,12 @@
-#Curio iOS SDK 1.1.1
+#Curio iOS SDK 1.2.0
 
-[Curio](https://gui-curio.turkcell.com.tr) is Turkcell's mobile analytics system, and this is Curio's Client iOS library. Applications developed for iOS 6.0+ can easily use Curio mobile analytics with this library.
+[Curio](https://gui-curio.turkcell.com.tr) is Turkcell's mobile analytics system, and this is Curio's Client iOS library. Applications developed for iOS 6.0+ and tvOS 9+ can easily use Curio mobile analytics with this library.
 
 #What's New
 
+##v1.2.0
+tvOS support added.
+##v1.1.1
 Send endEvent feature added. You can send duration of an event using this method.
 
 #Quick Startup Guide
@@ -33,8 +36,9 @@ If you're using cocoapods for your iOS project dependencies, Curio iOS SDK suppo
 You just need to add the line below to your **Podfile** (change version number with the latest):
 
 ```
-	pod 'Curio_iOS_SDK', '~> 1.1.1'
+	pod 'Curio_iOS_SDK', '~> 1.2.0'
 ```
+
 
 #Configuration
 
@@ -62,6 +66,23 @@ You can specify CurioSDK parameters whenever you want to start a session on clie
 
 ```
 
+For tvOS you can start a session just like this
+
+```
+	[[CurioSDK shared] startSession:@"server_url"
+                             apiKey:@"XXXXX"
+                       trackingCode:@"XXXXX"
+                     sessionTimeout:4
+            periodicDispatchEnabled:YES
+                     dispatchPeriod:1
+            maxCachedActivitiyCount:100
+                     loggingEnabled:YES
+                           logLevel:3
+               fetchLocationEnabled:YES
+       maxValidLocationTimeInterval:60
+                   appLaunchOptions:launchOptions];
+```
+
 **ServerURL:** [Required] Curio server URL, can be obtained from Turkcell. 
 
 **ApiKey:** [Required] Application specific API key, can be obtained from Turkcell.
@@ -80,15 +101,15 @@ You can specify CurioSDK parameters whenever you want to start a session on clie
 
 **LogLevel:** [Optional] Contains level of the print-out logs.  0 - Error, 1 - Warning, 2 - Info, 3 - Debug. Default is 0 (Error).
 
-**RegisterForRemoteNotifications:**  If enabled, then Curio SDK will automatically register for remote notifications for types defined in "NotificationTypes" parameter.
+**RegisterForRemoteNotifications:**[not available for tvOS]  If enabled, then Curio SDK will automatically register for remote notifications for types defined in "NotificationTypes" parameter.
 
-**NotificationTypes:** Notification types to register; available values: Sound, Badge, Alert
+**NotificationTypes:**[not available for tvOS] Notification types to register; available values: Sound, Badge, Alert
 
 **FetchLocationEnabled:** [Optional] If enabled, the current location of the device will be tracked while using the application. Default is true. The accuracy of recent location is validated using **MaxValidLocationTimeInterval**. Location tracking stops when the accurate location is found according to the needs. For further location tracking you can use **[[CurioSDK shared] sendLocation]** method. In order to track locations in iOS8 *[NSLocationWhenInUseUsageDescription](https://developer.apple.com/library/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW26)* must be implemented in Info.plist file.
 
 **MaxValidLocationTimeInterval:** [Optional] Default is 600 seconds. The accuracy of recent location is validated using this parameter. Location tracking continues until it reaches to a valid location time interval.
 
-**delegate:** If you are using "CurioSDKDelegate" protocol, you can set this parameter with your class reference. "CurioSDKDelegate" protocol provides callbacks for responses from "unregisterFromNotificationServer" and "sendCustomId" methods.
+**delegate:**[not available for tvOS] If you are using "CurioSDKDelegate" protocol, you can set this parameter with your class reference. "CurioSDKDelegate" protocol provides callbacks for responses from "unregisterFromNotificationServer" and "sendCustomId" methods.
 
 ## Usage
 
@@ -162,7 +183,7 @@ You can end started session by invoking endSession function with CurioSDK class.
 
 ### Registering for push notifications 
 
-Curio iOS SDK can register your application for remote push notifications automatically if you set "RegisterForRemoteNotifications" parameter true and set "NotificationTypes" parameter. You also have to implement "didReceiveRemoteNotification" and "didRegisterForRemoteNotificationsWithDeviceToken" methods as shown below:
+Curio iOS SDK can register your application for remote push notifications automatically if you set "RegisterForRemoteNotifications" parameter true and set "NotificationTypes" parameter. This is not available for tvOS. You also have to implement "didReceiveRemoteNotification" and "didRegisterForRemoteNotificationsWithDeviceToken" methods as shown below:
 
 ```
 	- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
@@ -189,7 +210,7 @@ You can track device location using the method below. Please check if the **Fetc
 ```
 ### Get Notification History
 
-You can get notification history of push notifications which have been sent to device.
+You can get notification history of push notifications which have been sent to device. This is not available for tvOS.
 
 ```
     [[CurioSDK shared] getNotificationHistoryWithPageStart:0 rows:5 success:^(NSDictionary *responseObject) {
@@ -213,6 +234,8 @@ You can get the result using customIDSent: delegate method in protocol CurioSDKD
 	}
 	...
 
+Custom id and CurioSDKDelegate not available for tvOS.
+
 ###Unregistering from Push Notification Server (if auto push registration is enabled):
 You can call unregisterFromNotificationServer method from your app to unregister your app from Curio Push notification server. After calling this method as below, your app will not receive push notifications:
 
@@ -227,7 +250,7 @@ You can get the result using unregisteredFromNotificationServer: delegate method
     		NSLog(@"unregisteredFromNotificationServer response description: %@", responseDictionary.description);
 	}
 	...
-
+Push notification actions not available for tvOS.
 #Internals
 
 Curio SDK consists of two different workflows which maintains storage and submission functionalities.
@@ -276,27 +299,7 @@ It puts action objects into two arrays (if PDR is disabled just uses one array) 
 
 Other than two main workflows, there is a **CurioNetwork.h** which handles network status changes and notifies with notification calls to all around the SDK. 
 
-#App Transport Security
 
-With the addition of App Transport Security (ATS) in iOS 9, it is possible to see `CFNetwork SSLHandshake failed (-9806)` errors. If you run into this problem with Curio SDK requests you can work around this issue by adding the following to your `Info.plist`. The key **"example.com"** which is below should be your Curio SDK domain.
-
-```xml
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSExceptionDomains</key>
-		<dict>
-			<key>example.com</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-				<key>NSExceptionRequiresForwardSecrecy</key>
-				<false/>
-				<key>NSIncludesSubdomains</key>
-				<true/>
-			</dict>
-		</dict>
-	</dict>
-```
 
 
 

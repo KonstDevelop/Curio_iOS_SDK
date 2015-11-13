@@ -1,7 +1,8 @@
 Pod::Spec.new do |s|
 	s.name         = 'Curio_iOS_SDK'
-	s.version      = '1.1.1'
+	s.version      = '1.2.0'
 	s.ios.deployment_target = '6.0'
+	s.tvos.deployment_target = '9.0'
 	s.summary      = 'Curio is mobile analytics system of Turkcell, and this is Curio iOS Client SDK library'
 	s.homepage     = 'https://github.com/Turkcell/Curio_iOS_SDK'
 	s.license      = 'Apache 2.0'
