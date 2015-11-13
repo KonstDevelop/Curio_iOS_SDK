@@ -17,7 +17,7 @@
 #endif
 
 
-#define CURIO_SDK_VERSION @"1.1.1"
+#define CURIO_SDK_VERSION @"1.2.0"
 
 // Notification names
 
@@ -147,8 +147,8 @@
 
 #define CS_SET_DICT_IF_NOT_NIL(dict,val,key) if (val != nil) [dict setObject:val forKey:key];
 
-
 #import <UIKit/UIKit.h>
+
 #import "CurioConstants.h"
 #import "CurioReachabilityEx.h"
 #import "CurioSettings.h"
@@ -166,12 +166,12 @@
 #import "CurioResourceUtil.h"
 
 
+__TVOS_UNAVAILABLE
 @protocol CurioSDKDelegate <NSObject>
-
 - (void) unregisteredFromNotificationServer:(NSDictionary *)responseDictionary;
 - (void) customIDSent:(NSDictionary *)responseDictionary;
-
 @end
+
 
 @interface CurioSDK : NSObject {
     
@@ -191,7 +191,8 @@
 
 @property (assign, nonatomic) NSUInteger retryCount;
 
-@property (assign,nonatomic) id<CurioSDKDelegate> delegate;
+
+@property (assign,nonatomic) id<CurioSDKDelegate> delegate __TVOS_UNAVAILABLE;
 
 
 /**
@@ -314,6 +315,7 @@
  * \param delegate If you are using "CurioSDKDelegate" protocol, you can set this parameter with your class reference. "CurioSDKDelegate" protocol provides callbacks for responses from "unregisterFromNotificationServer" and "sendCustomId" methods.
  * \param appLaunchOptions Set this with Appdelegate's appLaunchOptions. It is used for tracking notifications.
  */
+
 - (void) startSession:(NSString *)serverUrl
                apiKey:(NSString *)apiKey
          trackingCode:(NSString *)trackingCode
@@ -328,7 +330,7 @@ registerForRemoteNotifications:(BOOL)registerForRemoteNotifications
  fetchLocationEnabled:(BOOL)fetchLocationEnabled
 maxValidLocationTimeInterval:(double)maxValidLocationTimeInterval
              delegate:(id<CurioSDKDelegate>)delegate
-     appLaunchOptions:(NSDictionary *)appLaunchOptions;
+     appLaunchOptions:(NSDictionary *)appLaunchOptions __TVOS_UNAVAILABLE;
 
 /**
     Starts Curio session.
@@ -342,6 +344,23 @@ maxValidLocationTimeInterval:(double)maxValidLocationTimeInterval
 
 
 /**
+ *    Starts Curio session without notification features.
+ */
+
+-(void)startSession:(NSString *)serverUrl
+             apiKey:(NSString *)apiKey
+       trackingCode:(NSString *)trackingCode
+     sessionTimeout:(int)sessionTimeout
+periodicDispatchEnabled:(BOOL)periodicDispatchEnabled
+     dispatchPeriod:(int)dispatchPeriod
+maxCachedActivitiyCount:(int)maxCachedActivityCount
+     loggingEnabled:(BOOL)logginEnabled
+           logLevel:(int)logLevel
+fetchLocationEnabled:(BOOL)fetchLocationEnabled
+maxValidLocationTimeInterval:(double)maxValidLocationTimeInterval
+   appLaunchOptions:(NSDictionary *)appLaunchOptions;
+
+/**
  *  Re-generates session code for further actions
  */
 - (void) reGenerateSessionCode;
@@ -350,12 +369,12 @@ maxValidLocationTimeInterval:(double)maxValidLocationTimeInterval
 /**
  * Unregisters this device from push notification server.
  */
-- (void) unregisterFromNotificationServer;
+- (void) unregisterFromNotificationServer __TVOS_UNAVAILABLE;
 
 /**
  * Sends custom id to push notification server manually.
  */
-- (void) sendCustomId:(NSString *)theCustomId;
+- (void) sendCustomId:(NSString *)theCustomId __TVOS_UNAVAILABLE;
 
 /**
  *
@@ -368,6 +387,6 @@ maxValidLocationTimeInterval:(double)maxValidLocationTimeInterval
 - (void)getNotificationHistoryWithPageStart:(NSInteger)pageStart
                                rows:(NSInteger)rows
                                  success:(void(^)(NSDictionary *responseObject))success
-                                 failure:(void(^)(NSError *error))failure;
+                                 failure:(void(^)(NSError *error))failure __TVOS_UNAVAILABLE;
 
 @end

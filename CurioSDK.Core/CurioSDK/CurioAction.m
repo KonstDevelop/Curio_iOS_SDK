@@ -100,10 +100,13 @@
     CS_SET_DICT_IF_NOT_NIL(ret, CURIO_SDK_VERSION,CS_HTTP_PARAM_SDK_VERSION);
     CS_SET_DICT_IF_NOT_NIL(ret, [[CurioUtil shared] appVersion],CS_HTTP_PARAM_APP_VERSION);
     //CS_SET_DICT_IF_NOT_NIL(ret,[[CurioResourceUtil shared] batteryState],CS_HTTP_PARAM_BATTERY_STATE);
+#ifndef TARGET_OS_TV
     CS_SET_DICT_IF_NOT_NIL(ret,[[CurioResourceUtil shared] batteryLevel],CS_HTTP_PARAM_BATTERY_LEVEL);
     CS_SET_DICT_IF_NOT_NIL(ret,[[CurioResourceUtil shared] bluetoothState],CS_HTTP_PARAM_BLUETOOTH_STATE);
     //CS_SET_DICT_IF_NOT_NIL(ret,[[CurioResourceUtil shared] totalSpace],CS_HTTP_PARAM_TOTAL_STORAGE_SPACE);
     CS_SET_DICT_IF_NOT_NIL(ret,[[CurioResourceUtil shared] totalFreeSpace],CS_HTTP_PARAM_TOTAL_FREE_STORAGE_SPACE);
+#endif
+    
     
     return ret;
     

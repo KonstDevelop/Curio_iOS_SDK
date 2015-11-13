@@ -63,7 +63,11 @@
 }
 
 - (NSString *) osName {
-    return  @"iOS";
+#ifdef TARGET_OS_TV
+    return  @"TVOS";
+#else
+    return @"iOS"
+#endif
 }
 
 - (NSString *) osVersion {

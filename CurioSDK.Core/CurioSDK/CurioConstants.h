@@ -9,6 +9,11 @@
 #ifndef CurioIOSSDKSample_CurioConstants_h
 #define CurioIOSSDKSample_CurioConstants_h
 
+#ifdef __OBJC__
+//#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#endif
+
 extern NSString * const CURKeyScreenDataTitle;
 extern NSString * const CURKeyScreenDataClassName;
 extern NSString * const CURKeyScreenDataPath;

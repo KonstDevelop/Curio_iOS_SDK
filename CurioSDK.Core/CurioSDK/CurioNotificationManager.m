@@ -202,15 +202,13 @@
                 (hasAlert ? CURNotificationTypeAlert : @"") ,
                 (hasBadge ? CURNotificationTypeBadge : @""))
     
-    
-    
     // If iOS version is 8.0
     if ([app respondsToSelector:@selector(isRegisteredForRemoteNotifications)])
     {
         
         UIUserNotificationType notificationType = ((hasSound ? UIUserNotificationTypeSound : 0) |
-                                          (hasAlert ? UIUserNotificationTypeAlert : 0) |
-                                          (hasBadge ? UIUserNotificationTypeBadge : 0));
+                                                   (hasAlert ? UIUserNotificationTypeAlert : 0) |
+                                                   (hasBadge ? UIUserNotificationTypeBadge : 0));
         
         CS_Log_Info(@"Registering for >= 8.0 notifications");
         
@@ -222,13 +220,14 @@
         // If iOS version is less than 8.0
     {
         UIRemoteNotificationType notificationType = ((hasSound ? UIRemoteNotificationTypeSound : 0) |
-                                            (hasAlert ? UIRemoteNotificationTypeAlert : 0) |
-                                            (hasBadge ? UIRemoteNotificationTypeBadge : 0));
+                                                     (hasAlert ? UIRemoteNotificationTypeAlert : 0) |
+                                                     (hasBadge ? UIRemoteNotificationTypeBadge : 0));
         
         CS_Log_Info(@"Registering for 8.0 < notifications");
         
         [app registerForRemoteNotificationTypes:notificationType];
     }
+
 }
 
 - (void) didRegisteredForNotifications:(NSData *)deviceToken {
@@ -251,12 +250,12 @@
     if (notif) {
         [self sendPushData:notif];
     }
-    
+
 }
 
 
 - (void) didReceiveNotification:(NSDictionary *)userInfo {
-    
+
     UIApplication *application = [UIApplication sharedApplication];
     
     // Means app resumed by push notification
@@ -265,6 +264,7 @@
     else {
         CS_Log_Info(@"Received notification %@ and ignoring",userInfo);
     }
+
 }
 
 

@@ -377,7 +377,7 @@
             NSString *hitCode = [[CurioUtil shared] uuidRandom];
             
             NSString *eventKeyAndValue = [actionSendEvent.properties objectForKey:CS_CUSTOM_VAR_EVENTCLASS];
-            CS_Log_Info(@"Created hit code %@ for screen %@ when periodicDispatchEnabled or the clinet is offline.",hitCode,eventKeyAndValue);
+            CS_Log_Info(@"Created hit code %@ for screen %@ when periodicDispatchEnabled or the client is offline.",hitCode,eventKeyAndValue);
             
             [_memoryStore setObject:hitCode forKey:[NSString stringWithFormat:@"HC%@_%@",eventKey, eventValue]];
             actionSendEvent.hitCode = hitCode;
@@ -562,6 +562,37 @@ maxValidLocationTimeInterval:(double)maxValidLocationTimeInterval
     //[self startSession:appLaunchOptions];
 }
 
+-(void)startSession:(NSString *)serverUrl
+             apiKey:(NSString *)apiKey
+       trackingCode:(NSString *)trackingCode
+     sessionTimeout:(int)sessionTimeout
+periodicDispatchEnabled:(BOOL)periodicDispatchEnabled
+     dispatchPeriod:(int)dispatchPeriod
+maxCachedActivitiyCount:(int)maxCachedActivityCount
+     loggingEnabled:(BOOL)logginEnabled
+           logLevel:(int)logLevel
+fetchLocationEnabled:(BOOL)fetchLocationEnabled
+maxValidLocationTimeInterval:(double)maxValidLocationTimeInterval
+   appLaunchOptions:(NSDictionary *)appLaunchOptions {
+    
+    [[CurioSettings shared] set:serverUrl
+                         apiKey:apiKey
+                   trackingCode:trackingCode
+                 sessionTimeout:[NSNumber numberWithInt:sessionTimeout]
+        periodicDispatchEnabled:periodicDispatchEnabled ? CS_NSN_TRUE :   CS_NSN_FALSE
+                 dispatchPeriod:[NSNumber numberWithInt:dispatchPeriod]
+        maxCachedActivitiyCount:[NSNumber numberWithInt:maxCachedActivityCount]
+                 loggingEnabled:logginEnabled ? CS_NSN_TRUE : CS_NSN_FALSE
+                       logLevel:[NSNumber numberWithInt:logLevel]
+           fetchLocationEnabled:fetchLocationEnabled ? CS_NSN_TRUE : CS_NSN_FALSE
+   maxValidLocationTimeInterval:[NSNumber numberWithDouble:maxValidLocationTimeInterval]
+     ];
+    
+    //this is done for getting bluetoothstate
+    [self performSelector:@selector(startSession:) withObject:appLaunchOptions afterDelay:0.1];
+    
+}
+
 - (void) startSession:(NSDictionary *) appLaunchOptions {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(unregisterFromNotificationServerNotified:) name:CS_NOTIF_UNREGISTER object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(customIDSetNotified:) name:CS_NOTIF_CUSTOM_ID_SET object:nil];
@@ -569,8 +600,9 @@ maxValidLocationTimeInterval:(double)maxValidLocationTimeInterval
     _appLaunchOptions = appLaunchOptions != nil ? appLaunchOptions : [NSDictionary new];
     
     [curioActionQueue addOperationWithBlock:^{
-        
+#ifndef TARGET_OS_TV
         [CurioResourceUtil shared];
+#endif
         
         CurioAction *actionStartSession = [CurioAction actionStartSession];
         
@@ -578,9 +610,11 @@ maxValidLocationTimeInterval:(double)maxValidLocationTimeInterval
         
         [[CurioDBToolkit shared] addAction:actionStartSession];
         
+#ifndef TARGET_OS_TV
         if (CS_NSN_IS_TRUE([[CurioSettings shared] registerForRemoteNotifications]))
             [[CurioNotificationManager shared] registerForNotifications];
-                
+#endif
+        
         if (CS_NSN_IS_TRUE([[CurioSettings shared] fetchLocationEnabled]))
             [[CurioLocationManager shared] sendLocation];
         
@@ -679,7 +713,7 @@ maxValidLocationTimeInterval:(double)maxValidLocationTimeInterval
 
 #pragma mark - Unregister and CustomID set observers
 
-- (void)unregisterFromNotificationServerNotified:(NSNotification *)notification {
+- (void)unregisterFromNotificationServerNotified:(NSNotification *)notification __TVOS_UNAVAILABLE {
     __weak CurioSDK *weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
         if ([weakSelf.delegate respondsToSelector:@selector(unregisteredFromNotificationServer:)]) {
@@ -688,7 +722,7 @@ maxValidLocationTimeInterval:(double)maxValidLocationTimeInterval
     });
 }
 
-- (void)customIDSetNotified:(NSNotification *)notification {
+- (void)customIDSetNotified:(NSNotification *)notification __TVOS_UNAVAILABLE {
     __weak CurioSDK *weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
         if ([weakSelf.delegate respondsToSelector:@selector(customIDSent:)]) {
