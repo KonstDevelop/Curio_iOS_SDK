@@ -600,7 +600,7 @@ maxValidLocationTimeInterval:(double)maxValidLocationTimeInterval
     _appLaunchOptions = appLaunchOptions != nil ? appLaunchOptions : [NSDictionary new];
     
     [curioActionQueue addOperationWithBlock:^{
-#if TARGET_OS_TV
+#if !TARGET_OS_TV
         [CurioResourceUtil shared];
 #endif
         
@@ -610,7 +610,7 @@ maxValidLocationTimeInterval:(double)maxValidLocationTimeInterval
         
         [[CurioDBToolkit shared] addAction:actionStartSession];
         
-#if TARGET_OS_TV
+#if !TARGET_OS_TV
         if (CS_NSN_IS_TRUE([[CurioSettings shared] registerForRemoteNotifications]))
             [[CurioNotificationManager shared] registerForNotifications];
 #endif

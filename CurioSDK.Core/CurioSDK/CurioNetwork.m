@@ -9,7 +9,7 @@
 
 #import "CurioSDK.h"
 
-#if TARGET_OS_TV
+#if !TARGET_OS_TV
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #import <CoreTelephony/CTCarrier.h>
 #endif
@@ -87,7 +87,7 @@
 
 - (NSString *) carrierCountryCode {
     
-#if TARGET_OS_TV
+#if !TARGET_OS_TV
     CTTelephonyNetworkInfo *networkInfo = [[CTTelephonyNetworkInfo alloc] init];
     CTCarrier *carrier = networkInfo.subscriberCellularProvider;
     
@@ -100,7 +100,7 @@
 
 - (NSString *) carrierName {
     
-#if TARGET_OS_TV
+#if !TARGET_OS_TV
     CTTelephonyNetworkInfo *networkInfo = [[CTTelephonyNetworkInfo alloc] init];
     CTCarrier *carrier = networkInfo.subscriberCellularProvider;
     
