@@ -17,7 +17,7 @@
 #endif
 
 
-#define CURIO_SDK_VERSION @"1.2.0"
+#define CURIO_SDK_VERSION @"1.2.1"
 
 // Notification names
 
