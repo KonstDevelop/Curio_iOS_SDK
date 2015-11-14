@@ -51,7 +51,7 @@ You can specify CurioSDK parameters whenever you want to start a session on clie
                              apiKey:@"XXXXX"
                        trackingCode:@"XXXXX"
                      sessionTimeout:4
-            periodicDispatchEnabled:YES
+            periodicDispatchEnabled:NO
                      dispatchPeriod:1
             maxCachedActivitiyCount:1000
                      loggingEnabled:YES
