@@ -142,6 +142,7 @@
         
         [actDict setObject:[NSNumber numberWithInt:action.actionType] forKey:CS_HTTP_JSON_VARNAME_TYPE];
         [actDict setObject:action.stamp forKey:CS_HTTP_JSON_VARNAME_TIMESTAMP];
+        [actDict setObject:[action.properties objectForKey:CS_HTTP_PARAM_SESSION_CODE] forKey:CS_HTTP_PARAM_SESSION_CODE];
         
         if (action.actionType == CActionTypeStartScreen) {
             
