@@ -73,11 +73,11 @@ For tvOS you can start a session just like this
                              apiKey:@"XXXXX"
                        trackingCode:@"XXXXX"
                      sessionTimeout:4
-            periodicDispatchEnabled:YES
+            periodicDispatchEnabled:NO
                      dispatchPeriod:1
             maxCachedActivitiyCount:100
                      loggingEnabled:YES
-                           logLevel:3
+                           logLevel:0
                fetchLocationEnabled:YES
        maxValidLocationTimeInterval:60
                    appLaunchOptions:launchOptions];
@@ -299,8 +299,25 @@ It puts action objects into two arrays (if PDR is disabled just uses one array) 
 
 Other than two main workflows, there is a **CurioNetwork.h** which handles network status changes and notifies with notification calls to all around the SDK. 
 
+#App Transport Security
 
-
-
-
+With the addition of App Transport Security (ATS) in iOS 9, it is possible to see `CFNetwork SSLHandshake failed (-9806)` errors. If you run into this problem with Curio SDK requests you can work around this issue by adding the following to your `Info.plist`. The key **"example.com"** which is below should be your Curio SDK domain.		
+		
+```xml		
+	<key>NSAppTransportSecurity</key>		
+	<dict>		
+		<key>NSExceptionDomains</key>		
+		<dict>		
+			<key>example.com</key>		
+			<dict>		
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>		
+				<true/>		
+				<key>NSExceptionRequiresForwardSecrecy</key>		
+				<false/>		
+				<key>NSIncludesSubdomains</key>		
+				<true/>		
+			</dict>		
+		</dict>		
+	</dict>		
+```
 
