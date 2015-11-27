@@ -256,7 +256,6 @@ Push notification actions not available for tvOS.
 You can tag your user profiles with Curio. Multiple tags can be send multiple times. Tags must send as key/ value format;
 ```
     [[CurioSDK shared] sendUserTags:[[NSDictionary alloc] initWithObjectsAndKeys:@"27", @"AGE", nil]];
-    }];
 ```
 ##Getting User Tags
 Returns the user tags set before as NSDictionary object;
