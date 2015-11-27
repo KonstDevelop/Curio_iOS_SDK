@@ -23,7 +23,7 @@
                              apiKey:@"XXXXX"
                        trackingCode:@"XXXXX"
                      sessionTimeout:4
-            periodicDispatchEnabled:NO
+            periodicDispatchEnabled:YES
                      dispatchPeriod:1
             maxCachedActivitiyCount:1000
                      loggingEnabled:YES

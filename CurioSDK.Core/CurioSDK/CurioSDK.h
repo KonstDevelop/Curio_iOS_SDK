@@ -17,7 +17,7 @@
 #endif
 
 
-#define CURIO_SDK_VERSION @"1.2.1"
+#define CURIO_SDK_VERSION @"1.2.2"
 
 // Notification names
 
@@ -64,6 +64,8 @@
 #define CS_SERVER_URL_SUFFIX_LOCATION_DATA @"/location/set"
 #define CS_SERVER_URL_SUFFIX_UNREGISTER @"/visitor/unregister"
 #define CS_SERVER_URL_SUFFIX_PUSH_HISTORY @"/pushHistory/get"
+#define CS_SERVER_URL_SUFFIX_SET_USER_TAGS @"/visitor/setUserTag"
+#define CS_SERVER_URL_SUFFIX_GET_USER_TAGS @"/visitor/getVisitorProfileTags"
 
 #define CS_HTTP_PARAM_HIT_CODE @"hitCode"
 #define CS_HTTP_PARAM_EVENT_CODE @"eventCode"
@@ -388,5 +390,16 @@ maxValidLocationTimeInterval:(double)maxValidLocationTimeInterval
                                rows:(NSInteger)rows
                                  success:(void(^)(NSDictionary *responseObject))success
                                  failure:(void(^)(NSError *error))failure __TVOS_UNAVAILABLE;
+
+/**
+ *
+ */
+-(void)sendUserTags:(NSDictionary *)tags;
+/**
+ *
+ */
+-(void)getUserTagsWithSuccess:(void(^)(NSDictionary *responseObject))success
+                      failure:(void(^)(NSError *error))failure;
+
 
 @end

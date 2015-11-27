@@ -18,7 +18,9 @@
 @implementation CLDetailViewController
 
 - (void) viewDidAppear:(BOOL)animated {
+    
     [[CurioSDK shared] startScreen:[self class] title:@"Detail view" path:@"Detail-view"];
+    
     [super viewDidAppear:animated];
 }
 
@@ -107,6 +109,19 @@
 
 - (IBAction)sendCustomId:(id)sender {
     [[CurioSDK shared] sendCustomId: @"sample custom id"];
+}
+
+- (IBAction)sendUserTags:(id)sender {
+    [[CurioSDK shared] sendUserTags:[[NSDictionary alloc] initWithObjectsAndKeys:@"27", @"AGE", nil]];
+}
+
+- (IBAction)getUserTags:(id)sender {
+    [[CurioSDK shared] getUserTagsWithSuccess:^(NSDictionary *responseObject) {
+        NSLog(@"User tags: %@", responseObject);
+    } failure:^(NSError *error) {
+        NSLog(@"Error on getting user tags %@", [error description]);
+    }];
+    
 }
 
 @end

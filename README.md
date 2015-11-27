@@ -1,9 +1,10 @@
-#Curio iOS SDK 1.2.1
+#Curio iOS SDK 1.2.2
 
 [Curio](https://gui-curio.turkcell.com.tr) is Turkcell's mobile analytics system, and this is Curio's Client iOS library. Applications developed for iOS 6.0+ and tvOS 9+ can easily use Curio mobile analytics with this library.
 
 #What's New
-
+##v1.2.2
+User tagging added.
 ##v1.2.0
 tvOS support added.
 ##v1.1.1
@@ -251,6 +252,24 @@ You can get the result using unregisteredFromNotificationServer: delegate method
 	}
 	...
 Push notification actions not available for tvOS.
+##Sending User Tags
+You can tag your user profiles with Curio. Multiple tags can be send multiple times. Tags must send as key/ value format;
+```
+    [[CurioSDK shared] sendUserTags:[[NSDictionary alloc] initWithObjectsAndKeys:@"27", @"AGE", nil] success:^{
+        NSLog(@"Success");
+    } failure:^(NSError *error) {
+        NSLog(@"Error on sending user tags %@", [error description]);
+    }];
+```
+##Getting User Tags
+Returns the user tags set before as NSDictionary object;
+```
+    [[CurioSDK shared] getUserTagsWithSuccess:^(NSDictionary *responseObject) {
+        NSLog(@"User tags: %@", responseObject);
+    } failure:^(NSError *error) {
+        NSLog(@"Error on getting user tags %@", [error description]);
+    }];
+```
 #Internals
 
 Curio SDK consists of two different workflows which maintains storage and submission functionalities.

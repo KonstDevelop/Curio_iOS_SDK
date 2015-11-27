@@ -216,10 +216,10 @@
 				2C26B5BF19D2F48B00450A85 /* CLAppDelegate.m */,
 				2C26B5C719D2F48B00450A85 /* MainStoryboard_iPhone.storyboard */,
 				2C26B5CA19D2F48B00450A85 /* MainStoryboard_iPad.storyboard */,
-				2C26B5CD19D2F48B00450A85 /* CLMasterViewController.h */,
-				2C26B5CE19D2F48B00450A85 /* CLMasterViewController.m */,
 				2C26B5D019D2F48B00450A85 /* CLDetailViewController.h */,
 				2C26B5D119D2F48B00450A85 /* CLDetailViewController.m */,
+				2C26B5CD19D2F48B00450A85 /* CLMasterViewController.h */,
+				2C26B5CE19D2F48B00450A85 /* CLMasterViewController.m */,
 				2C26B5B619D2F48B00450A85 /* Supporting Files */,
 			);
 			path = CurioIOSSDKSample;
@@ -677,6 +677,7 @@
 				EBAD6B171BF5E1F1005D2EC2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
