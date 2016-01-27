@@ -56,7 +56,7 @@
 - (NSString *) appVersion {
     
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    NSString *version = [infoDictionary objectForKey:@"CFBundleVersion"];
+    NSString *version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
         
     return [NSString stringWithFormat:@"%@", version];
     
