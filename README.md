@@ -176,7 +176,7 @@ You can send event-key,value pairs and duration (in miliseconds) by invoking end
 
 ### Ending session
 
-You can end started session by invoking endSession function with CurioSDK class. Normally there is no need to manually end application session. CurioSDK automatically handles session-finish processes to notify Curio Server.
+You can end started session by invoking endSession function with CurioSDK class. Normally there is no need to manually end application session. Session life cycle is handled by server.
 
 ```
 	- (void)applicationWillTerminate:(UIApplication *)application {
