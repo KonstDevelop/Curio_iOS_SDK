@@ -1,4 +1,4 @@
-#Curio iOS SDK 1.2.4
+Curio iOS SDK 1.2.4
 ===============
 [![CocoaPods](https://img.shields.io/cocoapods/v/Curio_iOS_SDK.svg?maxAge=2592000)]()
 [![CocoaPods](https://img.shields.io/cocoapods/l/Curio_iOS_SDK.svg?maxAge=2592000)]()
