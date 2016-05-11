@@ -1,4 +1,8 @@
 #Curio iOS SDK 1.2.4
+===============
+[![CocoaPods](https://img.shields.io/cocoapods/v/Curio_iOS_SDK.svg?maxAge=2592000)]()
+[![CocoaPods](https://img.shields.io/cocoapods/l/Curio_iOS_SDK.svg?maxAge=2592000)]()
+[![CocoaPods](https://img.shields.io/cocoapods/p/Curio_iOS_SDK.svg?maxAge=2592000)]()
 
 [Curio](https://gui-curio.turkcell.com.tr) is Turkcell's mobile analytics system, and this is Curio's Client iOS library. Applications developed for iOS 6.0+ and tvOS 9+ can easily use Curio mobile analytics with this library.
 
