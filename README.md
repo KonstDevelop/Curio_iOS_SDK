@@ -37,6 +37,7 @@ And expand 'Link Binary With Library' and click + sign to add required framework
 - CoreLocation.framework
 - CoreBluetooth.framework
 ```
+In iOS 10 Apple have made it a requirement to define the usage description in the Info.plist for any framework that requires a permission popup however you are not calling any method that shows that popup. This project links CoreBluetooth.framework in order to get your bluetooth status (on/off). Thus you need to add **NSBluetoothPeripheralUsageDescription** row to your Info.plist file.
 
 If you don't want to run automated unit tests, then you should remove CurioSDKTests.m, CurioSettingsTest.m and CurioDBTests.m files from compilation by Click on Targets -> Your App Name -> And then the 'Build Phases' tab and expand Compile Sources to remove them by clicking on - sign while mentioned source files selected.
 
