@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
 	s.authors             = { 'Can Ciloglu' => 'can.ciloglu@turkcell.com.tr' }
 	s.social_media_url   = 'https://twitter.com/canciloglu'
 	s.source       = { :git => 'https://github.com/Turkcell/Curio_iOS_SDK.git', :tag => s.version  }
-	s.source_files  = 'CurioSDK.Core/CurioSDK'
+	s.source_files  = ['CurioSDK.Core/CurioSDK/CurioSDK.h', 'CurioSDK.Core/CurioSDK']
 	s.requires_arc = true
 	s.ios.frameworks = 'Foundation','UIKit', 'CoreTelephony', 'CoreLocation', 'CoreBluetooth'
 	s.tvos.frameworks = 'Foundation','UIKit', 'CoreLocation', 'SystemConfiguration'
